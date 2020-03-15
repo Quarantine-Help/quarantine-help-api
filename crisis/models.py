@@ -1,7 +1,13 @@
+# Create your models here.
+from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
-from django.db.models import fields
+from django.db.models import fields, ManyToManyField
+from django_countries.fields import CountryField
+from phone_field import PhoneField
+
+from management.models import Ability
 
 
 class Crisis(models.Model):
@@ -10,13 +16,39 @@ class Crisis(models.Model):
     active = fields.BooleanField(default=True)
     started_at = fields.DateTimeField()
 
+    def __repr__(self):
+        return f"{self.id}-{self.name}"
 
-class Ability(models.Model):
+    def __str__(self):
+        return f"{self.id}-{self.name}"
+
+
+class Participant(models.Model):
     """
-    Define what kind of help a participant can do ? Probably we just keep on
-    creating it at the backend and provide them as checkboxes for the
-    frontend.
+    This is a participant for a crisis
     """
 
-    id = fields.AutoField(primary_key=True)
-    title = fields.CharField(verbose_name="Name of ability", max_length=30)
+    TYPE_OF_PARTICIPANT = [
+        ("HL", "Helper"),
+        ("AF", "Affected"),
+        ("AU", "Authorities"),
+        ("TP", "Third Parties"),
+    ]
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    crisis = models.OneToOneField(Crisis, on_delete=models.CASCADE)
+    type = fields.CharField(max_length=2, choices=TYPE_OF_PARTICIPANT)
+
+    first_line_of_address = fields.CharField(max_length=255)
+    second_line_of_address = fields.CharField(max_length=255)
+    country = CountryField(blank_label="(select country)")
+    place_id = fields.CharField(verbose_name="Place id from Google", max_length=150)
+    latitude = fields.CharField(verbose_name="Latitude of the user", max_length=15)
+    longitude = fields.CharField(verbose_name="Longitude of the user", max_length=15)
+    post_code = fields.CharField(verbose_name="Postal code", max_length=10)
+    city = fields.CharField(verbose_name="City", max_length=40)
+    phone = PhoneField(blank=True, help_text="Contact phone number")
+    abilities = ManyToManyField(Ability)
+    is_available = fields.BooleanField(default=True)
+
+    def __str__(self):
+        return f"{self.id}-{self.crisis.name}-{self.user.first_name}"
