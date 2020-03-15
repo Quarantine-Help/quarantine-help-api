@@ -49,6 +49,7 @@ class Participant(models.Model):
     phone = PhoneField(blank=True, help_text="Contact phone number")
     abilities = ManyToManyField(Ability)
     is_available = fields.BooleanField(default=True)
+    created_at = fields.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.id}-{self.crisis.name}-{self.user.first_name}"
