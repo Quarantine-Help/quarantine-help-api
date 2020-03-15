@@ -42,9 +42,9 @@ your machine, or use `pyenv` as described later in this documentation.
    You need to modify the values there to use the applicaiton in full.
 5. Run the Django standard runserver steps:
    ```
-   (gdrive-env-3.5.3) quarantined_backend/$ python manage.py makemigrations
-   (gdrive-env-3.5.3) quarantined_backend/$ python manage.py migrate
-   (gdrive-env-3.5.3) quarantined_backend/$ python manage.py collectstatic
-   (gdrive-env-3.5.3) quarantined_backend/$ python manage.py runserver
+   (env-3.7.5) quarantined_backend/$ python manage.py makemigrations
+   (env-3.7.5) quarantined_backend/$ python manage.py migrate
+   (env-3.7.5) quarantined_backend/$ python manage.py collectstatic
+   (env-3.7.5) quarantined_backend/$ python manage.py runserver
    ```
    or even better, run it from pyCharm using your debugger.
