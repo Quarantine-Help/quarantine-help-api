@@ -1,7 +1,10 @@
-# Quarantine-help [Backend]
+# Quarantined help [Backend]
 
 Backend for a wishful quarantine people helper application that would be out soon. 
-Fighting #COVID-19 one step at a time.
+Fighting #COVID-19 one step at a time. My wish for this project: 
+1. Lookup people who are ready to help you out when you are quarantined. For buying groceries etc.
+2. Register yourself as someone who can do these errands. 
+3. A map view with markers and other stuff making it easy for people to access. 
 
 ## Dependencies
 
