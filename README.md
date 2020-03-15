@@ -1,7 +1,7 @@
 # Quarantine-help [Backend]
 
-Upload your files directly from Google drive to Wikimedia Commons. Currently
-deployed at [Toollabs](https://tools.wmflabs.org/google-drive-photos-to-commons/).
+Backend for a wishful quarantine people helper application that would be out soon. 
+Fighting #COVID-19 one step at a time.
 
 ## Dependencies
 
