@@ -46,7 +46,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "quarntined_backend.urls"
+ROOT_URLCONF = "quarantined_backend.urls"
 
 TEMPLATES = [
     {
