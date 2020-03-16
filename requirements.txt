@@ -1,12 +1,14 @@
 appdirs==1.4.3
 asgiref==3.2.5
 cfgv==3.1.0
+defusedxml==0.6.0
 distlib==0.3.0
 Django==3.0.4
 django-countries==6.0
 django-filter==2.2.0
 django-phone-field==1.8.0
 djangorestframework==3.11.0
+djangorestframework-camel-case==1.1.2
 filelock==3.0.12
 identify==1.4.11
 importlib-metadata==1.5.0
