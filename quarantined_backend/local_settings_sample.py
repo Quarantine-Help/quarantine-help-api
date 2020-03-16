@@ -1,7 +1,7 @@
 # SECURITY WARNING: keep the secret key used in production secret!
 import os
 
-from quarntined_backend.settings import BASE_DIR
+from quarantined_backend.settings import BASE_DIR
 
 SECRET_KEY = "%5r@$^)+$$#$%ˆˆ%ˆˆˆˆ%$%%$&ˆˆFFDFDSFSDF@$@#DSSFDZzzzSAe3n%fm_"
 
