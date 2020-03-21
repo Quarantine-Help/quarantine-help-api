@@ -36,14 +36,15 @@ your machine, or use `pyenv` as described later in this documentation.
    ```
    (env-3.7.5) quarantined_backend/$ pip install -r requirements.txt
    ```
-3. We use `pre-commit` hooks to format code. See that you install it using
+3. Install `postgis` using `brew install postgis` 
+4. We use `pre-commit` hooks to format code. See that you install it using
    https://pre-commit.com/. Later, install our pre-commit hooks using
    `(env-3.7.5) quarantined_backend/$ pre-commit install`
-4. There are some `localsettings` you need to have as part of running the
+5. There are some `localsettings` you need to have as part of running the
    server. You can copy a template using:
    `(env-3.7.5) quarantined_backend/$ cp quarantined_backend/local_settings_sample.py quarantined_backend/local_settings.py`
    You need to modify the values there to use the applicaiton in full.
-5. Run the Django standard runserver steps:
+6. Run the Django standard runserver steps:
    ```
    (env-3.7.5) quarantined_backend/$ python manage.py makemigrations
    (env-3.7.5) quarantined_backend/$ python manage.py migrate

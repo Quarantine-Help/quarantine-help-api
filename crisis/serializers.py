@@ -1,4 +1,6 @@
 from django.contrib.auth.models import User
+from django.db import models
+from drf_extra_fields import geo_fields
 from rest_framework.serializers import ModelSerializer
 
 from crisis.models import Crisis, Participant
@@ -19,8 +21,7 @@ class UserSerializer(ModelSerializer):
 
 class ParticipantSerializer(ModelSerializer):
     user = UserSerializer()
-    crisis = CrisisSerializer(read_only=True)
-    abilities = AbilitySerializer(many=True)
+    position = geo_fields.PointField(str_points=True)
 
     class Meta:
         model = Participant
