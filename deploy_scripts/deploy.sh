@@ -8,7 +8,7 @@ sudo systemctl stop nginx
 sudo systemctl stop gunicorn.socket
 find . -name '*.pyc' -delete
 python manage.py migrate
-python manage.py collectstatic
+python manage.py collectstatic --noinput
 sudo systemctl start gunicorn.socket
 sudo systemctl start nginx
 echo "Deploy done"
