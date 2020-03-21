@@ -9,13 +9,13 @@ SECRET_KEY = "%5r@$^)+$$#$%ˆˆ%ˆˆˆˆ%$%%$&ˆˆFFDFDSFSDF@$@#DSSFDZzzzSAe3n%f
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 # We do not support sqlite anymore
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': "DATABASE_NAME",
-        'USER': "DATABASE_USER",
-        'PASSWORD': "DATABASE_PASSWORD",
-        'HOST': "DATABASE_HOST",
-        'PORT': '',
+    "default": {
+        "ENGINE": "django.contrib.gis.db.backends.postgis",
+        "NAME": "DATABASE_NAME",
+        "USER": "DATABASE_USER",
+        "PASSWORD": "DATABASE_PASSWORD",
+        "HOST": "DATABASE_HOST",
+        "PORT": "",
     }
 }
 # SECURITY WARNING: don't run with debug turned on in production!

@@ -22,7 +22,7 @@ class CreateListParticipantsAPIV1(generics.ListCreateAPIView):
         queryset = self.filter_queryset(self.get_queryset())
         page = self.paginate_queryset(queryset)
 
-        picked_fk_maps = queryset.values('crisis', 'abilities')
+        picked_fk_maps = queryset.values("crisis", "abilities")
         crisis_ids = set()
         abilities_ids = set()
 
@@ -34,8 +34,7 @@ class CreateListParticipantsAPIV1(generics.ListCreateAPIView):
         crises_query_set = Crisis.objects.filter(pk__in=list(crisis_ids))
         crisis_data = CrisisSerializer(crises_query_set, many=True)
 
-        abilities_query_set = Ability.objects.filter(
-            pk__in=list(abilities_ids))
+        abilities_query_set = Ability.objects.filter(pk__in=list(abilities_ids))
         abilities_data = AbilitySerializer(abilities_query_set, many=True)
 
         paginated_response = self.get_paginated_response(

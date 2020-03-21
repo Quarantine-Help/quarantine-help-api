@@ -5,14 +5,22 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('management', '0001_initial'),
-    ]
+    dependencies = [("management", "0001_initial")]
 
     operations = [
         migrations.AddField(
-            model_name='ability',
-            name='verb',
-            field=models.CharField(choices=[('F', 'Fetch'), ('P', 'Provide'), ('T', 'Transport'), ('N', 'Notify')], default='F', max_length=3, verbose_name='Action on the title, (eg, GET)'),
-        ),
+            model_name="ability",
+            name="verb",
+            field=models.CharField(
+                choices=[
+                    ("F", "Fetch"),
+                    ("P", "Provide"),
+                    ("T", "Transport"),
+                    ("N", "Notify"),
+                ],
+                default="F",
+                max_length=3,
+                verbose_name="Action on the title, (eg, GET)",
+            ),
+        )
     ]

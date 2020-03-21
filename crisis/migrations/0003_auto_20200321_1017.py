@@ -6,22 +6,16 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('crisis', '0002_participant_created_at'),
-    ]
+    dependencies = [("crisis", "0002_participant_created_at")]
 
     operations = [
-        migrations.RemoveField(
-            model_name='participant',
-            name='latitude',
-        ),
-        migrations.RemoveField(
-            model_name='participant',
-            name='longitude',
-        ),
+        migrations.RemoveField(model_name="participant", name="latitude"),
+        migrations.RemoveField(model_name="participant", name="longitude"),
         migrations.AddField(
-            model_name='participant',
-            name='position',
-            field=django.contrib.gis.db.models.fields.PointField(blank=True, null=True, srid=4326),
+            model_name="participant",
+            name="position",
+            field=django.contrib.gis.db.models.fields.PointField(
+                blank=True, null=True, srid=4326
+            ),
         ),
     ]
