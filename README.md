@@ -6,6 +6,9 @@ Fighting #COVID-19 one step at a time. My wish for this project:
 2. Register yourself as someone who can do these errands. 
 3. A map view with markers and other stuff making it easy for people to access. 
 
+## First looks 
+A sample API result would look like: http://134.122.80.13/api/v1/crisis/1/participants/
+
 ## Dependencies
 
 We use `python 3.7.5` for development. Make sure you have this installed on
