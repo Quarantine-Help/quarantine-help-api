@@ -1,6 +1,7 @@
 # Create your views here.
 
 from rest_framework import generics
+from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
 
 from crisis.models import Crisis, Participant
@@ -15,8 +16,11 @@ class CrisisListAPIV1(generics.ListAPIView):
 
 
 class CreateListParticipantsAPIV1(generics.ListCreateAPIView):
-    queryset = Participant.objects.all()
     serializer_class = ParticipantSerializer
+
+    def get_queryset(self):
+        crisis_id = self.kwargs.get("crisis_id", None)
+        return Participant.objects.filter(crisis=crisis_id)
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
