@@ -36,7 +36,7 @@ class Participant(models.Model):
         ("TP", "Third Parties"),
     ]
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    crisis = models.OneToOneField(Crisis, on_delete=models.CASCADE)
+    crisis = models.ForeignKey(Crisis, on_delete=models.CASCADE)
     type = fields.CharField(max_length=2, choices=TYPE_OF_PARTICIPANT)
 
     first_line_of_address = fields.CharField(max_length=255)
@@ -48,7 +48,8 @@ class Participant(models.Model):
     post_code = fields.CharField(verbose_name="Postal code", max_length=10)
     city = fields.CharField(verbose_name="City", max_length=40)
     phone = PhoneField(blank=True, help_text="Contact phone number")
-    abilities = ManyToManyField(Ability)
+    abilities = ManyToManyField(Ability, blank=True)
+
     is_available = fields.BooleanField(default=True)
     created_at = fields.DateTimeField(auto_now=True)
 

@@ -1,9 +1,10 @@
 # Create your views here.
-
-from rest_framework import generics
+from django.contrib.auth.models import User
+from rest_framework import generics, status
 from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
 
+from crisis.helpers import generate_username_with_user_data
 from crisis.models import Crisis, Participant
 from crisis.serializers import CrisisSerializer, ParticipantSerializer
 from management.models import Ability
@@ -21,6 +22,35 @@ class CreateListParticipantsAPIV1(generics.ListCreateAPIView):
     def get_queryset(self):
         crisis_id = self.kwargs.get("crisis_id", None)
         return Participant.objects.filter(crisis=crisis_id)
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        return self.list(request, *args, **kwargs)
+
+    def perform_create(self, serializer):
+        crisis_id = self.kwargs.get("crisis_id", None)
+        # First lets create a user.
+        validated_data = serializer.validated_data
+        user_data = validated_data["user"]
+        username = generate_username_with_user_data(user_data=user_data)
+
+        user_data["username"] = username
+        user = User.objects.create(**validated_data["user"])
+        user.set_unusable_password()
+        user.save()
+
+        abilities = validated_data.pop("abilities", [])
+
+        # Now create a particpant.
+        validated_data["user"] = user
+        validated_data["user_id"] = user.id
+        validated_data["crisis_id"] = crisis_id
+        participant = Participant.objects.create(**validated_data)
+        for abilitiy in abilities:
+            participant.abilities.add(abilitiy)
+        return
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
