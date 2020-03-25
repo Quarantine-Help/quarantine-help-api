@@ -58,7 +58,6 @@ your machine, or use `pyenv` as described later in this documentation.
    You need to modify the values there to use the applicaiton in full.
 6. Run the Django standard runserver steps:
    ```
-   (env-3.7.5) quarantined_backend/$ python manage.py makemigrations
    (env-3.7.5) quarantined_backend/$ python manage.py migrate
    (env-3.7.5) quarantined_backend/$ python manage.py collectstatic
    (env-3.7.5) quarantined_backend/$ python manage.py runserver
@@ -142,7 +141,6 @@ your machine, or use `pyenv` as described later in this documentation.
 
 7. Run the Django standard runserver steps:
    ```
-   (env-3.7.5) quarantined_backend/$ python manage.py makemigrations
    (env-3.7.5) quarantined_backend/$ python manage.py migrate
    (env-3.7.5) quarantined_backend/$ python manage.py collectstatic
    (env-3.7.5) quarantined_backend/$ python manage.py runserver
