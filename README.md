@@ -149,13 +149,13 @@ your machine, or use `pyenv` as described later in this documentation.
 
 ## FAQ
 
-1. Getting this error when running `python manage.py makemigrations` on Windows
+1. Getting this error when running `python manage.py migrate` on Windows
 
    django.core.exceptions.ImproperlyConfigured: Could not find the GDAL library (tried "gdal204", "gdal203", "gdal202", "gdal201", "gdal20"). Is GDAL installed? If it is, try setting GDAL_LIBRARY_PATH in your settings.
 
    1. Install GDAL via OSGeo4W - https://stackoverflow.com/a/49159195/9734484
 
-   2. If you are still getting the same error after executing `python manage.py makemigrations` add gdal version present in `C:/OSGeo4W/bin` to libgdal.py file shown in the error stack, for instance, if gdal300.dll is present add "gdal300" to the list, `lib_names` under os=="nt" for Windows
+   2. If you are still getting the same error after executing `python manage.py migrate` add gdal version present in `C:/OSGeo4W/bin` to libgdal.py file shown in the error stack, for instance, if gdal300.dll is present add "gdal300" to the list, `lib_names` under os=="nt" for Windows
 
 2. Getting this error when running `python manage.py makemigrations` on Windows
 
