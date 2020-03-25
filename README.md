@@ -157,7 +157,7 @@ your machine, or use `pyenv` as described later in this documentation.
 
    2. If you are still getting the same error after executing `python manage.py migrate` add gdal version present in `C:/OSGeo4W/bin` to libgdal.py file shown in the error stack, for instance, if gdal300.dll is present add "gdal300" to the list, `lib_names` under os=="nt" for Windows
 
-2. Getting this error when running `python manage.py makemigrations` on Windows
+2. Getting this error when running `python manage.py migrate` on Windows
 
    psycopg2.OperationalError: could not translate host name "DATABASE_HOST" to address: Unknown host
 
