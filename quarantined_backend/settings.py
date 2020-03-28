@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "phone_field",
     "rest_framework_swagger",
     "corsheaders",
+    "safedelete",
 ]
 
 MIDDLEWARE = [
