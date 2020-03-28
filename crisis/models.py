@@ -40,6 +40,7 @@ class Request(SafeDeleteModel):
         "management.Participant",
         related_name="assignee",
         null=True,
+        blank=True,
         on_delete=models.DO_NOTHING,
     )
 
