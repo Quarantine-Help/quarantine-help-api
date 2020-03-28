@@ -11,7 +11,7 @@ class CrisisSerializer(ModelSerializer):
 
 
 class RequestSerializer(ModelSerializer):
-    assignee = UserSerializer(source="assignee.user")
+    assignee = UserSerializer(source="assignee.user", allow_null=True)
 
     class Meta:
         model = Request
