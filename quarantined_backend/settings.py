@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "rest_framework_swagger",
     "corsheaders",
     "safedelete",
+    "rest_framework.authtoken",
 ]
 
 MIDDLEWARE = [

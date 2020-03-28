@@ -1,9 +1,7 @@
-from django.contrib.auth.models import User
-from drf_extra_fields import geo_fields
-from rest_framework import fields
 from rest_framework.serializers import ModelSerializer
 
-from crisis.models import Crisis, Participant
+from crisis.models import Crisis, Request
+from management.serializer import UserSerializer, ParticipantSerializer
 
 
 class CrisisSerializer(ModelSerializer):
@@ -12,17 +10,13 @@ class CrisisSerializer(ModelSerializer):
         fields = "__all__"
 
 
-class UserSerializer(ModelSerializer):
-    class Meta:
-        model = User
-        fields = ("first_name", "last_name", "email")
-
-
-class ParticipantSerializer(ModelSerializer):
-    user = UserSerializer()
-    position = geo_fields.PointField(str_points=True)
-    crisis = fields.ReadOnlyField(source="crisis_id")
+class RequestSerializer(ModelSerializer):
+    assignee = UserSerializer(source="assignee.user")
 
     class Meta:
-        model = Participant
-        fields = "__all__"
+        model = Request
+        fields = ("type", "deadline", "description", "assignee", "status")
+
+
+class AffectedParticipantSerializer(ParticipantSerializer):
+    requests = RequestSerializer(many=True, source="owner")

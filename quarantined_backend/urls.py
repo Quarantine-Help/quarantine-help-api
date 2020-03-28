@@ -17,6 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
+from rest_framework.authtoken import views
 from rest_framework_swagger.views import get_swagger_view
 
 admin.autodiscover()
@@ -26,5 +27,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     url(r"^api-auth/", include("rest_framework.urls")),
     url(r"^api/v1/crisis/", include("crisis.urls_v1")),
+    url(r"^api/v1/participants/", include("management.urls_v1")),
+    url(r"^api/v1/auth", views.obtain_auth_token),
     url(r"^docs/", schema_view),
 ]

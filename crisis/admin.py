@@ -1,10 +1,9 @@
 from django.contrib import admin
 
-# Register your models here.
-from django.contrib.gis.db import models
-from django.forms import widgets
+from crisis.models import Crisis, Request
 
-from crisis.models import Participant, Crisis
+# Register your models here.
+from management.models import Participant
 
 
 class ParticipantModelAdmin(admin.ModelAdmin):
@@ -18,5 +17,10 @@ class CrisisModelAdmin(admin.ModelAdmin):
     pass
 
 
+class RequestModelAdmin(admin.ModelAdmin):
+    pass
+
+
 admin.site.register(Participant, ParticipantModelAdmin)
 admin.site.register(Crisis, CrisisModelAdmin)
+admin.site.register(Request, RequestModelAdmin)
