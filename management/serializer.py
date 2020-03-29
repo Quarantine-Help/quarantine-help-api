@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from authentication.models import User
 from drf_extra_fields import geo_fields
 from rest_framework import fields
 from rest_framework.serializers import ModelSerializer

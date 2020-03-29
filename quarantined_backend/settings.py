@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "django.contrib.gis",
     "management",
     "crisis",
+    "authentication",
     "rest_framework",
     "django_countries",
     "phone_field",
@@ -57,6 +58,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "quarantined_backend.urls"
+AUTH_USER_MODEL = "authentication.User"
 
 TEMPLATES = [
     {
@@ -111,7 +113,8 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
-
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`

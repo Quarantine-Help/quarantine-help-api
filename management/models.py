@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.contrib.auth.models import User
 from django.contrib.gis.db.models import PointField
 from django.db import models
 
@@ -13,6 +12,7 @@ from rest_framework.authtoken.models import Token
 from safedelete import HARD_DELETE_NOCASCADE
 from safedelete.models import SafeDeleteModel
 
+from authentication.models import User
 from crisis.models import Crisis
 
 
