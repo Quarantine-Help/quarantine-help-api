@@ -15,13 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework_swagger.views import get_swagger_view
 
 from authentication.views import EmailAuthToken
 
 admin.autodiscover()
-schema_view = get_swagger_view(title="Quarantined Project API")
-
 urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("admin/", admin.site.urls),
@@ -29,5 +26,4 @@ urlpatterns = [
     path("api/v1/crises/", include("crisis.urls_v1")),
     path("api/v1/participants/", include("management.urls_v1")),
     path("api/v1/auth", EmailAuthToken.as_view()),
-    # path("docs/", schema_view), # gave up on this sadly.
 ]

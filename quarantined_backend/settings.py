@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     "rest_framework",
     "django_countries",
     "phone_field",
-    "rest_framework_swagger",
     "corsheaders",
     "safedelete",
     "rest_framework.authtoken",

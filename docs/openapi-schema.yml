@@ -1,0 +1,297 @@
+openapi: 3.0.1
+info:
+  title: Quarantined API
+  description: API for quarantined-backend
+  version: "1"
+servers:
+  - url: http://134.122.80.13
+paths:
+  /api/v1/participants/:
+    post:
+      description: Create a new participant. Also acts as the registration API
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Participant"
+            examples:
+              "0":
+                value:
+                  "{\n\t\"user\": {\n\t\t\"firstName\": \"Patient First Test\
+                  \ with 6\",\n\t\t\"lastName\": \"Patient last\",\n\t\t\"email\"\
+                  : \"patients@patient.com\"\n\t}, \n\t\"position\": {\n\t\t\"longitude\"\
+                  : \"2.7105760574340807\",\n\t\t\"latitude\": \"48.19827663849882\"\
+                  \n\t},\n\t\"type\": \"AF\",\n\t\"firstLineOfAddress\": \"First Line\
+                  \ of add\",\n\t\"secondLineOfAddress\": \"Second line\",\n\t\"placeId\"\
+                  : \"ChIJwyyKo7J3X0YRZ5XOMcLx3xo\", \n\t\"postCode\": \"12345\",\n\
+                  \t\"city\": \"Berlin\",\n\t\"country\": \"DE\",\n\t\"crisis\": 1,\n\
+                  \t\"phone\": \"+46761189391\"\n}"
+      responses:
+        "201":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ParticipantResponse"
+              examples:
+                "0":
+                  value:
+                    '{"user":{"firstName":"Patient First Test with 6","lastName":"Patient
+                    last","email":"patients@patient.com"},"position":{"longitude":"2.7105760574340807","latitude":"48.19827663849882"},"type":"AF","firstLineOfAddress":"First
+                    Line of add","secondLineOfAddress":"Second line","country":"DE","placeId":"ChIJwyyKo7J3X0YRZ5XOMcLx3xo","postCode":"12345","city":"Berlin","phone":"+46761189391","crisis":1}'
+      servers:
+        - url: http://134.122.80.13
+    servers:
+      - url: http://134.122.80.13
+  /api/v1/crises/1/affected-participants/:
+    get:
+      description: Get a list of affected participants
+      responses:
+        "200":
+          description: Participants list response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_200"
+              examples:
+                "0":
+                  value:
+                    '{"count":2,"next":null,"previous":null,"results":[{"id":2,"user":{"firstName":"Patient
+                    First Test with 6","lastName":"Patient last","email":"patients@patient.com"},"position":{"longitude":"2.7105760574340807","latitude":"48.19827663849882"},"requests":[],"deleted":null,"type":"AF","firstLineOfAddress":"First
+                    Line of add","secondLineOfAddress":"Second line","country":"DE","placeId":"ChIJwyyKo7J3X0YRZ5XOMcLx3xo","postCode":"12345","city":"Berlin","phone":"+46761189391","metadata":{},"createdAt":"2020-03-29T15:35:53.248762Z","crisis":1},{"id":1,"user":{"firstName":"Tony","lastName":"Thomas","email":"01tonythomas@gmail.com"},"position":{"longitude":"19.057331085205075","latitude":"59.69310986700436"},"requests":[{"type":"G","deadline":"2020-03-29T11:25:31Z","description":"I
+                    need the following: \r\n1. Smor","assignee":null,"status":"P"}],"deleted":null,"type":"AF","firstLineOfAddress":"Cedergrensvägen
+                    1","secondLineOfAddress":"SE-126 36 Hägersten","country":"SE","placeId":"Yz1idWlsZGluZztsYXQ9NTkuMzAzNDY7bG9uPTE4LjAwMzI0O249Q2VkZXJncmVuc3YlQzMlQTRnZW4rMTtoPTcyNDMzYQ","postCode":"12636","city":"Stockholm","phone":"+46761189391","metadata":{},"createdAt":"2020-03-29T11:23:36.862282Z","crisis":1}]}'
+      servers:
+        - url: http://134.122.80.13
+    servers:
+      - url: http://134.122.80.13
+  /api/v1/crises/:
+    get:
+      description: List crisises in your area
+      responses:
+        "200":
+          description: Used to generate some pre-losfrf information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_200_1"
+              examples:
+                "0":
+                  value: '{"count":1,"next":null,"previous":null,"results":[{"id":1,"deleted":null,"name":"COVID_19","active":true,"startedAt":"2020-03-29T10:38:38Z"}]}'
+      servers:
+        - url: http://134.122.80.13
+    servers:
+      - url: http://134.122.80.13
+  /api/v1/auth:
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/body"
+            examples:
+              "0":
+                value:
+                  "{\n\t\"email\": \"01tonythomas@gmail.com\", \n\t\"password\"\
+                  : \"tester123\"\n}"
+      responses:
+        "200":
+          description: Response on succeful login
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_200_2"
+              examples:
+                "0":
+                  value: |-
+                    {
+                      "token": "asdfasdfasdfasfd1231231231313",
+                      "userId": 1,
+                      "email": "user@gmail.com"
+                    }
+        "400":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_400"
+              examples:
+                "0":
+                  value: '{"non_field_errors":["Unable to log in with provided credentials."]}'
+      servers:
+        - url: http://134.122.80.13
+    servers:
+      - url: http://134.122.80.13
+components:
+  schemas:
+    Crisis:
+      type: object
+      properties:
+        name:
+          type: string
+        active:
+          type: boolean
+        startedAt:
+          type: string
+        id:
+          type: integer
+    Position:
+      type: object
+      properties:
+        latitude:
+          type: string
+        longitude:
+          type: string
+    User:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+    Participant:
+      type: object
+      properties:
+        firstLineOfAddress:
+          type: string
+        country:
+          type: string
+        crisis:
+          type: integer
+        city:
+          type: string
+        phone:
+          type: string
+        placeId:
+          type: string
+        postCode:
+          type: string
+        position:
+          $ref: "#/components/schemas/Position"
+        type:
+          type: string
+          enum:
+            - HL
+            - AF
+            - AU
+            - TP
+        user:
+          $ref: "#/components/schemas/User"
+        secondLineOfAddress:
+          type: string
+    ParticipantRequestSchema:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - G
+            - M
+        deadline:
+          type: string
+          description: Deadline to finish this
+          example: 2020-03-29T11:25:31Z
+    AffectedParticipant:
+      type: object
+      properties:
+        requests:
+          type: array
+          items:
+            $ref: "#/components/schemas/ParticipantRequestSchema"
+      allOf:
+        - $ref: "#/components/schemas/ParticipantResponse"
+    ParticipantResponse:
+      type: object
+      properties:
+        id:
+          type: number
+          example: 1
+        firstLineOfAddress:
+          type: string
+        country:
+          type: string
+        crisis:
+          type: integer
+        city:
+          type: string
+        phone:
+          type: string
+        placeId:
+          type: string
+        postCode:
+          type: string
+        position:
+          $ref: "#/components/schemas/ParticipantResponse_position"
+        type:
+          type: string
+        user:
+          $ref: "#/components/schemas/ParticipantResponse_user"
+        secondLineOfAddress:
+          type: string
+    inline_response_200:
+      type: object
+      properties:
+        next: {}
+        previous: {}
+        count:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/AffectedParticipant"
+    inline_response_200_1:
+      type: object
+      properties:
+        next: {}
+        previous: {}
+        count:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/Crisis"
+    body:
+      type: object
+      properties:
+        password:
+          type: string
+        email:
+          type: string
+    inline_response_200_2:
+      type: object
+      properties:
+        token:
+          type: string
+          example: asdfasdfasdfasfd1231231231313
+        userId:
+          type: number
+          example: 1
+        email:
+          type: string
+          example: user@example.com
+    inline_response_400:
+      type: object
+      properties:
+        non_field_errors:
+          type: array
+          items:
+            type: string
+    ParticipantResponse_position:
+      type: object
+      properties:
+        latitude:
+          type: string
+        longitude:
+          type: string
+    ParticipantResponse_user:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
