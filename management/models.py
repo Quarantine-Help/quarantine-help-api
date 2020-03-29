@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib.gis.db.models import PointField
+from django.contrib.postgres.fields import JSONField
 from django.db import models
 
 # Create your models here.
@@ -76,6 +77,7 @@ class Participant(SafeDeleteModel):
     post_code = fields.CharField(verbose_name="Postal code", max_length=10)
     city = fields.CharField(verbose_name="City", max_length=40)
     phone = PhoneField(blank=True, help_text="Contact phone number")
+    metadata = JSONField(blank=True, default=dict)
 
     objects = manager.Manager()
     helpers = HelperParticipantManager()
