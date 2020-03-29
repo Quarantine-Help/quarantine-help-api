@@ -9,7 +9,7 @@ Fighting #COVID-19 one step at a time. My wish for this project:
 
 ## First looks
 
-A sample API result would look like: http://134.122.80.13/api/v1/crisis/1/participants/
+API documentation: https://quarantined-help.github.io/quarantined-api-docs/
 
 Collaborate at: [slack](https://join.slack.com/t/quarantinedhelp/shared_invite/zt-d0259x7q-BiC_viQhLRoQqqc5j~P0uw)
 
