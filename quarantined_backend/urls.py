@@ -13,10 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework.authtoken import views
 from rest_framework_swagger.views import get_swagger_view
 
 from authentication.views import EmailAuthToken
@@ -25,12 +23,11 @@ admin.autodiscover()
 schema_view = get_swagger_view(title="Quarantined Project API")
 
 urlpatterns = [
-    url(r"^accounts/", include("allauth.urls")),
-    url(r"^rest-auth/", include("rest_auth.urls")),
+    path("accounts/", include("allauth.urls")),
     path("admin/", admin.site.urls),
-    url(r"^api-auth/", include("rest_framework.urls")),
-    url(r"^api/v1/crisis/", include("crisis.urls_v1")),
-    url(r"^api/v1/participants/", include("management.urls_v1")),
-    url(r"^api/v1/auth", EmailAuthToken.as_view()),
-    url(r"^docs/", schema_view),
+    path("api-auth/", include("rest_framework.urls")),
+    path("api/v1/crisis/", include("crisis.urls_v1")),
+    path("api/v1/participants/", include("management.urls_v1")),
+    path("api/v1/auth", EmailAuthToken.as_view()),
+    # path("docs/", schema_view), # gave up on this sadly.
 ]

@@ -1,5 +1,8 @@
 # Create your views here.
+import coreapi
+import coreschema
 from rest_framework import generics
+from rest_framework.schemas import AutoSchema
 
 from crisis.models import Crisis
 from crisis.serializers import CrisisSerializer, AffectedParticipantSerializer
