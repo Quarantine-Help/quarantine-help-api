@@ -26,7 +26,7 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("admin/", admin.site.urls),
     path("api-auth/", include("rest_framework.urls")),
-    path("api/v1/crisis/", include("crisis.urls_v1")),
+    path("api/v1/crises/", include("crisis.urls_v1")),
     path("api/v1/participants/", include("management.urls_v1")),
     path("api/v1/auth", EmailAuthToken.as_view()),
     # path("docs/", schema_view), # gave up on this sadly.
