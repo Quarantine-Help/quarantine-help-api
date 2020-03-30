@@ -73,7 +73,7 @@ class Participant(SafeDeleteModel):
     country = CountryField(blank_label="(select country)")
     place_id = fields.CharField(verbose_name="Place id from Google", max_length=150)
 
-    position = PointField(null=True, blank=True)
+    position = PointField(null=True, blank=True, geography=True)
     post_code = fields.CharField(verbose_name="Postal code", max_length=10)
     city = fields.CharField(verbose_name="City", max_length=40)
     phone = PhoneField(blank=True, help_text="Contact phone number")

@@ -19,4 +19,4 @@ class RequestSerializer(ModelSerializer):
 
 
 class AffectedParticipantSerializer(ParticipantSerializer):
-    requests = RequestSerializer(many=True, source="owner")
+    requests = RequestSerializer(many=True, source="created_request")

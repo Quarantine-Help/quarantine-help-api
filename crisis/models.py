@@ -1,11 +1,12 @@
 # Create your models here.
-from authentication.models import User
 from django.db import models
 
 # Create your models here.
 from django.db.models import fields
 from safedelete.models import SOFT_DELETE_CASCADE
 from safedelete.models import SafeDeleteModel
+
+from authentication.models import User
 
 
 class Crisis(SafeDeleteModel):
@@ -27,6 +28,7 @@ class Request(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
 
     TYPE_OF_REQUEST = [("G", "Grocery"), ("M", "Medicine")]
+    UNFINISHED_STATUSES = ["P", "T"]
     TYPE_OF_REQUEST_STATUSES = [
         ("P", "Pending"),
         ("T", "Transit"),
@@ -34,11 +36,13 @@ class Request(SafeDeleteModel):
         ("C", "Cancelled"),
     ]
     owner = models.ForeignKey(
-        "management.Participant", related_name="owner", on_delete=models.CASCADE
+        "management.Participant",
+        related_name="created_request",
+        on_delete=models.CASCADE,
     )
     assignee = models.ForeignKey(
         "management.Participant",
-        related_name="assignee",
+        related_name="assigned_request",
         null=True,
         blank=True,
         on_delete=models.DO_NOTHING,
@@ -73,7 +77,9 @@ class RequestAssignment(SafeDeleteModel):
     ]
     status = fields.CharField(choices=TYPE_OF_ASSIGNMENT_STATUSES, max_length=2)
     request = models.ForeignKey(Request, on_delete=models.CASCADE)
-    assignee = models.ForeignKey("management.Participant", on_delete=models.CASCADE)
+    assignee = models.ForeignKey(
+        "management.Participant", on_delete=models.CASCADE, related_name="assignment"
+    )
 
     assigned_at = models.DateTimeField(auto_created=True)
     modified_at = fields.DateTimeField(auto_now=True)
