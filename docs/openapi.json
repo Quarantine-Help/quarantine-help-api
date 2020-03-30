@@ -13,6 +13,7 @@
   "paths": {
     "/api/v1/participants/": {
       "post": {
+        "summary": "Register participant API",
         "description": "Create a new participant. Also acts as the registration API",
         "requestBody": {
           "content": {
@@ -57,9 +58,62 @@
         }
       ]
     },
-    "/api/v1/crises/1/affected-participants/": {
+    "/api/v1/crises/{crisisId}/affected-participants/": {
       "get": {
+        "summary": "Get a list of affected participants",
         "description": "Get a list of affected participants",
+        "parameters": [
+          {
+            "name": "crisisId",
+            "in": "path",
+            "description": "crisis we are dealing with",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 7
+          },
+          {
+            "name": "radius",
+            "in": "query",
+            "description": "Radius around the PoI in KM",
+            "required": false,
+            "allowEmptyValue": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 7
+          },
+          {
+            "name": "latitude",
+            "in": "query",
+            "description": "Latitude of PoI",
+            "required": false,
+            "allowEmptyValue": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": 48.174307
+          },
+          {
+            "name": "longitude",
+            "in": "query",
+            "description": "Longitude of PoI",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": 2.942351
+          }
+        ],
         "responses": {
           "200": {
             "description": "Participants list response",
@@ -91,6 +145,7 @@
     },
     "/api/v1/crises/": {
       "get": {
+        "summary": "Listing all crises. Done while page load.",
         "description": "List crisises in your area",
         "responses": {
           "200": {
@@ -123,7 +178,8 @@
     },
     "/api/v1/auth": {
       "post": {
-        "description": "Auto generated using Swagger Inspector",
+        "summary": "Login API",
+        "description": "Login API",
         "requestBody": {
           "content": {
             "application/json": {
@@ -230,32 +286,39 @@
       "Participant": {
         "type": "object",
         "properties": {
-          "firstLineOfAddress": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string"
-          },
           "crisis": {
-            "type": "integer"
+            "type": "integer",
+            "example": 1
           },
           "city": {
-            "type": "string"
+            "type": "string",
+            "example": "Stockholm"
           },
           "phone": {
-            "type": "string"
+            "type": "string",
+            "example": "46777777777"
           },
-          "placeId": {
-            "type": "string"
+          "firstLineOfAddress": {
+            "type": "string",
+            "example": "Cedergsvagen 38"
+          },
+          "country": {
+            "type": "string",
+            "example": "DE"
           },
           "postCode": {
-            "type": "string"
+            "type": "string",
+            "example": "12207"
           },
           "position": {
             "$ref": "#/components/schemas/Position"
           },
+          "placeId": {
+            "type": "string"
+          },
           "type": {
             "type": "string",
+            "example": "AF",
             "enum": ["HL", "AF", "AU", "TP"]
           },
           "user": {
