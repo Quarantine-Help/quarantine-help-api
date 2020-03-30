@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://134.122.80.13"
+      "url": "https://api.quarantinehelp.space"
     }
   ],
   "paths": {
@@ -48,13 +48,13 @@
         },
         "servers": [
           {
-            "url": "http://134.122.80.13"
+            "url": "https://api.quarantinehelp.space"
           }
         ]
       },
       "servers": [
         {
-          "url": "http://134.122.80.13"
+          "url": "https://api.quarantinehelp.space"
         }
       ]
     },
@@ -132,13 +132,13 @@
         },
         "servers": [
           {
-            "url": "http://134.122.80.13"
+            "url": "https://api.quarantinehelp.space"
           }
         ]
       },
       "servers": [
         {
-          "url": "http://134.122.80.13"
+          "url": "https://api.quarantinehelp.space"
         }
       ]
     },
@@ -165,13 +165,13 @@
         },
         "servers": [
           {
-            "url": "http://134.122.80.13"
+            "url": "https://api.quarantinehelp.space"
           }
         ]
       },
       "servers": [
         {
-          "url": "http://134.122.80.13"
+          "url": "https://api.quarantinehelp.space"
         }
       ]
     },
@@ -227,13 +227,13 @@
         },
         "servers": [
           {
-            "url": "http://134.122.80.13"
+            "url": "https://api.quarantinehelp.space"
           }
         ]
       },
       "servers": [
         {
-          "url": "http://134.122.80.13"
+          "url": "https://api.quarantinehelp.space"
         }
       ]
     }
@@ -405,11 +405,11 @@
         "properties": {
           "next": {
             "type": "string",
-            "example": "http://134.122.80.13/api/v1/crises/1/affected-participants/?page=5"
+            "example": "https://api.quarantinehelp.space/api/v1/crises/1/affected-participants/?page=5"
           },
           "previous": {
             "type": "string",
-            "example": "http://134.122.80.13/api/v1/crises/1/affected-participants/?page=4"
+            "example": "https://api.quarantinehelp.space/api/v1/crises/1/affected-participants/?page=4"
           },
           "count": {
             "type": "integer",

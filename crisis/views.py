@@ -1,6 +1,7 @@
 # Create your views here.
 from django.contrib.gis.geos import GEOSGeometry
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
 
 from crisis.models import Crisis, Request
 from crisis.serializers import CrisisSerializer, AffectedParticipantSerializer
@@ -44,3 +45,10 @@ class ListAffectedParticipantsAPIV1(generics.ListAPIView):
             )
 
         return affected_participants
+
+
+class ListCreateAffectedParticipantRequestsAPIV1(generics.ListCreateAPIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+
+    pass
