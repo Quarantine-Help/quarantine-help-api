@@ -66,7 +66,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/inline_response_200"
+                  "$ref": "#/components/schemas/AffectedParticipantsPaginatedResponse"
                 },
                 "examples": {
                   "0": {
@@ -98,7 +98,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/inline_response_200_1"
+                  "$ref": "#/components/schemas/CrisesPaginatedResponse"
                 },
                 "examples": {
                   "0": {
@@ -128,7 +128,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/body"
+                "$ref": "#/components/schemas/LoginPostBody"
               },
               "examples": {
                 "0": {
@@ -144,7 +144,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/inline_response_200_2"
+                  "$ref": "#/components/schemas/LoginResponse200"
                 },
                 "examples": {
                   "0": {
@@ -159,7 +159,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/inline_response_400"
+                  "$ref": "#/components/schemas/LoginResponse400"
                 },
                 "examples": {
                   "0": {
@@ -276,7 +276,7 @@
           "deadline": {
             "type": "string",
             "description": "Deadline to finish this",
-            "example": "2020-03-29T11:25:31Z"
+            "example": "2020-03-29T11:25:31.000Z"
           }
         }
       },
@@ -338,13 +338,20 @@
           }
         }
       },
-      "inline_response_200": {
+      "AffectedParticipantsPaginatedResponse": {
         "type": "object",
         "properties": {
-          "next": {},
-          "previous": {},
+          "next": {
+            "type": "string",
+            "example": "http://134.122.80.13/api/v1/crises/1/affected-participants/?page=5"
+          },
+          "previous": {
+            "type": "string",
+            "example": "http://134.122.80.13/api/v1/crises/1/affected-participants/?page=4"
+          },
           "count": {
-            "type": "integer"
+            "type": "integer",
+            "example": 100
           },
           "results": {
             "type": "array",
@@ -354,7 +361,7 @@
           }
         }
       },
-      "inline_response_200_1": {
+      "CrisesPaginatedResponse": {
         "type": "object",
         "properties": {
           "next": {},
@@ -370,7 +377,7 @@
           }
         }
       },
-      "body": {
+      "LoginPostBody": {
         "type": "object",
         "properties": {
           "password": {
@@ -381,7 +388,7 @@
           }
         }
       },
-      "inline_response_200_2": {
+      "LoginResponse200": {
         "type": "object",
         "properties": {
           "token": {
@@ -398,7 +405,7 @@
           }
         }
       },
-      "inline_response_400": {
+      "LoginResponse400": {
         "type": "object",
         "properties": {
           "non_field_errors": {

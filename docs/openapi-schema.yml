@@ -52,7 +52,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/inline_response_200"
+                $ref: "#/components/schemas/AffectedParticipantsPaginatedResponse"
               examples:
                 "0":
                   value:
@@ -74,7 +74,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/inline_response_200_1"
+                $ref: "#/components/schemas/CrisesPaginatedResponse"
               examples:
                 "0":
                   value: '{"count":1,"next":null,"previous":null,"results":[{"id":1,"deleted":null,"name":"COVID_19","active":true,"startedAt":"2020-03-29T10:38:38Z"}]}'
@@ -89,7 +89,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/body"
+              $ref: "#/components/schemas/LoginPostBody"
             examples:
               "0":
                 value:
@@ -101,7 +101,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/inline_response_200_2"
+                $ref: "#/components/schemas/LoginResponse200"
               examples:
                 "0":
                   value: |-
@@ -115,7 +115,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/inline_response_400"
+                $ref: "#/components/schemas/LoginResponse400"
               examples:
                 "0":
                   value: '{"non_field_errors":["Unable to log in with provided credentials."]}'
@@ -231,18 +231,23 @@ components:
           $ref: "#/components/schemas/ParticipantResponse_user"
         secondLineOfAddress:
           type: string
-    inline_response_200:
+    AffectedParticipantsPaginatedResponse:
       type: object
       properties:
-        next: {}
-        previous: {}
+        next:
+          type: string
+          example: "http://134.122.80.13/api/v1/crises/1/affected-participants/?page=5"
+        previous:
+          type: string
+          example: "http://134.122.80.13/api/v1/crises/1/affected-participants/?page=4"
         count:
           type: integer
+          example: 100
         results:
           type: array
           items:
             $ref: "#/components/schemas/AffectedParticipant"
-    inline_response_200_1:
+    CrisesPaginatedResponse:
       type: object
       properties:
         next: {}
@@ -253,14 +258,14 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Crisis"
-    body:
+    LoginPostBody:
       type: object
       properties:
         password:
           type: string
         email:
           type: string
-    inline_response_200_2:
+    LoginResponse200:
       type: object
       properties:
         token:
@@ -272,7 +277,7 @@ components:
         email:
           type: string
           example: user@example.com
-    inline_response_400:
+    LoginResponse400:
       type: object
       properties:
         non_field_errors:
