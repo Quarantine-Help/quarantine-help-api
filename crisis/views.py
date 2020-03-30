@@ -49,6 +49,4 @@ class ListAffectedParticipantsAPIV1(generics.ListAPIView):
 
 class ListCreateAffectedParticipantRequestsAPIV1(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-
     pass
