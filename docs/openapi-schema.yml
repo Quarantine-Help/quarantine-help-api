@@ -9,6 +9,7 @@ paths:
   /api/v1/participants/:
     post:
       description: Create a new participant. Also acts as the registration API
+      summary: Register participant API
       requestBody:
         content:
           application/json:
@@ -43,9 +44,45 @@ paths:
         - url: http://134.122.80.13
     servers:
       - url: http://134.122.80.13
-  /api/v1/crises/1/affected-participants/:
+  /api/v1/crises/{crisisId}/affected-participants/:
     get:
       description: Get a list of affected participants
+      summary: Get a list of affected participants
+      parameters:
+        - in: path
+          name: crisisId
+          schema:
+            type: integer
+          description: crisis we are dealing with
+          example: 7
+          required: true
+        - in: query
+          name: radius
+          schema:
+            type: integer
+          description: Radius around the PoI in KM
+          example: 7
+          allowEmptyValue: True
+        - in: query
+          name: latitude
+          schema:
+            type: string
+          description: Latitude of PoI
+          example: 48.174307
+          allowEmptyValue: True
+        - in: query
+          name: longitude
+          schema:
+            type: string
+          description: Longitude of PoI
+          example: 2.942351
+        - in: query
+          name: requestType
+          schema:
+            type: string
+            enum: ["G", "M"]
+          description: Filter by request type. G - Groceries, M - Medicines. You can send multiple of this with an &.
+          example: G
       responses:
         "200":
           description: Participants list response
@@ -68,6 +105,7 @@ paths:
   /api/v1/crises/:
     get:
       description: List crisises in your area
+      summary: Listing all crises. Done while page load.
       responses:
         "200":
           description: Used to generate some pre-losfrf information
@@ -84,7 +122,8 @@ paths:
       - url: http://134.122.80.13
   /api/v1/auth:
     post:
-      description: Auto generated using Swagger Inspector
+      description: Login API
+      summary: Login API
       requestBody:
         content:
           application/json:
@@ -155,24 +194,31 @@ components:
     Participant:
       type: object
       properties:
-        firstLineOfAddress:
-          type: string
-        country:
-          type: string
         crisis:
           type: integer
+          example: 1
         city:
           type: string
+          example: Stockholm
         phone:
           type: string
-        placeId:
+          example: +46777777777
+        firstLineOfAddress:
           type: string
+          example: Cedergsvagen 38
+        country:
+          type: string
+          example: DE
         postCode:
           type: string
+          example: 12207
         position:
           $ref: "#/components/schemas/Position"
+        placeId:
+          type: string
         type:
           type: string
+          example: AF
           enum:
             - HL
             - AF

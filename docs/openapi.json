@@ -13,8 +13,8 @@
   "paths": {
     "/api/v1/participants/": {
       "post": {
-        "summary": "Register participant API",
         "description": "Create a new participant. Also acts as the registration API",
+        "summary": "Register participant API",
         "requestBody": {
           "content": {
             "application/json": {
@@ -60,58 +60,57 @@
     },
     "/api/v1/crises/{crisisId}/affected-participants/": {
       "get": {
-        "summary": "Get a list of affected participants",
         "description": "Get a list of affected participants",
+        "summary": "Get a list of affected participants",
         "parameters": [
           {
-            "name": "crisisId",
             "in": "path",
+            "name": "crisisId",
+            "schema": {
+              "type": "integer"
+            },
             "description": "crisis we are dealing with",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "integer"
-            },
-            "example": 7
+            "example": 7,
+            "required": true
           },
           {
+            "in": "query",
             "name": "radius",
-            "in": "query",
-            "description": "Radius around the PoI in KM",
-            "required": false,
-            "allowEmptyValue": true,
-            "style": "form",
-            "explode": true,
             "schema": {
               "type": "integer"
             },
-            "example": 7
+            "description": "Radius around the PoI in KM",
+            "example": 7,
+            "allowEmptyValue": true
           },
           {
+            "in": "query",
             "name": "latitude",
-            "in": "query",
-            "description": "Latitude of PoI",
-            "required": false,
-            "allowEmptyValue": true,
-            "style": "form",
-            "explode": true,
             "schema": {
               "type": "string"
             },
-            "example": 48.174307
+            "description": "Latitude of PoI",
+            "example": 48.174307,
+            "allowEmptyValue": true
           },
           {
-            "name": "longitude",
             "in": "query",
-            "description": "Longitude of PoI",
-            "required": false,
-            "style": "form",
-            "explode": true,
+            "name": "longitude",
             "schema": {
               "type": "string"
             },
+            "description": "Longitude of PoI",
             "example": 2.942351
+          },
+          {
+            "in": "query",
+            "name": "requestType",
+            "schema": {
+              "type": "string",
+              "enum": ["G", "M"]
+            },
+            "description": "Filter by request type. G - Groceries, M - Medicines. You can send multiple of this with an &.",
+            "example": "G"
           }
         ],
         "responses": {
@@ -145,8 +144,8 @@
     },
     "/api/v1/crises/": {
       "get": {
-        "summary": "Listing all crises. Done while page load.",
         "description": "List crisises in your area",
+        "summary": "Listing all crises. Done while page load.",
         "responses": {
           "200": {
             "description": "Used to generate some pre-losfrf information",
@@ -178,8 +177,8 @@
     },
     "/api/v1/auth": {
       "post": {
-        "summary": "Login API",
         "description": "Login API",
+        "summary": "Login API",
         "requestBody": {
           "content": {
             "application/json": {
@@ -296,7 +295,7 @@
           },
           "phone": {
             "type": "string",
-            "example": "46777777777"
+            "example": 46777777777
           },
           "firstLineOfAddress": {
             "type": "string",
@@ -308,7 +307,7 @@
           },
           "postCode": {
             "type": "string",
-            "example": "12207"
+            "example": 12207
           },
           "position": {
             "$ref": "#/components/schemas/Position"
