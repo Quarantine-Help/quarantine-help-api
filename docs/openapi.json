@@ -11,8 +11,11 @@
     }
   ],
   "paths": {
-    "/api/v1/participants/": {
+    "/api/v1/auth/register/": {
       "post": {
+        "tags": [
+          "Authentication"
+        ],
         "description": "Create a new participant. Also acts as the registration API",
         "summary": "Register participant API",
         "requestBody": {
@@ -58,127 +61,13 @@
         }
       ]
     },
-    "/api/v1/crises/{crisisId}/affected-participants/": {
-      "get": {
-        "description": "Get a list of affected participants",
-        "summary": "Get a list of affected participants",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "crisisId",
-            "schema": {
-              "type": "integer"
-            },
-            "description": "crisis we are dealing with",
-            "example": 7,
-            "required": true
-          },
-          {
-            "in": "query",
-            "name": "radius",
-            "schema": {
-              "type": "integer"
-            },
-            "description": "Radius around the PoI in KM",
-            "example": 7,
-            "allowEmptyValue": true
-          },
-          {
-            "in": "query",
-            "name": "latitude",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Latitude of PoI",
-            "example": 48.174307,
-            "allowEmptyValue": true
-          },
-          {
-            "in": "query",
-            "name": "longitude",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Longitude of PoI",
-            "example": 2.942351
-          },
-          {
-            "in": "query",
-            "name": "requestType",
-            "schema": {
-              "type": "string",
-              "enum": ["G", "M"]
-            },
-            "description": "Filter by request type. G - Groceries, M - Medicines. You can send multiple of this with an &.",
-            "example": "G"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Participants list response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AffectedParticipantsPaginatedResponse"
-                },
-                "examples": {
-                  "0": {
-                    "value": "{\"count\":2,\"next\":null,\"previous\":null,\"results\":[{\"id\":2,\"user\":{\"firstName\":\"Patient First Test with 6\",\"lastName\":\"Patient last\",\"email\":\"patients@patient.com\"},\"position\":{\"longitude\":\"2.7105760574340807\",\"latitude\":\"48.19827663849882\"},\"requests\":[],\"deleted\":null,\"type\":\"AF\",\"firstLineOfAddress\":\"First Line of add\",\"secondLineOfAddress\":\"Second line\",\"country\":\"DE\",\"placeId\":\"ChIJwyyKo7J3X0YRZ5XOMcLx3xo\",\"postCode\":\"12345\",\"city\":\"Berlin\",\"phone\":\"+46761189391\",\"metadata\":{},\"createdAt\":\"2020-03-29T15:35:53.248762Z\",\"crisis\":1},{\"id\":1,\"user\":{\"firstName\":\"Tony\",\"lastName\":\"Thomas\",\"email\":\"01tonythomas@gmail.com\"},\"position\":{\"longitude\":\"19.057331085205075\",\"latitude\":\"59.69310986700436\"},\"requests\":[{\"type\":\"G\",\"deadline\":\"2020-03-29T11:25:31Z\",\"description\":\"I need the following: \\r\\n1. Smor\",\"assignee\":null,\"status\":\"P\"}],\"deleted\":null,\"type\":\"AF\",\"firstLineOfAddress\":\"Cedergrensvägen 1\",\"secondLineOfAddress\":\"SE-126 36 Hägersten\",\"country\":\"SE\",\"placeId\":\"Yz1idWlsZGluZztsYXQ9NTkuMzAzNDY7bG9uPTE4LjAwMzI0O249Q2VkZXJncmVuc3YlQzMlQTRnZW4rMTtoPTcyNDMzYQ\",\"postCode\":\"12636\",\"city\":\"Stockholm\",\"phone\":\"+46761189391\",\"metadata\":{},\"createdAt\":\"2020-03-29T11:23:36.862282Z\",\"crisis\":1}]}"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "servers": [
-          {
-            "url": "https://api.quarantinehelp.space"
-          }
-        ]
-      },
-      "servers": [
-        {
-          "url": "https://api.quarantinehelp.space"
-        }
-      ]
-    },
-    "/api/v1/crises/": {
-      "get": {
-        "description": "List crisises in your area",
-        "summary": "Listing all crises. Done while page load.",
-        "responses": {
-          "200": {
-            "description": "Used to generate some pre-losfrf information",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CrisesPaginatedResponse"
-                },
-                "examples": {
-                  "0": {
-                    "value": "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"id\":1,\"deleted\":null,\"name\":\"COVID_19\",\"active\":true,\"startedAt\":\"2020-03-29T10:38:38Z\"}]}"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "servers": [
-          {
-            "url": "https://api.quarantinehelp.space"
-          }
-        ]
-      },
-      "servers": [
-        {
-          "url": "https://api.quarantinehelp.space"
-        }
-      ]
-    },
-    "/api/v1/auth": {
+    "/api/v1/auth/login": {
       "post": {
+        "tags": [
+          "Authentication"
+        ],
         "description": "Login API",
-        "summary": "Login API",
+        "summary": "Participant login API",
         "requestBody": {
           "content": {
             "application/json": {
@@ -236,10 +125,264 @@
           "url": "https://api.quarantinehelp.space"
         }
       ]
+    },
+    "/api/v1/crises/{crisisId}/affected-participants/": {
+      "get": {
+        "tags": [
+          "Map view"
+        ],
+        "description": "Get a list of affected participants",
+        "summary": "Get a list of affected participants",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "crisisId",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "crisis we are dealing with",
+            "example": 7,
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "radius",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Radius around the PoI in KM",
+            "example": 7,
+            "allowEmptyValue": true
+          },
+          {
+            "in": "query",
+            "name": "latitude",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Latitude of PoI",
+            "example": 48.174307,
+            "allowEmptyValue": true
+          },
+          {
+            "in": "query",
+            "name": "longitude",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Longitude of PoI",
+            "example": 2.942351
+          },
+          {
+            "in": "query",
+            "name": "requestType",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "G",
+                "M"
+              ],
+              "description": "Type of errand:\n * `G` - Grocery request\n * `M` - Medicine request\n"
+            },
+            "description": "Filter by request type. G - Groceries, M - Medicines. You can send multiple of this with an &.",
+            "example": "G"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Participants list response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AffectedParticipantsPaginatedResponse"
+                },
+                "examples": {
+                  "0": {
+                    "value": "{\"count\":2,\"next\":null,\"previous\":null,\"results\":[{\"id\":2,\"user\":{\"firstName\":\"Patient First Test with 6\",\"lastName\":\"Patient last\",\"email\":\"patients@patient.com\"},\"position\":{\"longitude\":\"2.7105760574340807\",\"latitude\":\"48.19827663849882\"},\"requests\":[],\"deleted\":null,\"type\":\"AF\",\"firstLineOfAddress\":\"First Line of add\",\"secondLineOfAddress\":\"Second line\",\"country\":\"DE\",\"placeId\":\"ChIJwyyKo7J3X0YRZ5XOMcLx3xo\",\"postCode\":\"12345\",\"city\":\"Berlin\",\"phone\":\"+46761189391\",\"metadata\":{},\"createdAt\":\"2020-03-29T15:35:53.248762Z\",\"crisis\":1},{\"id\":1,\"user\":{\"firstName\":\"Tony\",\"lastName\":\"Thomas\",\"email\":\"01tonythomas@gmail.com\"},\"position\":{\"longitude\":\"19.057331085205075\",\"latitude\":\"59.69310986700436\"},\"requests\":[{\"type\":\"G\",\"deadline\":\"2020-03-29T11:25:31Z\",\"description\":\"I need the following: \\r\\n1. Smor\",\"assignee\":null,\"status\":\"P\"}],\"deleted\":null,\"type\":\"AF\",\"firstLineOfAddress\":\"Cedergrensvägen 1\",\"secondLineOfAddress\":\"SE-126 36 Hägersten\",\"country\":\"SE\",\"placeId\":\"Yz1idWlsZGluZztsYXQ9NTkuMzAzNDY7bG9uPTE4LjAwMzI0O249Q2VkZXJncmVuc3YlQzMlQTRnZW4rMTtoPTcyNDMzYQ\",\"postCode\":\"12636\",\"city\":\"Stockholm\",\"phone\":\"+46761189391\",\"metadata\":{},\"createdAt\":\"2020-03-29T11:23:36.862282Z\",\"crisis\":1}]}"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "https://api.quarantinehelp.space"
+          }
+        ]
+      },
+      "servers": [
+        {
+          "url": "https://api.quarantinehelp.space"
+        }
+      ]
+    },
+    "/api/v1/crises/": {
+      "get": {
+        "tags": [
+          "Map view"
+        ],
+        "description": "List crisises in your area",
+        "summary": "Listing all crises. Done while page load.",
+        "responses": {
+          "200": {
+            "description": "Used to generate some pre-losfrf information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CrisesPaginatedResponse"
+                },
+                "examples": {
+                  "0": {
+                    "value": "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"id\":1,\"deleted\":null,\"name\":\"COVID_19\",\"active\":true,\"startedAt\":\"2020-03-29T10:38:38Z\"}]}"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "https://api.quarantinehelp.space"
+          }
+        ]
+      },
+      "servers": [
+        {
+          "url": "https://api.quarantinehelp.space"
+        }
+      ]
+    },
+    "/api/v1/me/requests/": {
+      "get": {
+        "tags": [
+          "My profile management for AF Participant"
+        ],
+        "description": "Get requests created by an AF participant",
+        "summary": "Get requests created by an AF participant",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of user requests.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestsPaginatedResponse"
+                },
+                "examples": {
+                  "0": {
+                    "value": "{ \"count\": 3, \"next\": null, \"previous\": null, \"results\": [ { \"type\": \"G\", \"deadline\": null, \"description\": \"Want 3 Kg banana\", \"assignee\": null, \"status\": \"\" }, { \"type\": \"G\", \"deadline\": \"2020-05-28T22:01:01Z\", \"description\": \"Want 3 Kg banana\", \"assignee\": null, \"status\": \"P\" }, { \"type\": \"G\", \"deadline\": \"2020-05-29T00:01:01Z\", \"description\": \"Want 3 Kg banana\", \"assignee\": null, \"status\": \"P\" } ] }"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "My profile management for AF Participant"
+        ],
+        "description": "Create request as an AF participant",
+        "summary": "Create request as an AF participant",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestCreateBody"
+              },
+              "examples": {
+                "0": {
+                  "value": "{ \"type\": \"G\", \"description\": \"Want 3 Kg banana\", \"deadline\": \"2020-05-29T01:01:01+01:00\" }"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The created request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestsPaginatedResponse"
+                },
+                "examples": {
+                  "0": {
+                    "value": "{ \"type\": \"G\", \"deadline\": \"2020-05-29T00:01:01Z\", \"description\": \"Want 3 Kg banana\", \"assignee\": null, \"status\": \"P\" }"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "in": "header",
+        "type": "apiKey",
+        "name": "Authorization",
+        "description": "We need in format Authorization: Token AVFSADFSDFSDFSDF"
+      }
+    },
     "schemas": {
+      "RequestCreateBody": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "G",
+              "M"
+            ],
+            "description": "Type of errand:\n * `G` - Grocery request\n * `M` - Medicine request\n"
+          },
+          "deadline": {
+            "type": "string",
+            "description": "Deadline to finish this with timezone",
+            "example": "2020-03-29T11:25:31+01:00"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of this request"
+          }
+        }
+      },
+      "RequestsPaginatedResponse": {
+        "type": "object",
+        "properties": {
+          "next": {
+            "type": "string",
+            "example": "https://api.quarantinehelp.space/api/v1/me/requests/?page=5"
+          },
+          "previous": {
+            "type": "string",
+            "example": "https://api.quarantinehelp.space/api/v1/me/requests/?page=4"
+          },
+          "count": {
+            "type": "integer",
+            "example": 100
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ParticipantRequestSchema"
+            }
+          }
+        }
+      },
       "Crisis": {
         "type": "object",
         "properties": {
@@ -261,10 +404,12 @@
         "type": "object",
         "properties": {
           "latitude": {
-            "type": "string"
+            "type": "string",
+            "example": 48.174307
           },
           "longitude": {
-            "type": "string"
+            "type": "string",
+            "example": 2.174307
           }
         }
       },
@@ -301,6 +446,9 @@
             "type": "string",
             "example": "Cedergsvagen 38"
           },
+          "secondLineOfAddress": {
+            "type": "string"
+          },
           "country": {
             "type": "string",
             "example": "DE"
@@ -318,27 +466,58 @@
           "type": {
             "type": "string",
             "example": "AF",
-            "enum": ["HL", "AF", "AU", "TP"]
+            "enum": [
+              "HL",
+              "AF",
+              "AU",
+              "TP"
+            ],
+            "description": "Type of participant:\n * `HL` - Helper\n * `AF` - Affected Participant (Quarantined)\n * `AU` - Authorities\n * `TP` - Third party\n"
           },
           "user": {
             "$ref": "#/components/schemas/User"
-          },
-          "secondLineOfAddress": {
-            "type": "string"
           }
         }
       },
       "ParticipantRequestSchema": {
         "type": "object",
         "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "P",
+              "T",
+              "F",
+              "C"
+            ],
+            "description": "Status of the errand:\n * `P` - Pending, just created\n * `T` - Transit, a helper is working on it \n * `F` - Finished job (wont be returned on map view)\n * `C` - Cancelled (wont be returned on map view)\n"
+          },
           "type": {
             "type": "string",
-            "enum": ["G", "M"]
+            "enum": [
+              "G",
+              "M"
+            ],
+            "description": "Type of errand:\n * `G` - Grocery request\n * `M` - Medicine request\n"
           },
           "deadline": {
             "type": "string",
-            "description": "Deadline to finish this",
-            "example": "2020-03-29T11:25:31.000Z"
+            "description": "Deadline to finish this in UTC",
+            "example": "2020-03-29T11:25:31Z"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of this request"
+          },
+          "assignee": {
+            "allOf": [
+              {
+                "description": "Can be empty when nobody is assigned"
+              },
+              {
+                "$ref": "#/components/schemas/User"
+              }
+            ]
           }
         }
       },
