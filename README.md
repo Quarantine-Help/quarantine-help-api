@@ -108,15 +108,17 @@ your machine, or use `pyenv` as described later in this documentation.
    6. PostgreSQL's Application Stack Builder will open after finishing the installation
 
    7. Select **PostgreSQL** from the dropdown and click next
-      <!-- ![PostgreSQL Applciation Stack Builder start window](images/postgresql-application-stack-builder-first-window.png) -->
+
+      <!-- ![PostgreSQL Applciation Stack Builder start window](docs/images/postgresql-application-stack-builder-first-window.png) -->
       <p>
-      <img src="images/postgresql-application-stack-builder-first-window.png" alt="PostgreSQL Applciation Stack Builder start window" width="360">
+      <img src="docs/images/postgresql-application-stack-builder-first-window.png" alt="PostgreSQL Applciation Stack Builder start window" width="360">
       </p>
 
    8. Under "Spatial Extensions" check the most recent version of PostGIS
+
       <!-- ![PostgreSQL Applciation Stack Builder second window](images/postgresql-application-stack-builder-second-window.png) -->
       <p>
-         <img src="images/postgresql-application-stack-builder-second-window.png" alt="PostgreSQL Applciation Stack Builder second window" width="360">
+         <img src="docs/images/postgresql-application-stack-builder-second-window.png" alt="PostgreSQL Applciation Stack Builder second window" width="360">
       </p>
 
    9. Use default options and after the download finishes click next to start installing
