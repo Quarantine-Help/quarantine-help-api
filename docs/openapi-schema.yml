@@ -1,7 +1,10 @@
 openapi: 3.0.1
 info:
-  title: Quarantined API
-  description: API for quarantined-backend
+  title: Quarantine API Documentation.
+  description: 'API for quarantine-backend project.
+  Find our projects at
+  [Github:Quarantine-Help](https://github.com/Quarantine-Help). Join our slack channel: [Slack:Quarantine-Help](https://join\
+  .slack.com/t/quarantinedhelp/shared_invite/zt-d0259x7q-BiC_viQhLRoQqqc5j~P0uw). Remember to wash your hands x=).'
   version: "1"
 servers:
   - url: https://api.quarantinehelp.space
@@ -239,9 +242,9 @@ paths:
               "0":
                 value:
                   '{
-                	"type": "G",
-                	"description": "Want 3 Kg banana",
-                	"deadline": "2020-05-29T01:01:01+01:00"
+                  "type": "G",
+                  "description": "Want 3 Kg banana",
+                  "deadline": "2020-05-29T01:01:01+01:00"
               }'
       responses:
         "201":

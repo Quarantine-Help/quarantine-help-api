@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Quarantined API",
-    "description": "API for quarantined-backend",
+    "title": "Quarantine API Documentation.",
+    "description": "API for quarantine-backend project. Find our projects at  [Github:Quarantine-Help](https://github.com/Quarantine-Help). Join our slack channel: [Slack:Quarantine-Help](https://join\\ .slack.com/t/quarantinedhelp/shared_invite/zt-d0259x7q-BiC_viQhLRoQqqc5j~P0uw). Remember to wash your hands x=).",
     "version": "1"
   },
   "servers": [
@@ -490,7 +490,7 @@
               "F",
               "C"
             ],
-            "description": "Status of the errand:\n * `P` - Pending, just created\n * `T` - Transit, a helper is working on it \n * `F` - Finished job (wont be returned on map view)\n * `C` - Cancelled (wont be returned on map view)\n"
+            "description": "Status of the errand:\n * `P` - Pending, just created\n * `T` - Transit, a helper is working on it\n * `F` - Finished job (wont be returned on map view)\n * `C` - Cancelled (wont be returned on map view)\n"
           },
           "type": {
             "type": "string",
