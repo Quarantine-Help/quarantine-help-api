@@ -3,6 +3,7 @@
 
 # Create your views here.
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
 
 from authentication.permissions import IsAffectedUser
 from crisis.models import Request
@@ -11,7 +12,7 @@ from management.serializer import RequestSerializer
 
 
 class ListCreateRequestsAPIV1(generics.ListCreateAPIView):
-    permission_classes = [IsAffectedUser]
+    permission_classes = [IsAuthenticated, IsAffectedUser]
     serializer_class = RequestSerializer
 
     def get_queryset(self):
