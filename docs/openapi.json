@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Quarantine API Documentation.",
-    "description": "API for quarantine-backend project. Find our projects at  [Github:Quarantine-Help](https://github.com/Quarantine-Help). Join our slack channel: [Slack:Quarantine-Help](https://join\\ .slack.com/t/quarantinedhelp/shared_invite/zt-d0259x7q-BiC_viQhLRoQqqc5j~P0uw). Remember to wash your hands x=).",
+    "description": "API for quarantine-backend project. Find our projects at  [Github:Quarantine-Help](https://github.com/Quarantine-Help). Join our slack channel: [Slack:Quarantine-Help](https://join.slack.com/t/quarantinedhelp/shared_invite/zt-d0259x7q-BiC_viQhLRoQqqc5j~P0uw). Remember to wash your hands x=).",
     "version": "1"
   },
   "servers": [
@@ -13,9 +13,7 @@
   "paths": {
     "/api/v1/auth/register/": {
       "post": {
-        "tags": [
-          "Authentication"
-        ],
+        "tags": ["Authentication"],
         "description": "Create a new participant. Also acts as the registration API",
         "summary": "Register participant API",
         "requestBody": {
@@ -63,9 +61,7 @@
     },
     "/api/v1/auth/login": {
       "post": {
-        "tags": [
-          "Authentication"
-        ],
+        "tags": ["Authentication"],
         "description": "Login API",
         "summary": "Participant login API",
         "requestBody": {
@@ -128,9 +124,7 @@
     },
     "/api/v1/crises/{crisisId}/affected-participants/": {
       "get": {
-        "tags": [
-          "Map view"
-        ],
+        "tags": ["Map view"],
         "description": "Get a list of affected participants",
         "summary": "Get a list of affected participants",
         "parameters": [
@@ -178,10 +172,7 @@
             "name": "requestType",
             "schema": {
               "type": "string",
-              "enum": [
-                "G",
-                "M"
-              ],
+              "enum": ["G", "M"],
               "description": "Type of errand:\n * `G` - Grocery request\n * `M` - Medicine request\n"
             },
             "description": "Filter by request type. G - Groceries, M - Medicines. You can send multiple of this with an &.",
@@ -219,9 +210,7 @@
     },
     "/api/v1/crises/": {
       "get": {
-        "tags": [
-          "Map view"
-        ],
+        "tags": ["Map view"],
         "description": "List crisises in your area",
         "summary": "Listing all crises. Done while page load.",
         "responses": {
@@ -255,9 +244,7 @@
     },
     "/api/v1/me/requests/": {
       "get": {
-        "tags": [
-          "My profile management for AF Participant"
-        ],
+        "tags": ["My profile management for AF Participant"],
         "description": "Get requests created by an AF participant",
         "summary": "Get requests created by an AF participant",
         "security": [
@@ -284,9 +271,7 @@
         }
       },
       "post": {
-        "tags": [
-          "My profile management for AF Participant"
-        ],
+        "tags": ["My profile management for AF Participant"],
         "description": "Create request as an AF participant",
         "summary": "Create request as an AF participant",
         "security": [
@@ -343,10 +328,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "G",
-              "M"
-            ],
+            "enum": ["G", "M"],
             "description": "Type of errand:\n * `G` - Grocery request\n * `M` - Medicine request\n"
           },
           "deadline": {
@@ -466,12 +448,7 @@
           "type": {
             "type": "string",
             "example": "AF",
-            "enum": [
-              "HL",
-              "AF",
-              "AU",
-              "TP"
-            ],
+            "enum": ["HL", "AF", "AU", "TP"],
             "description": "Type of participant:\n * `HL` - Helper\n * `AF` - Affected Participant (Quarantined)\n * `AU` - Authorities\n * `TP` - Third party\n"
           },
           "user": {
@@ -484,20 +461,12 @@
         "properties": {
           "status": {
             "type": "string",
-            "enum": [
-              "P",
-              "T",
-              "F",
-              "C"
-            ],
+            "enum": ["P", "T", "F", "C"],
             "description": "Status of the errand:\n * `P` - Pending, just created\n * `T` - Transit, a helper is working on it\n * `F` - Finished job (wont be returned on map view)\n * `C` - Cancelled (wont be returned on map view)\n"
           },
           "type": {
             "type": "string",
-            "enum": [
-              "G",
-              "M"
-            ],
+            "enum": ["G", "M"],
             "description": "Type of errand:\n * `G` - Grocery request\n * `M` - Medicine request\n"
           },
           "deadline": {
