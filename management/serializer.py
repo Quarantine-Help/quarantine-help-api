@@ -1,9 +1,10 @@
-from authentication.models import User
-from drf_extra_fields import geo_fields
 from rest_framework import fields
 from rest_framework.serializers import ModelSerializer
 
-from management.models import Ability, Participant
+from authentication.serializer import UserSerializer
+from crisis.models import Request
+
+from management.models import Ability
 
 
 class AbilitySerializer(ModelSerializer):
@@ -12,16 +13,10 @@ class AbilitySerializer(ModelSerializer):
         fields = "__all__"
 
 
-class UserSerializer(ModelSerializer):
-    class Meta:
-        model = User
-        fields = ("first_name", "last_name", "email")
-
-
-class ParticipantSerializer(ModelSerializer):
-    user = UserSerializer()
-    position = geo_fields.PointField(str_points=True)
+class RequestSerializer(ModelSerializer):
+    assignee = UserSerializer(source="assignee.user", allow_null=True, required=False)
+    status = fields.CharField(required=False, allow_null=True)
 
     class Meta:
-        model = Participant
-        fields = "__all__"
+        model = Request
+        fields = ("type", "deadline", "description", "assignee", "status")

@@ -1,6 +1,11 @@
 from django.contrib.auth import authenticate
 from django.utils.translation import gettext_lazy as _
+from drf_extra_fields import geo_fields
 from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer
+
+from authentication.models import User
+from management.models import Participant
 
 
 class EmailAuthTokenSerializer(serializers.Serializer):
@@ -30,3 +35,18 @@ class EmailAuthTokenSerializer(serializers.Serializer):
 
         attrs["user"] = user
         return attrs
+
+
+class UserSerializer(ModelSerializer):
+    class Meta:
+        model = User
+        fields = ("first_name", "last_name", "email")
+
+
+class ParticipantSerializer(ModelSerializer):
+    user = UserSerializer()
+    position = geo_fields.PointField(str_points=True)
+
+    class Meta:
+        model = Participant
+        fields = "__all__"

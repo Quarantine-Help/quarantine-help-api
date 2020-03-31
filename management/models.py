@@ -65,7 +65,9 @@ class Participant(SafeDeleteModel):
         ("AU", "Authorities"),
         ("TP", "Third Parties"),
     ]
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name="related_participant"
+    )
     type = fields.CharField(max_length=2, choices=TYPE_OF_PARTICIPANT)
     crisis = models.ForeignKey(Crisis, on_delete=models.DO_NOTHING)
     first_line_of_address = fields.CharField(max_length=255)

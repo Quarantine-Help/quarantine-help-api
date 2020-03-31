@@ -16,14 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from authentication.views import EmailAuthToken
-
 admin.autodiscover()
 urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("admin/", admin.site.urls),
-    path("api-auth/", include("rest_framework.urls")),
     path("api/v1/crises/", include("crisis.urls_v1")),
-    path("api/v1/participants/", include("management.urls_v1")),
-    path("api/v1/auth", EmailAuthToken.as_view()),
+    path("api/v1/me/", include("management.urls_v1")),
+    path("api/v1/auth/", include("authentication.urls_v1")),
 ]

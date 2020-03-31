@@ -29,6 +29,7 @@ class Request(SafeDeleteModel):
 
     TYPE_OF_REQUEST = [("G", "Grocery"), ("M", "Medicine")]
     UNFINISHED_STATUSES = ["P", "T"]
+    STATUS_PENDING = "P"
     TYPE_OF_REQUEST_STATUSES = [
         ("P", "Pending"),
         ("T", "Transit"),
