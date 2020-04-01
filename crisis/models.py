@@ -1,4 +1,5 @@
 # Create your models here.
+from django.core.exceptions import ValidationError
 from django.db import models
 
 # Create your models here.
@@ -29,6 +30,7 @@ class Request(SafeDeleteModel):
 
     TYPE_OF_REQUEST = [("G", "Grocery"), ("M", "Medicine")]
     UNFINISHED_STATUSES = ["P", "T"]
+    FINISHED_STATUSES = ["F", "C"]
     STATUS_PENDING = "P"
     TYPE_OF_REQUEST_STATUSES = [
         ("P", "Pending"),
@@ -55,6 +57,10 @@ class Request(SafeDeleteModel):
     type = models.CharField(choices=TYPE_OF_REQUEST, max_length=2)
     deadline = models.DateTimeField(null=True)
     description = models.TextField()
+
+    def clean(self):
+        if self.status in ["T"] and not self.assignee:
+            raise ValidationError("Assignee missing while changing status to assigned.")
 
     def __str__(self):
         return (
