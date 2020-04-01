@@ -3,8 +3,7 @@ info:
   title: Quarantine API Documentation.
   description: 'API for quarantine-backend project.
   Find our projects at
-  [Github:Quarantine-Help](https://github.com/Quarantine-Help). Join our slack channel: [Slack:Quarantine-Help](https://join\
-  .slack.com/t/quarantinedhelp/shared_invite/zt-d0259x7q-BiC_viQhLRoQqqc5j~P0uw). Remember to wash your hands x=).'
+  [Github:Quarantine-Help](https://github.com/Quarantine-Help). Join our slack channel: [Slack:Quarantine-Help](https://join.slack.com/t/quarantinedhelp/shared_invite/zt-d0259x7q-BiC_viQhLRoQqqc5j~P0uw). Remember to wash your hands x=).'
   version: "1"
 servers:
   - url: https://api.quarantinehelp.space
@@ -49,7 +48,7 @@ paths:
         - url: https://api.quarantinehelp.space
     servers:
       - url: https://api.quarantinehelp.space
-  /api/v1/auth/login:
+  /api/v1/auth/login/:
     post:
       tags:
         - Authentication
@@ -252,7 +251,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RequestsPaginatedResponse"
+                $ref: "#/components/schemas/ParticipantRequestSchema"
               examples:
                 "0":
                   value: '{
@@ -262,6 +261,84 @@ paths:
   "assignee": null,
   "status": "P"
 }'
+
+  /api/v1/me/requests/{requestId}/:
+    patch:
+      tags:
+        - My profile management for AF Participant
+      description: Update my request. See that you might not be able to update your request after it is already in the transit/finished/cancelled state. You might want to delete it and create another.
+      summary: Partial update on my request
+      security:
+      - bearerAuth: []
+      parameters:
+        - in: path
+          name: requestId
+          schema:
+            type: integer
+          description: Request id
+          example: 7
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RequestPatchBody"
+            examples:
+              "0":
+                value:
+                  '{
+                  "type": "G",
+                  "description": "Want 3 Kg banana",
+                  "deadline": "2020-05-29T01:01:01+01:00",
+                	"status": "C"
+              }'
+      responses:
+        "200":
+          description: The updated request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ParticipantRequestSchema"
+              examples:
+                "0":
+                  value: '{
+  "type": "G",
+  "deadline": "2020-05-29T00:01:01Z",
+  "description": "Want 3 Kg banana",
+  "assignee": null,
+  "status": "P"
+}'
+    delete:
+      tags:
+        - My profile management for AF Participant
+      description: Delete a request. Will set the status to "C". Also returns the modified request object.
+      summary: Delete on my request
+      security:
+      - bearerAuth: []
+      parameters:
+        - in: path
+          name: requestId
+          schema:
+            type: integer
+          description: Request id
+          example: 7
+          required: true
+      responses:
+        "200":
+          description: The request with status set to C
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ParticipantRequestSchema"
+              examples:
+                "0":
+                  value: '{
+  "type": "C",
+  "deadline": "2020-05-29T00:01:01Z",
+  "description": "Want 3 Kg banana",
+  "assignee": null,
+  "status:"C"
+                  }'
 
 components:
   securitySchemes:
@@ -291,6 +368,38 @@ components:
         description:
           type: string
           description: Description of this request
+    RequestPatchBody:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - G
+            - M
+          description: >
+            Type of errand:
+             * `G` - Grocery request
+             * `M` - Medicine request
+        deadline:
+          type: string
+          description: Deadline to finish this with timezone
+          example: "2020-03-29T11:25:31+01:00"
+        description:
+          type: string
+          description: Description of this request
+        status:
+          type: string
+          enum:
+            - P
+            - T
+            - F
+            - C
+          description: >
+            Status of the errand:
+             * `P` - Pending, just created
+             * `T` - Transit, a helper is working on it
+             * `F` - Finished job (wont be returned on map view)
+             * `C` - Cancelled (wont be returned on map view)
 
     RequestsPaginatedResponse:
       type: object

@@ -29,5 +29,11 @@ class MeRequestDetailAPIV1(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated, IsAffectedUser, IsOwnerOfRequest]
     serializer_class = RequestSerializer
 
+    def destroy(self, request, *args, **kwargs):
+        request_object = self.get_object()
+        request_object.status = "C"
+        request_object.save()
+        return self.retrieve(request=request, *args, **kwargs)
+
     def get_object(self):
         return Request.objects.get(id=self.kwargs.get("pk", None))
