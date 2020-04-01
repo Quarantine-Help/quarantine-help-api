@@ -6,12 +6,26 @@ from crisis.models import Request
 
 
 class IsAffectedUser(BasePermission):
-    message = "Only affected participants can create a request"
+    message = "Only affected participants work on requests"
 
     def has_permission(self, request, view):
         try:
             return bool(
-                request.user.related_participant and request.user.is_authenticated
+                request.user.related_participant.type == "AF"
+                and request.user.is_authenticated
+            )
+        except authentication.models.User.related_participant.RelatedObjectDoesNotExist as ex:
+            return False
+
+
+class IsHelperUser(BasePermission):
+    message = "Only helpers can assign a request"
+
+    def has_permission(self, request, view):
+        try:
+            return bool(
+                request.user.related_participant.type in ["HL", "AU", "TP"]
+                and request.user.is_authenticated
             )
         except authentication.models.User.related_participant.RelatedObjectDoesNotExist as ex:
             return False

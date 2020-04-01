@@ -40,7 +40,26 @@
                 },
                 "examples": {
                   "0": {
-                    "value": "{\"user\":{\"firstName\":\"Patient First Test with 6\",\"lastName\":\"Patient last\",\"email\":\"patients@patient.com\"},\"position\":{\"longitude\":\"2.7105760574340807\",\"latitude\":\"48.19827663849882\"},\"type\":\"AF\",\"firstLineOfAddress\":\"First Line of add\",\"secondLineOfAddress\":\"Second line\",\"country\":\"DE\",\"placeId\":\"ChIJwyyKo7J3X0YRZ5XOMcLx3xo\",\"postCode\":\"12345\",\"city\":\"Berlin\",\"phone\":\"+46761189391\",\"crisis\":1}"
+                    "value": {
+                      "user": {
+                        "firstName": "Patient First Test with 6",
+                        "lastName": "Patient last",
+                        "email": "patients@patient.com"
+                      },
+                      "position": {
+                        "longitude": "2.7105760574340807",
+                        "latitude": "48.19827663849882"
+                      },
+                      "type": "AF",
+                      "firstLineOfAddress": "First Line of add",
+                      "secondLineOfAddress": "Second line",
+                      "country": "DE",
+                      "placeId": "ChIJwyyKo7J3X0YRZ5XOMcLx3xo",
+                      "postCode": "12345",
+                      "city": "Berlin",
+                      "phone": "+46761189391",
+                      "crisis": 1
+                    }
                   }
                 }
               }
@@ -189,7 +208,73 @@
                 },
                 "examples": {
                   "0": {
-                    "value": "{\"count\":2,\"next\":null,\"previous\":null,\"results\":[{\"id\":2,\"user\":{\"firstName\":\"Patient First Test with 6\",\"lastName\":\"Patient last\",\"email\":\"patients@patient.com\"},\"position\":{\"longitude\":\"2.7105760574340807\",\"latitude\":\"48.19827663849882\"},\"requests\":[],\"deleted\":null,\"type\":\"AF\",\"firstLineOfAddress\":\"First Line of add\",\"secondLineOfAddress\":\"Second line\",\"country\":\"DE\",\"placeId\":\"ChIJwyyKo7J3X0YRZ5XOMcLx3xo\",\"postCode\":\"12345\",\"city\":\"Berlin\",\"phone\":\"+46761189391\",\"metadata\":{},\"createdAt\":\"2020-03-29T15:35:53.248762Z\",\"crisis\":1},{\"id\":1,\"user\":{\"firstName\":\"Tony\",\"lastName\":\"Thomas\",\"email\":\"01tonythomas@gmail.com\"},\"position\":{\"longitude\":\"19.057331085205075\",\"latitude\":\"59.69310986700436\"},\"requests\":[{\"type\":\"G\",\"deadline\":\"2020-03-29T11:25:31Z\",\"description\":\"I need the following: \\r\\n1. Smor\",\"assignee\":null,\"status\":\"P\"}],\"deleted\":null,\"type\":\"AF\",\"firstLineOfAddress\":\"Cedergrensvägen 1\",\"secondLineOfAddress\":\"SE-126 36 Hägersten\",\"country\":\"SE\",\"placeId\":\"Yz1idWlsZGluZztsYXQ9NTkuMzAzNDY7bG9uPTE4LjAwMzI0O249Q2VkZXJncmVuc3YlQzMlQTRnZW4rMTtoPTcyNDMzYQ\",\"postCode\":\"12636\",\"city\":\"Stockholm\",\"phone\":\"+46761189391\",\"metadata\":{},\"createdAt\":\"2020-03-29T11:23:36.862282Z\",\"crisis\":1}]}"
+                    "value": {
+                      "count": 2,
+                      "next": null,
+                      "previous": null,
+                      "results": [
+                        {
+                          "id": 2,
+                          "user": {
+                            "firstName": "Patient First Test with 6",
+                            "lastName": "Patient last",
+                            "email": "patients@patient.com"
+                          },
+                          "position": {
+                            "longitude": "2.7105760574340807",
+                            "latitude": "48.19827663849882"
+                          },
+                          "requests": [],
+                          "deleted": null,
+                          "type": "AF",
+                          "firstLineOfAddress": "First Line of add",
+                          "secondLineOfAddress": "Second line",
+                          "country": "DE",
+                          "placeId": "ChIJwyyKo7J3X0YRZ5XOMcLx3xo",
+                          "postCode": "12345",
+                          "city": "Berlin",
+                          "phone": "+46761189391",
+                          "metadata": {},
+                          "createdAt": "2020-03-29T15:35:53.248762Z",
+                          "crisis": 1
+                        },
+                        {
+                          "id": 1,
+                          "user": {
+                            "firstName": "Tony",
+                            "lastName": "Thomas",
+                            "email": "01tonythomas@gmail.com"
+                          },
+                          "position": {
+                            "longitude": "19.057331085205075",
+                            "latitude": "59.69310986700436"
+                          },
+                          "requests": [
+                            {
+                              "type": "G",
+                              "deadline": "2020-03-29T11:25:31Z",
+                              "description": "I need the following: \r\n1. Smor",
+                              "assignee": null,
+                              "status": "P",
+                              "id": 1,
+                              "assignmentHistory": []
+                            }
+                          ],
+                          "deleted": null,
+                          "type": "AF",
+                          "firstLineOfAddress": "Cedergrensvägen 1",
+                          "secondLineOfAddress": "SE-126 36 Hägersten",
+                          "country": "SE",
+                          "placeId": "Yz1idWlsZGluZztsYXQ9NTkuMzAzNDY7bG9uPTE4LjAwMzI0O249Q2VkZXJncmVuc3YlQzMlQTRnZW4rMTtoPTcyNDMzYQ",
+                          "postCode": "12636",
+                          "city": "Stockholm",
+                          "phone": "+46761189391",
+                          "metadata": {},
+                          "createdAt": "2020-03-29T11:23:36.862282Z",
+                          "crisis": 1
+                        }
+                      ]
+                    }
                   }
                 }
               }
@@ -223,7 +308,20 @@
                 },
                 "examples": {
                   "0": {
-                    "value": "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"id\":1,\"deleted\":null,\"name\":\"COVID_19\",\"active\":true,\"startedAt\":\"2020-03-29T10:38:38Z\"}]}"
+                    "value": {
+                      "count": 1,
+                      "next": null,
+                      "previous": null,
+                      "results": [
+                        {
+                          "id": 1,
+                          "deleted": null,
+                          "name": "COVID_19",
+                          "active": true,
+                          "startedAt": "2020-03-29T10:38:38Z"
+                        }
+                      ]
+                    }
                   }
                 }
               }
@@ -262,7 +360,51 @@
                 },
                 "examples": {
                   "0": {
-                    "value": "{ \"count\": 3, \"next\": null, \"previous\": null, \"results\": [ { \"type\": \"G\", \"deadline\": null, \"description\": \"Want 3 Kg banana\", \"assignee\": null, \"status\": \"\" }, { \"type\": \"G\", \"deadline\": \"2020-05-28T22:01:01Z\", \"description\": \"Want 3 Kg banana\", \"assignee\": null, \"status\": \"P\" }, { \"type\": \"G\", \"deadline\": \"2020-05-29T00:01:01Z\", \"description\": \"Want 3 Kg banana\", \"assignee\": null, \"status\": \"P\" } ] }"
+                    "value": {
+                      "count": 3,
+                      "next": null,
+                      "previous": null,
+                      "results": [
+                        {
+                          "id": 9,
+                          "type": "G",
+                          "deadline": "2020-05-29T00:01:01Z",
+                          "description": "Want 3 Kg bananaasdfasdf",
+                          "assignee": {
+                            "firstName": "Helper",
+                            "lastName": "Participant",
+                            "email": "helperparticipant@test.com"
+                          },
+                          "status": "C",
+                          "assignmentHistory": [
+                            {
+                              "status": "A",
+                              "id": 2,
+                              "assignedAt": "2020-04-01T18:27:43Z",
+                              "didComplete": false
+                            }
+                          ]
+                        },
+                        {
+                          "type": "G",
+                          "deadline": "2020-05-28T22:01:01Z",
+                          "description": "Want 3 Kg banana",
+                          "assignee": null,
+                          "status": "P",
+                          "id": 10,
+                          "assignmentHistory": []
+                        },
+                        {
+                          "type": "G",
+                          "deadline": "2020-05-29T00:01:01Z",
+                          "description": "Want 3 Kg banana",
+                          "assignee": null,
+                          "status": "P",
+                          "assignmentHistory": [],
+                          "id": 11
+                        }
+                      ]
+                    }
                   }
                 }
               }
@@ -287,7 +429,11 @@
               },
               "examples": {
                 "0": {
-                  "value": "{ \"type\": \"G\", \"description\": \"Want 3 Kg banana\", \"deadline\": \"2020-05-29T01:01:01+01:00\" }"
+                  "value": {
+                    "type": "G",
+                    "description": "Want 3 Kg banana",
+                    "deadline": "2020-05-29T01:01:01+01:00"
+                  }
                 }
               }
             }
@@ -303,7 +449,15 @@
                 },
                 "examples": {
                   "0": {
-                    "value": "{ \"type\": \"G\", \"deadline\": \"2020-05-29T00:01:01Z\", \"description\": \"Want 3 Kg banana\", \"assignee\": null, \"status\": \"P\" }"
+                    "value": {
+                      "id": 10,
+                      "type": "G",
+                      "deadline": "2020-05-29T00:01:01Z",
+                      "description": "Want 3 Kg banana",
+                      "assignee": null,
+                      "status": "P",
+                      "assignmentHistory": []
+                    }
                   }
                 }
               }
@@ -342,7 +496,12 @@
               },
               "examples": {
                 "0": {
-                  "value": "{ \"type\": \"G\", \"description\": \"Want 3 Kg banana\", \"deadline\": \"2020-05-29T01:01:01+01:00\", \"status\": \"C\" }"
+                  "value": {
+                    "type": "G",
+                    "description": "Want 3 Kg banana",
+                    "deadline": "2020-05-29T01:01:01+01:00",
+                    "status": "C"
+                  }
                 }
               }
             }
@@ -358,7 +517,7 @@
                 },
                 "examples": {
                   "0": {
-                    "value": "{ \"type\": \"G\", \"deadline\": \"2020-05-29T00:01:01Z\", \"description\": \"Want 3 Kg banana\", \"assignee\": null, \"status\": \"P\" }"
+                    "value": "{ \"id\": 10, \"type\": \"G\", \"deadline\": \"2020-05-29T00:01:01Z\", \"description\": \"Want 3 Kg banana\", \"assignee\": null, \"status\": \"P\", \"assignmentHistory\": [] }"
                   }
                 }
               }
@@ -397,7 +556,15 @@
                 },
                 "examples": {
                   "0": {
-                    "value": "{ \"type\": \"C\", \"deadline\": \"2020-05-29T00:01:01Z\", \"description\": \"Want 3 Kg banana\", \"assignee\": null, \"status:\"C\" }"
+                    "value": {
+                      "id": 10,
+                      "type": "C",
+                      "deadline": "2020-05-29T00:01:01Z",
+                      "description": "Want 3 Kg banana",
+                      "assignee": null,
+                      "status": "C",
+                      "assignmentHistory": []
+                    }
                   }
                 }
               }
@@ -577,6 +744,10 @@
       "ParticipantRequestSchema": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
           "status": {
             "type": "string",
             "enum": ["P", "T", "F", "C"],
@@ -605,6 +776,23 @@
                 "$ref": "#/components/schemas/User"
               }
             ]
+          },
+          "assignmentHistory": {
+            "description": "Can be empty for non-assigned request",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssignmentSchema"
+            }
+          }
+        }
+      },
+      "AssignmentSchema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": ["A", "D", "C"],
+            "description": "status of assignment now \n * `A` - Assigned\n * `D` - Dropped\n * `C` - Completed \n"
           }
         }
       },

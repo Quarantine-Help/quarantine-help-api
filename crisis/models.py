@@ -68,6 +68,15 @@ class Request(SafeDeleteModel):
             f"-{self.get_type_display()}-deadline-{self.deadline}"
         )
 
+    def assign_user(self, assignee_participant):
+        self.status = "T"
+        self.assignee = assignee_participant
+        RequestAssignment.objects.create(
+            status="A", request=self, assignee=assignee_participant
+        )
+        # Notify the original dude here ?
+        self.save()
+
 
 class RequestAssignment(SafeDeleteModel):
     """
@@ -83,7 +92,9 @@ class RequestAssignment(SafeDeleteModel):
         ("C", "Completed"),
     ]
     status = fields.CharField(choices=TYPE_OF_ASSIGNMENT_STATUSES, max_length=2)
-    request = models.ForeignKey(Request, on_delete=models.CASCADE)
+    request = models.ForeignKey(
+        Request, on_delete=models.CASCADE, related_name="request_assignee"
+    )
     assignee = models.ForeignKey(
         "management.Participant", on_delete=models.CASCADE, related_name="assignment"
     )
@@ -94,6 +105,6 @@ class RequestAssignment(SafeDeleteModel):
 
     def __str__(self):
         return (
-            f"{self.id}-{self.assignee.first_name}-request-"
+            f"{self.id}-{self.assignee.user.first_name}-request-"
             f"{self.request.id}-status-{self.get_status_display()}"
         )
