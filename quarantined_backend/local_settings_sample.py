@@ -23,6 +23,11 @@ DEBUG = True
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
+# Add datetime string format to the API responses
+REST_FRAMEWORK = {
+    'DATETIME_FORMAT': "%Y-%m-%dT%H:%M:%S.%f%z"
+}
+
 ALLOWED_HOSTS = []
 
 import sentry_sdk
