@@ -155,6 +155,10 @@ your machine, or use `pyenv` as described later in this documentation.
    ```
    or even better, run it from pyCharm using your debugger
    
+## Development initial data
+
+You can load fixtures from the folder "fixtures", e.g. `quarantined_backend/$ python manage.py loaddata fixtures/small`
+   
 ## Automated tests
 
 You can run the test suite by executing `(env-3.7.5) quarantined_backend/$ python manage.py test` or setting up the
