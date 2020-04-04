@@ -16,8 +16,10 @@ class MockUser:
     ):
         self.is_authenticated = is_authenticated
 
+
 class MockRequest:
     pass
+
 
 class MockRelatedParticipant:
     def __init__(self, type: str = ""):
@@ -107,34 +109,27 @@ class IsHelperUserTest(TestCase):
 
 currentUser = MockUser()
 
-participantRequestMock = Mock()
-participantRequestMock.owner = Mock()
-participantRequestMock.owner.user = currentUser
+participant_request_mock = Mock()
+participant_request_mock.owner = Mock()
+participant_request_mock.owner.user = currentUser
 
-objectsMock = Mock()
-objectsMock.get.return_value = participantRequestMock
+objects_mock = Mock()
+objects_mock.get.return_value = participant_request_mock
 
-SuccessRequestMock = Mock(spec=Request)
-SuccessRequestMock.objects = objectsMock
+success_request_mock = Mock(spec=Request)
+success_request_mock.objects = objects_mock
 
-FoundButWrongParticipantRequestMock = Mock()
-FoundButWrongParticipantRequestMock.owner = Mock()
+found_but_wrong_participant_request_mock = Mock()
+found_but_wrong_participant_request_mock.owner = Mock()
 # here we return another mock user different from 'owner'
-FoundButWrongParticipantRequestMock.user = MockUser()
+found_but_wrong_participant_request_mock.user = MockUser()
 
-FoundButWrongObjectsMock = Mock()
-FoundButWrongObjectsMock.get.return_value = FoundButWrongParticipantRequestMock
+found_but_wrong_objects_mock = Mock()
+found_but_wrong_objects_mock.get.return_value = found_but_wrong_participant_request_mock
 
-FoundButWrongRequest = Mock(spec=Request)
-FoundButWrongRequest.objects = FoundButWrongObjectsMock
+found_but_wrong_request = Mock(spec=Request)
+found_but_wrong_request.objects = found_but_wrong_objects_mock
 
-# cannot test this because of
-# TypeError: catching classes that do not inherit from BaseException is not allowed
-# not sure if it is a production issue
-# DoesNotExistObjectsMock = Mock()
-# DoesNotExistObjectsMock.get.side_effect = Request.DoesNotExist()
-# DoesNotExistRequest = Mock(spec=Request)
-# DoesNotExistRequest.objects = DoesNotExistObjectsMock
 
 class IsOwnerOfRequestTest(TestCase):
     def setUp(self) -> None:
@@ -143,24 +138,14 @@ class IsOwnerOfRequestTest(TestCase):
         self.viewMock.kwargs = Mock()
         self.viewMock.kwargs.get.return_value = None
 
-    @patch("authentication.permissions.Request", SuccessRequestMock)
+    @patch("authentication.permissions.Request", success_request_mock)
     def test_owners_should_have_permission(self):
         request = MockRequest()
         request.user = currentUser
-
         self.assertTrue(self.model.has_permission(request, self.viewMock))
 
-    @patch("authentication.permissions.Request", FoundButWrongRequest)
+    @patch("authentication.permissions.Request", found_but_wrong_request)
     def test_non_owners_should_not_have_permission(self):
         request = MockRequest()
         request.user = currentUser
-
         self.assertFalse(self.model.has_permission(request, self.viewMock))
-
-    # @patch("authentication.permissions.Request", DoesNotExistRequest)
-    # def test_not_found_owner_should_not_have_permission(self):
-    #     request = MockRequest()
-    #     request.user = currentUser
-    #
-    #     with self.assertRaises(Http404):
-    #         self.assertFalse(self.model.has_permission(request, self.viewMock))
