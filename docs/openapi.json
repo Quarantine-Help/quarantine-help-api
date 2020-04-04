@@ -118,7 +118,7 @@
             }
           },
           "400": {
-            "description": "Auto generated using Swagger Inspector",
+            "description": "Login response 400",
             "content": {
               "application/json": {
                 "schema": {
