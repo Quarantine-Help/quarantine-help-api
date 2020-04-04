@@ -605,40 +605,30 @@
         }
       }
     },
-    "/api/v1/crises/{crisisId}/affected-participants/{participantId}/requests/{requestId}/assign/": {
-      "parameters": [
-        {
-          "in": "path",
-          "name": "crisisId",
-          "schema": {
-            "type": "integer"
-          },
-          "description": "crisis we are dealing with",
-          "example": 7,
-          "required": true
-        },
-        {
-          "in": "path",
-          "name": "participantId",
-          "schema": {
-            "type": "integer"
-          },
-          "description": "affected participant id",
-          "example": 3,
-          "required": true
-        },
-        {
-          "in": "path",
-          "name": "requestId",
-          "schema": {
-            "type": "integer"
-          },
-          "description": "request created by an AF participant",
-          "example": 13,
-          "required": true
-        }
-      ],
+    "/api/v1/crises/{crisisId}/affected-participants/{participantId}/requests/": {
       "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "crisisId",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "crisis we are dealing with",
+            "example": 7,
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "participantId",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "affected participant id",
+            "example": 3,
+            "required": true
+          }
+        ],
         "tags": [
           "Explore and assign requests as a HL participant"
         ],
@@ -743,8 +733,42 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/v1/crises/{crisisId}/affected-participants/{participantId}/requests/{requestId}/assign/": {
       "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "crisisId",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "crisis we are dealing with",
+            "example": 7,
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "participantId",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "affected participant id",
+            "example": 3,
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "requestId",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "request created by an AF participant",
+            "example": 13,
+            "required": true
+          }
+        ],
         "tags": [
           "Explore and assign requests as a HL participant"
         ],

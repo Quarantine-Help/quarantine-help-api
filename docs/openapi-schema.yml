@@ -19,21 +19,21 @@ info:
   2.An `AF` participant can list `Requests` needing support in their area.
   They can `assign` it to themselves. </br>
   3.An `AF` participant finishes the errand, and the `HL` participant resolves `R`.
-  
+
   ## Technologies
-  
+
   We need help, and our technologies right now are:  </br>
   - **Frontend**: Angular, HERE maps. A mobile version is getting ready at [https://mobile.quarantinehelp.space/](https://mobile.quarantinehelp.space/). </br>
   - **Mobile** - Ionic + Capacitor, HERE maps. Code @ [https://github.com/Quarantine-Help/quarantine-hybrid-app](https://github.com/Quarantine-Help/quarantine-hybrid-app) </br>
   - **Backend**: Python-django. You can find the repo here: [https://github.com/Quarantined-Help/quarantined_backend](https://github.com/Quarantined-Help/quarantined_backend). </br>
   - **Design**: We have some initial designs here, thank to our <3 people on our channel [here](https://xd.adobe.com/view/b3bd4031-5959-47e0-4b38-da9e6454d57e-c58c/).
-  
+
   ## Join US
-  
+
   Find our projects at
   [Github:Quarantine-Help](https://github.com/Quarantine-Help). </br>
   Join our slack channel: [Slack:Quarantine-Help](https://join.slack.com/t/quarantinedhelp/shared_invite/zt-d0259x7q-BiC_viQhLRoQqqc5j~P0uw). </br></br>
-  
+
   Remember to wash your hands x=).
   '
 
@@ -410,33 +410,26 @@ paths:
                         "assignmentHistory": [],
                         "createdAt": "2020-03-31T16:54:16.421078Z"
                   }
-                  
-  /api/v1/crises/{crisisId}/affected-participants/{participantId}/requests/{requestId}/assign/:
-    parameters:
-    - in: path
-      name: crisisId
-      schema:
-        type: integer
-      description: crisis we are dealing with
-      example: 7
-      required: true
-    - in: path
-      name: participantId
-      schema:
-        type: integer
-      description: affected participant id
-      example: 3
-      required: true
-    - in: path
-      name: requestId
-      schema:
-        type: integer
-      description: request created by an AF participant
-      example: 13
-      required: true
+
+  /api/v1/crises/{crisisId}/affected-participants/{participantId}/requests/:
     get:
+      parameters:
+      - in: path
+        name: crisisId
+        schema:
+          type: integer
+        description: crisis we are dealing with
+        example: 7
+        required: true
+      - in: path
+        name: participantId
+        schema:
+          type: integer
+        description: affected participant id
+        example: 3
+        required: true
       tags:
-        - Explore and assign requests as a HL participant 
+        - Explore and assign requests as a HL participant
       description: Get requests created by this
       summary: Get requests created by an AF participant
 
@@ -529,7 +522,30 @@ paths:
     }
   ]
 }
+  /api/v1/crises/{crisisId}/affected-participants/{participantId}/requests/{requestId}/assign/:
     post:
+      parameters:
+        - in: path
+          name: crisisId
+          schema:
+            type: integer
+          description: crisis we are dealing with
+          example: 7
+          required: true
+        - in: path
+          name: participantId
+          schema:
+            type: integer
+          description: affected participant id
+          example: 3
+          required: true
+        - in: path
+          name: requestId
+          schema:
+            type: integer
+          description: request created by an AF participant
+          example: 13
+          required: true
       tags:
        - Explore and assign requests as a HL participant 
       description: As an HL participant, assign a request created by an AF Participant.
