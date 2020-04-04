@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Quarantine API Documentation.",
-    "description": "API for quarantine-backend project. Find our projects at [Github:Quarantine-Help](https://github.com/Quarantine-Help). Join our slack channel: [Slack:Quarantine-Help](https://join.slack.com/t/quarantinedhelp/shared_invite/zt-d0259x7q-BiC_viQhLRoQqqc5j~P0uw). Remember to wash your hands x=).",
+    "title": "QuarantineHelp API Documentation",
+    "description": " ## Project Goal\nTo allow healthy volunteers to help out the quarantined population in their area to get their errands done. \n## Keywords\n`Crisis` - A criss we are dealing with. In this case, `COVID-2019` </br> `Participant` - A registered user in the system, can be of `HL` (Helper/Volunteer) and `AF` (Affected/Quarantined) type. </br> `Request` - An errand created by a `HL` participant. </br> `Asignee` - An HL volunteer who is taking care of a Request. \n## Process \n1.A `HL` participant creates a `Request R` with a description and deadline.  <br> 2.An `AF` participant can list `Requests` needing support in their area. They can `assign` it to themsevles. </br> 3.An `AF` participant finishes the errand, and the `HL` participant resolves `R`.\n## Technologies\nWe need help, and our technologies right now are:  </br> - **Frontend**: Angular, HERE maps. A mobile version is getting ready at [https://mobile.quarantinehelp.space/](https://mobile.quarantinehelp.space/). </br> - **Backend**: Python-django. You can find the repo here: [https://github.com/Quarantined-Help/quarantined_backend](https://github.com/Quarantined-Help/quarantined_backend). </br> - **Design**: We have some initial designs here, thank to our <3 people on our channel [here](https://xd.adobe.com/view/b3bd4031-5959-47e0-4b38-da9e6454d57e-c58c/).\n## Join US\nFind our projects at [Github:Quarantine-Help](https://github.com/Quarantine-Help). </br> Join our slack channel: [Slack:Quarantine-Help](https://join.slack.com/t/quarantinedhelp/shared_invite/zt-d0259x7q-BiC_viQhLRoQqqc5j~P0uw). </br></br>\nRemember to wash your hands x=). ",
     "version": "1"
   },
   "servers": [
@@ -122,7 +122,11 @@
                 },
                 "examples": {
                   "0": {
-                    "value": "{\"non_field_errors\":[\"Unable to log in with provided credentials.\"]}"
+                    "value": {
+                      "non_field_errors": [
+                        "Unable to log in with provided credentials."
+                      ]
+                    }
                   }
                 }
               }
@@ -517,7 +521,15 @@
                 },
                 "examples": {
                   "0": {
-                    "value": "{ \"id\": 10, \"type\": \"G\", \"deadline\": \"2020-05-29T00:01:01Z\", \"description\": \"Want 3 Kg banana\", \"assignee\": null, \"status\": \"P\", \"assignmentHistory\": [] }"
+                    "value": {
+                      "id": 10,
+                      "type": "G",
+                      "deadline": "2020-05-29T00:01:01Z",
+                      "description": "Want 3 Kg banana",
+                      "assignee": null,
+                      "status": "P",
+                      "assignmentHistory": []
+                    }
                   }
                 }
               }
@@ -792,7 +804,7 @@
           "status": {
             "type": "string",
             "enum": ["A", "D", "C"],
-            "description": "status of assignment now \n * `A` - Assigned\n * `D` - Dropped\n * `C` - Completed \n"
+            "description": "status of assignment now\n * `A` - Assigned\n * `D` - Dropped\n * `C` - Completed\n"
           }
         }
       },
