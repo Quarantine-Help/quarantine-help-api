@@ -108,7 +108,7 @@ paths:
                   value: |-
                     {
                       "token": "asdfasdfasdfasfd1231231231313",
-                      "userId": 1,
+                      "participantId": 1,
                       "email": "user@gmail.com"
                     }
         "400":
@@ -262,7 +262,7 @@ paths:
         {
           "status": "A",
           "id": 2,
-          "assignedAt": "2020-04-01T18:27:43Z",
+          "createdAt": "2020-04-01T18:27:43Z",
           "didComplete": false
         }
       ]
@@ -355,7 +355,7 @@ paths:
                   "type": "G",
                   "description": "Want 3 Kg banana",
                   "deadline": "2020-05-29T01:01:01+01:00",
-                	"status": "C"
+                  "status": "C"
               }
       responses:
         "200":
@@ -619,6 +619,17 @@ components:
              * `A` - Assigned
              * `D` - Dropped
              * `C` - Completed
+        id:
+          type: number
+          example: 1
+        didComplete:
+          type: boolean
+          description: Shows if the assignment was succesfull.
+          example: False
+        createdAt:
+          type: string
+          description: datetime in UTC at which this assignment was made
+          example: "2020-04-04T11:17:37.784674Z"
     AffectedParticipant:
       type: object
       properties:
@@ -696,7 +707,7 @@ components:
         token:
           type: string
           example: asdfasdfasdfasfd1231231231313
-        userId:
+        participantId:
           type: number
           example: 1
         email:

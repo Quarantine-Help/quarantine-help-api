@@ -111,7 +111,7 @@
                 },
                 "examples": {
                   "0": {
-                    "value": "{\n  \"token\": \"asdfasdfasdfasfd1231231231313\",\n  \"userId\": 1,\n  \"email\": \"user@gmail.com\"\n}"
+                    "value": "{\n  \"token\": \"asdfasdfasdfasfd1231231231313\",\n  \"participantId\": 1,\n  \"email\": \"user@gmail.com\"\n}"
                   }
                 }
               }
@@ -397,7 +397,7 @@
                             {
                               "status": "A",
                               "id": 2,
-                              "assignedAt": "2020-04-01T18:27:43Z",
+                              "createdAt": "2020-04-01T18:27:43Z",
                               "didComplete": false
                             }
                           ]
@@ -852,6 +852,20 @@
               "C"
             ],
             "description": "status of assignment now\n * `A` - Assigned\n * `D` - Dropped\n * `C` - Completed\n"
+          },
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "didComplete": {
+            "type": "boolean",
+            "description": "Shows if the assignment was succesfull.",
+            "example": false
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "datetime in UTC at which this assignment was made",
+            "example": "2020-04-04T11:17:37.784674Z"
           }
         }
       },
@@ -970,7 +984,7 @@
             "type": "string",
             "example": "asdfasdfasdfasfd1231231231313"
           },
-          "userId": {
+          "participantId": {
             "type": "number",
             "example": 1
           },
