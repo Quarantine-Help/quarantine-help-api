@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "QuarantineHelp API Documentation",
-    "description": " ## Project Goal\nTo allow healthy volunteers to help out the quarantined population in their area to get their errands done. \n## Keywords\n`Crisis` - A criss we are dealing with. In this case, `COVID-2019` </br> `Participant` - A registered user in the system, can be of `HL` (Helper/Volunteer) and `AF` (Affected/Quarantined) type. </br> `Request` - An errand created by a `HL` participant. </br> `Asignee` - An HL volunteer who is taking care of a Request. \n## Process \n1.A `HL` participant creates a `Request R` with a description and deadline.  <br> 2.An `AF` participant can list `Requests` needing support in their area. They can `assign` it to themsevles. </br> 3.An `AF` participant finishes the errand, and the `HL` participant resolves `R`.\n## Technologies\nWe need help, and our technologies right now are:  </br> - **Frontend**: Angular, HERE maps. A mobile version is getting ready at [https://mobile.quarantinehelp.space/](https://mobile.quarantinehelp.space/). </br> - **Mobile** - Ionic + Capacitor, HERE maps. Code @ [https://github.com/Quarantine-Help/quarantine-hybrid-app](https://github.com/Quarantine-Help/quarantine-hybrid-app) </br> - **Backend**: Python-django. You can find the repo here: [https://github.com/Quarantined-Help/quarantined_backend](https://github.com/Quarantined-Help/quarantined_backend). </br> - **Design**: We have some initial designs here, thank to our <3 people on our channel [here](https://xd.adobe.com/view/b3bd4031-5959-47e0-4b38-da9e6454d57e-c58c/).\n## Join US\nFind our projects at [Github:Quarantine-Help](https://github.com/Quarantine-Help). </br> Join our slack channel: [Slack:Quarantine-Help](https://join.slack.com/t/quarantinedhelp/shared_invite/zt-d0259x7q-BiC_viQhLRoQqqc5j~P0uw). </br></br>\nRemember to wash your hands x=). ",
+    "description": " ## Project Goal\nTo allow healthy volunteers to help out the quarantined population nearby to get their errands done. \n## Keywords\n`Crisis` - A crisis we are dealing with. In this case, `COVID-2019` </br> `Participant` - A registered user in the system, can be of `HL` (Helper/Volunteer) and `AF` (Affected/Quarantined) type. </br> `Request` - An errand created by a `HL` participant. </br> `Assignee` - An HL volunteer who is taking care of a Request. \n## Process \n1.A `HL` participant creates a `Request R` with a description and deadline.  <br> 2.An `AF` participant can list `Requests` needing support in their area.  They can `assign` it to themselves. </br> 3.An `AF` participant finishes the errand, and the `HL` participant resolves `R`.\n## Technologies\nWe need help, and our technologies right now are:  </br> - **Frontend**: Angular, HERE maps. A mobile version is getting ready at [https://mobile.quarantinehelp.space/](https://mobile.quarantinehelp.space/). </br> - **Mobile** - Ionic + Capacitor, HERE maps. Code @ [https://github.com/Quarantine-Help/quarantine-hybrid-app](https://github.com/Quarantine-Help/quarantine-hybrid-app) </br> - **Backend**: Python-django. You can find the repo here: [https://github.com/Quarantined-Help/quarantined_backend](https://github.com/Quarantined-Help/quarantined_backend). </br> - **Design**: We have some initial designs here, thank to our <3 people on our channel [here](https://xd.adobe.com/view/b3bd4031-5959-47e0-4b38-da9e6454d57e-c58c/).\n## Join US\nFind our projects at [Github:Quarantine-Help](https://github.com/Quarantine-Help). </br> Join our slack channel: [Slack:Quarantine-Help](https://join.slack.com/t/quarantinedhelp/shared_invite/zt-d0259x7q-BiC_viQhLRoQqqc5j~P0uw). </br></br>\nRemember to wash your hands x=). ",
     "version": "1"
   },
   "servers": [
@@ -152,7 +152,7 @@
     "/api/v1/crises/{crisisId}/affected-participants/": {
       "get": {
         "tags": [
-          "Map view"
+          "Map view to list affected participants nearby"
         ],
         "description": "Get a list of affected participants",
         "summary": "Get a list of affected participants",
@@ -309,7 +309,7 @@
     "/api/v1/crises/": {
       "get": {
         "tags": [
-          "Map view"
+          "Map view to list affected participants nearby"
         ],
         "description": "List crisises in your area",
         "summary": "Listing all crises. Done while page load.",
@@ -358,7 +358,7 @@
     "/api/v1/me/requests/": {
       "get": {
         "tags": [
-          "My profile management for AF Participant"
+          "My profile management for an AF Participant"
         ],
         "description": "Get requests created by an AF participant",
         "summary": "Get requests created by an AF participant",
@@ -431,7 +431,7 @@
       },
       "post": {
         "tags": [
-          "My profile management for AF Participant"
+          "My profile management for an AF Participant"
         ],
         "description": "Create request as an AF participant",
         "summary": "Create request as an AF participant",
@@ -488,7 +488,7 @@
     "/api/v1/me/requests/{requestId}/": {
       "patch": {
         "tags": [
-          "My profile management for AF Participant"
+          "My profile management for an AF Participant"
         ],
         "description": "Update my request. See that you might not be able to update your request after it is already in the transit/finished/cancelled state. You might want to delete it and create another.",
         "summary": "Partial update on my request",
@@ -556,7 +556,7 @@
       },
       "delete": {
         "tags": [
-          "My profile management for AF Participant"
+          "My profile management for an AF Participant"
         ],
         "description": "Delete a request. Will set the status to \"C\". Also returns the modified request object.",
         "summary": "Delete on my request",
@@ -594,7 +594,197 @@
                       "description": "Want 3 Kg banana",
                       "assignee": null,
                       "status": "C",
-                      "assignmentHistory": []
+                      "assignmentHistory": [],
+                      "createdAt": "2020-03-31T16:54:16.421078Z"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/crises/{crisisId}/affected-participants/{participantId}/requests/{requestId}/assign/": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "crisisId",
+          "schema": {
+            "type": "integer"
+          },
+          "description": "crisis we are dealing with",
+          "example": 7,
+          "required": true
+        },
+        {
+          "in": "path",
+          "name": "participantId",
+          "schema": {
+            "type": "integer"
+          },
+          "description": "affected participant id",
+          "example": 3,
+          "required": true
+        },
+        {
+          "in": "path",
+          "name": "requestId",
+          "schema": {
+            "type": "integer"
+          },
+          "description": "request created by an AF participant",
+          "example": 13,
+          "required": true
+        }
+      ],
+      "get": {
+        "tags": [
+          "Explore and assign requests as a HL participant"
+        ],
+        "description": "Get requests created by this",
+        "summary": "Get requests created by an AF participant",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of AF requests.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestsPaginatedResponse"
+                },
+                "examples": {
+                  "0": {
+                    "value": {
+                      "count": 6,
+                      "next": null,
+                      "previous": null,
+                      "results": [
+                        {
+                          "id": 14,
+                          "type": "G",
+                          "deadline": "2020-05-28T22:01:01Z",
+                          "description": "Want 3 Kg banana",
+                          "assignee": null,
+                          "status": "P",
+                          "assignmentHistory": [],
+                          "createdAt": "2020-03-31T16:54:16.421078Z"
+                        },
+                        {
+                          "id": 15,
+                          "type": "G",
+                          "deadline": "2020-05-29T00:01:01Z",
+                          "description": "Want 3 Kg banana",
+                          "assignee": null,
+                          "status": "P",
+                          "assignmentHistory": [],
+                          "createdAt": "2020-03-31T16:54:19.367445Z"
+                        },
+                        {
+                          "id": 16,
+                          "type": "G",
+                          "deadline": "2020-05-29T00:01:01Z",
+                          "description": "Want 3 Kg banana",
+                          "assignee": null,
+                          "status": "P",
+                          "assignmentHistory": [],
+                          "createdAt": "2020-04-04T10:43:18.521097Z"
+                        },
+                        {
+                          "id": 17,
+                          "type": "G",
+                          "deadline": "2020-05-29T00:01:01Z",
+                          "description": "Want 3 Kg banana",
+                          "assignee": null,
+                          "status": "P",
+                          "assignmentHistory": [],
+                          "createdAt": "2020-04-04T10:43:24.914212Z"
+                        },
+                        {
+                          "id": 18,
+                          "type": "G",
+                          "deadline": "2020-05-29T00:01:01Z",
+                          "description": "Want 3 Kg banana",
+                          "assignee": null,
+                          "status": "P",
+                          "assignmentHistory": [],
+                          "createdAt": "2020-04-04T10:43:25.697312Z"
+                        },
+                        {
+                          "id": 13,
+                          "type": "G",
+                          "deadline": "2020-05-28T23:01:01Z",
+                          "description": "Want 3 Kg banana",
+                          "assignee": {
+                            "firstName": "Helper",
+                            "lastName": "Participant",
+                            "email": "helperparticipant@test.com"
+                          },
+                          "status": "T",
+                          "assignmentHistory": [
+                            {
+                              "status": "A",
+                              "id": 4,
+                              "createdAt": "2020-04-04T11:12:46.570496Z",
+                              "didComplete": false
+                            }
+                          ],
+                          "createdAt": "2020-03-31T16:54:09.631443Z"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Explore and assign requests as a HL participant"
+        ],
+        "description": "As an HL participant, assign a request created by an AF Participant.",
+        "summary": "Assign a request as an HL Participant. An empty POST would assign the task to the requesting HL participant.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The request with status changing from `P` to `T` since it was assigned to the requesting HL participant.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParticipantRequestSchema"
+                },
+                "examples": {
+                  "0": {
+                    "value": {
+                      "id": 16,
+                      "type": "G",
+                      "deadline": "2020-05-29T00:01:01Z",
+                      "description": "Want 3 Kg banana",
+                      "assignee": {
+                        "firstName": "Helper",
+                        "lastName": "Participant",
+                        "email": "helperparticipant@test.com"
+                      },
+                      "status": "T",
+                      "assignmentHistory": [
+                        {
+                          "status": "A",
+                          "id": 7,
+                          "createdAt": "2020-04-04T11:17:37.784674Z",
+                          "didComplete": false
+                        }
+                      ],
+                      "createdAt": "2020-04-04T10:43:18.521097Z"
                     }
                   }
                 }
@@ -838,6 +1028,11 @@
             "items": {
               "$ref": "#/components/schemas/AssignmentSchema"
             }
+          },
+          "createdAt": {
+            "description": "DateTime in utc when the request was created",
+            "type": "string",
+            "example": "2020-04-04T10:43:18.521097Z"
           }
         }
       },
