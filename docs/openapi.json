@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "QuarantineHelp API Documentation",
-    "description": " ## Project Goal\nTo allow healthy volunteers to help out the quarantined population in their area to get their errands done. \n## Keywords\n`Crisis` - A criss we are dealing with. In this case, `COVID-2019` </br> `Participant` - A registered user in the system, can be of `HL` (Helper/Volunteer) and `AF` (Affected/Quarantined) type. </br> `Request` - An errand created by a `HL` participant. </br> `Asignee` - An HL volunteer who is taking care of a Request. \n## Process \n1.A `HL` participant creates a `Request R` with a description and deadline.  <br> 2.An `AF` participant can list `Requests` needing support in their area. They can `assign` it to themsevles. </br> 3.An `AF` participant finishes the errand, and the `HL` participant resolves `R`.\n## Technologies\nWe need help, and our technologies right now are:  </br> - **Frontend**: Angular, HERE maps. A mobile version is getting ready at [https://mobile.quarantinehelp.space/](https://mobile.quarantinehelp.space/). </br> - **Backend**: Python-django. You can find the repo here: [https://github.com/Quarantined-Help/quarantined_backend](https://github.com/Quarantined-Help/quarantined_backend). </br> - **Design**: We have some initial designs here, thank to our <3 people on our channel [here](https://xd.adobe.com/view/b3bd4031-5959-47e0-4b38-da9e6454d57e-c58c/).\n## Join US\nFind our projects at [Github:Quarantine-Help](https://github.com/Quarantine-Help). </br> Join our slack channel: [Slack:Quarantine-Help](https://join.slack.com/t/quarantinedhelp/shared_invite/zt-d0259x7q-BiC_viQhLRoQqqc5j~P0uw). </br></br>\nRemember to wash your hands x=). ",
+    "description": " ## Project Goal\nTo allow healthy volunteers to help out the quarantined population in their area to get their errands done. \n## Keywords\n`Crisis` - A criss we are dealing with. In this case, `COVID-2019` </br> `Participant` - A registered user in the system, can be of `HL` (Helper/Volunteer) and `AF` (Affected/Quarantined) type. </br> `Request` - An errand created by a `HL` participant. </br> `Asignee` - An HL volunteer who is taking care of a Request. \n## Process \n1.A `HL` participant creates a `Request R` with a description and deadline.  <br> 2.An `AF` participant can list `Requests` needing support in their area. They can `assign` it to themsevles. </br> 3.An `AF` participant finishes the errand, and the `HL` participant resolves `R`.\n## Technologies\nWe need help, and our technologies right now are:  </br> - **Frontend**: Angular, HERE maps. A mobile version is getting ready at [https://mobile.quarantinehelp.space/](https://mobile.quarantinehelp.space/). </br> - **Mobile** - Ionic + Capacitor, HERE maps. Code @ [https://github.com/Quarantine-Help/quarantine-hybrid-app](https://github.com/Quarantine-Help/quarantine-hybrid-app) </br> - **Backend**: Python-django. You can find the repo here: [https://github.com/Quarantined-Help/quarantined_backend](https://github.com/Quarantined-Help/quarantined_backend). </br> - **Design**: We have some initial designs here, thank to our <3 people on our channel [here](https://xd.adobe.com/view/b3bd4031-5959-47e0-4b38-da9e6454d57e-c58c/).\n## Join US\nFind our projects at [Github:Quarantine-Help](https://github.com/Quarantine-Help). </br> Join our slack channel: [Slack:Quarantine-Help](https://join.slack.com/t/quarantinedhelp/shared_invite/zt-d0259x7q-BiC_viQhLRoQqqc5j~P0uw). </br></br>\nRemember to wash your hands x=). ",
     "version": "1"
   },
   "servers": [
@@ -13,7 +13,9 @@
   "paths": {
     "/api/v1/auth/register/": {
       "post": {
-        "tags": ["Authentication"],
+        "tags": [
+          "Authentication"
+        ],
         "description": "Create a new participant. Also acts as the registration API",
         "summary": "Register participant API",
         "requestBody": {
@@ -80,7 +82,9 @@
     },
     "/api/v1/auth/login/": {
       "post": {
-        "tags": ["Authentication"],
+        "tags": [
+          "Authentication"
+        ],
         "description": "Login API",
         "summary": "Participant login API",
         "requestBody": {
@@ -147,7 +151,9 @@
     },
     "/api/v1/crises/{crisisId}/affected-participants/": {
       "get": {
-        "tags": ["Map view"],
+        "tags": [
+          "Map view"
+        ],
         "description": "Get a list of affected participants",
         "summary": "Get a list of affected participants",
         "parameters": [
@@ -195,7 +201,10 @@
             "name": "requestType",
             "schema": {
               "type": "string",
-              "enum": ["G", "M"],
+              "enum": [
+                "G",
+                "M"
+              ],
               "description": "Type of errand:\n * `G` - Grocery request\n * `M` - Medicine request\n"
             },
             "description": "Filter by request type. G - Groceries, M - Medicines. You can send multiple of this with an &.",
@@ -299,7 +308,9 @@
     },
     "/api/v1/crises/": {
       "get": {
-        "tags": ["Map view"],
+        "tags": [
+          "Map view"
+        ],
         "description": "List crisises in your area",
         "summary": "Listing all crises. Done while page load.",
         "responses": {
@@ -346,7 +357,9 @@
     },
     "/api/v1/me/requests/": {
       "get": {
-        "tags": ["My profile management for AF Participant"],
+        "tags": [
+          "My profile management for AF Participant"
+        ],
         "description": "Get requests created by an AF participant",
         "summary": "Get requests created by an AF participant",
         "security": [
@@ -417,7 +430,9 @@
         }
       },
       "post": {
-        "tags": ["My profile management for AF Participant"],
+        "tags": [
+          "My profile management for AF Participant"
+        ],
         "description": "Create request as an AF participant",
         "summary": "Create request as an AF participant",
         "security": [
@@ -472,7 +487,9 @@
     },
     "/api/v1/me/requests/{requestId}/": {
       "patch": {
-        "tags": ["My profile management for AF Participant"],
+        "tags": [
+          "My profile management for AF Participant"
+        ],
         "description": "Update my request. See that you might not be able to update your request after it is already in the transit/finished/cancelled state. You might want to delete it and create another.",
         "summary": "Partial update on my request",
         "security": [
@@ -538,7 +555,9 @@
         }
       },
       "delete": {
-        "tags": ["My profile management for AF Participant"],
+        "tags": [
+          "My profile management for AF Participant"
+        ],
         "description": "Delete a request. Will set the status to \"C\". Also returns the modified request object.",
         "summary": "Delete on my request",
         "security": [
@@ -601,7 +620,10 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["G", "M"],
+            "enum": [
+              "G",
+              "M"
+            ],
             "description": "Type of errand:\n * `G` - Grocery request\n * `M` - Medicine request\n"
           },
           "deadline": {
@@ -620,7 +642,10 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["G", "M"],
+            "enum": [
+              "G",
+              "M"
+            ],
             "description": "Type of errand:\n * `G` - Grocery request\n * `M` - Medicine request\n"
           },
           "deadline": {
@@ -634,7 +659,12 @@
           },
           "status": {
             "type": "string",
-            "enum": ["P", "T", "F", "C"],
+            "enum": [
+              "P",
+              "T",
+              "F",
+              "C"
+            ],
             "description": "Status of the errand:\n * `P` - Pending, just created\n * `T` - Transit, a helper is working on it\n * `F` - Finished job (wont be returned on map view)\n * `C` - Cancelled (wont be returned on map view)\n"
           }
         }
@@ -745,7 +775,12 @@
           "type": {
             "type": "string",
             "example": "AF",
-            "enum": ["HL", "AF", "AU", "TP"],
+            "enum": [
+              "HL",
+              "AF",
+              "AU",
+              "TP"
+            ],
             "description": "Type of participant:\n * `HL` - Helper\n * `AF` - Affected Participant (Quarantined)\n * `AU` - Authorities\n * `TP` - Third party\n"
           },
           "user": {
@@ -762,12 +797,20 @@
           },
           "status": {
             "type": "string",
-            "enum": ["P", "T", "F", "C"],
+            "enum": [
+              "P",
+              "T",
+              "F",
+              "C"
+            ],
             "description": "Status of the errand:\n * `P` - Pending, just created\n * `T` - Transit, a helper is working on it\n * `F` - Finished job (wont be returned on map view)\n * `C` - Cancelled (wont be returned on map view)\n"
           },
           "type": {
             "type": "string",
-            "enum": ["G", "M"],
+            "enum": [
+              "G",
+              "M"
+            ],
             "description": "Type of errand:\n * `G` - Grocery request\n * `M` - Medicine request\n"
           },
           "deadline": {
@@ -803,7 +846,11 @@
         "properties": {
           "status": {
             "type": "string",
-            "enum": ["A", "D", "C"],
+            "enum": [
+              "A",
+              "D",
+              "C"
+            ],
             "description": "status of assignment now\n * `A` - Assigned\n * `D` - Dropped\n * `C` - Completed\n"
           }
         }

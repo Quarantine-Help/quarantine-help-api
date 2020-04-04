@@ -23,6 +23,7 @@ info:
 
   We need help, and our technologies right now are:  </br>
   - **Frontend**: Angular, HERE maps. A mobile version is getting ready at [https://mobile.quarantinehelp.space/](https://mobile.quarantinehelp.space/). </br>
+  - **Mobile** - Ionic + Capacitor, HERE maps. Code @ [https://github.com/Quarantine-Help/quarantine-hybrid-app](https://github.com/Quarantine-Help/quarantine-hybrid-app) </br>
   - **Backend**: Python-django. You can find the repo here: [https://github.com/Quarantined-Help/quarantined_backend](https://github.com/Quarantined-Help/quarantined_backend). </br>
   - **Design**: We have some initial designs here, thank to our <3 people on our channel [here](https://xd.adobe.com/view/b3bd4031-5959-47e0-4b38-da9e6454d57e-c58c/).
 
