@@ -132,7 +132,7 @@ FoundButWrongRequest.objects = FoundButWrongObjectsMock
 # TypeError: catching classes that do not inherit from BaseException is not allowed
 # not sure if it is a production issue
 # DoesNotExistObjectsMock = Mock()
-# DoesNotExistObjectsMock.get.side_effect = ObjectDoesNotExist()
+# DoesNotExistObjectsMock.get.side_effect = Request.DoesNotExist()
 # DoesNotExistRequest = Mock(spec=Request)
 # DoesNotExistRequest.objects = DoesNotExistObjectsMock
 
