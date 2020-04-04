@@ -98,8 +98,7 @@ class RequestAssignment(SafeDeleteModel):
     assignee = models.ForeignKey(
         "management.Participant", on_delete=models.CASCADE, related_name="assignment"
     )
-
-    assigned_at = models.DateTimeField(auto_created=True)
+    created_at = fields.DateTimeField(auto_now_add=True)
     modified_at = fields.DateTimeField(auto_now=True)
     did_complete = fields.BooleanField(default=False)
 

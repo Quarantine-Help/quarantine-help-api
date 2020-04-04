@@ -46,7 +46,13 @@ class EmailAuthToken(ObtainAuthToken):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data["user"]
         token, created = Token.objects.get_or_create(user=user)
-        return Response({"token": token.key, "userId": user.pk, "email": user.email})
+        return Response(
+            {
+                "token": token.key,
+                "participantId": user.related_participant.id,
+                "email": user.email,
+            }
+        )
 
 
 class CreateParticipantsAPIV1(generics.CreateAPIView):

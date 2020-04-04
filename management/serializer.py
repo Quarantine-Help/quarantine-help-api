@@ -3,7 +3,6 @@ from rest_framework.serializers import ModelSerializer
 
 from authentication.serializer import UserSerializer
 from crisis.models import Request, RequestAssignment
-
 from management.models import Ability
 
 
@@ -16,7 +15,7 @@ class AbilitySerializer(ModelSerializer):
 class RequestAssignmentSerializer(ModelSerializer):
     class Meta:
         model = RequestAssignment
-        fields = ("status", "id", "assigned_at", "did_complete")
+        fields = ("status", "id", "created_at", "did_complete")
 
 
 class RequestSerializer(ModelSerializer):
@@ -36,13 +35,12 @@ class RequestSerializer(ModelSerializer):
         attrs = super().validate(attrs)
         # We do not allow people to set attribute to Transit through the API
         # view. al
-        if self.instance.status in Request.FINISHED_STATUSES:
-            raise serializers.ValidationError("You cannot change this " "anymore.")
+        if not self.instance:
+            return attrs
 
-        if attrs["status"] == "T":
-            raise serializers.ValidationError("Cannot update the status to T")
-        # Also, once someone started working on a task, you cannot change
-        # stuff. You can only cancel
+        if self.instance.status in Request.FINISHED_STATUSES:
+            raise serializers.ValidationError("You cannot change this request anymore.")
+
         if self.instance.status == "T":
             if attrs["status"] not in ["C", "F"]:
                 raise serializers.ValidationError(
@@ -56,6 +54,9 @@ class RequestSerializer(ModelSerializer):
                 raise serializers.ValidationError(
                     "You cannot shorten the deadline now. Please cancel"
                 )
+
+        if attrs["status"] == "T":
+            raise serializers.ValidationError("Cannot update the status to T")
         return attrs
 
     class Meta:
@@ -68,4 +69,5 @@ class RequestSerializer(ModelSerializer):
             "assignee",
             "status",
             "assignmentHistory",
+            "created_at",
         )

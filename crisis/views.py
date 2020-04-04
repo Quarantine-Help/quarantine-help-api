@@ -1,6 +1,7 @@
 # Create your views here.
 import datetime
 
+import pytz
 from django.contrib.gis.geos import GEOSGeometry
 from django.contrib.gis.measure import D
 from django.http import Http404
@@ -56,7 +57,13 @@ class ListAffectedParticipantsAPIV1(generics.ListAPIView):
 
 class ListCreateAffectedParticipantRequestsAPIV1(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
-    pass
+    serializer_class = RequestSerializer
+
+    def get_queryset(self):
+        participant_id = self.kwargs.get("participant_id", None)
+        return Request.objects.filter(
+            owner=participant_id, status__in=Request.UNFINISHED_STATUSES
+        )
 
 
 class AssignRequestAsHLAPIView(APIView):
@@ -77,14 +84,13 @@ class AssignRequestAsHLAPIView(APIView):
         if not request_obj.status == Request.STATUS_PENDING:
             raise Exception("Cannot handle this request, Sorry")
 
-        if not request_obj.deadline > datetime.datetime.utcnow():
+        if not request_obj.deadline > datetime.datetime.utcnow().astimezone(pytz.UTC):
             raise Exception("Too old request, cannot handle. Sorry")
 
         # Looks good, but lets look a the deadline too ?
         request_obj.assign_user(
             assignee_participant=self.request.user.related_participant
         )
-
-        request_obj = request_obj.refresh_from_db()
+        request_obj.refresh_from_db()
         request_serializer = RequestSerializer(request_obj)
         return Response(request_serializer.data)

@@ -21,7 +21,7 @@ urlpatterns = [
     ),
     path(
         "<int:crisis_id>/affected-participants/<int:participant_id>/requests"
-        "/<int:request_id>/assign",
+        "/<int:request_id>/assign/",
         AssignRequestAsHLAPIView.as_view(),
         name="assign_request_as_hl",
     ),

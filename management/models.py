@@ -85,7 +85,7 @@ class Participant(SafeDeleteModel):
     helpers = HelperParticipantManager()
     affected = AffectedParticipantManager()
 
-    created_at = fields.DateTimeField(auto_now=True)
+    created_at = fields.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.id}-{self.user.first_name}-({self.get_type_display()})"
