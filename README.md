@@ -63,6 +63,12 @@ your machine, or use `pyenv` as described later in this documentation.
    (env-3.7.5) quarantined_backend/$ python manage.py runserver
    ```
    or even better, run it from pyCharm using your debugger.
+ 7. Create a superuser and add some initial data to the database. 
+   ```
+   (env-3.7.5) quarantined_backend/$ python manage.py createsuperuser
+   ```
+   See that we would need a crises object to start with. 
+ 
 
 <h4 id="windows-installation">Instructions for Windows</h4>
 
