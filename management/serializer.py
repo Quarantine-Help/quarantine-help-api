@@ -42,7 +42,7 @@ class RequestSerializer(ModelSerializer):
             raise serializers.ValidationError("You cannot change this request anymore.")
 
         if self.instance.status == "T":
-            if attrs["status"] not in ["C", "F"]:
+            if attrs["status"] not in Request.FINISHED_STATUSES:
                 raise serializers.ValidationError(
                     "You can only cancel or mark the request as finished"
                 )
@@ -71,3 +71,31 @@ class RequestSerializer(ModelSerializer):
             "assignmentHistory",
             "created_at",
         )
+
+
+class AssigneeRequestUpdateSerializer(ModelSerializer):
+    class Meta:
+        model = Request
+        fields = (
+            "id",
+            "status"
+        )
+
+    def validate(self, attrs):
+        attrs = super().validate(attrs)
+        if 'status' not in attrs:
+            raise serializers.ValidationError(
+                "Status is mandatory"
+            )
+
+        allowed_status = [
+            Request.STATUS_FINISHED,
+            Request.STATUS_PENDING,
+            Request.STATUS_TRANSIT
+        ]
+        if attrs["status"] not in allowed_status:
+            raise serializers.ValidationError(
+                "Only the following status are allowed %s" % str(allowed_status)
+            )
+
+        return attrs

@@ -2,6 +2,8 @@ import json
 
 from django.test import TestCase, Client
 
+from crisis.models import Request
+
 
 class AssignedRequestsTest(TestCase):
     fixtures = ['fixtures/small.yaml']
@@ -36,11 +38,9 @@ class AssignedRequestsTest(TestCase):
         self.assertEquals(response.json()['description'], 'toilet paper')
 
     def testAssigneeCanUpdateRequest(self):
-        # get the item
-        response = self.client.get('/api/v1/me/assigned-requests/1', HTTP_AUTHORIZATION='Token ' + self.get_token())
-        self.assertEquals(200, response.status_code)
-        updated_data = response.json()
-        updated_data['description'] = '300 rolls of toilet paper'
+        updated_data = {
+            'status': Request.STATUS_FINISHED,
+        }
 
         response = self.client.patch(
             '/api/v1/me/assigned-requests/1',
@@ -52,7 +52,36 @@ class AssignedRequestsTest(TestCase):
         response = self.client.get('/api/v1/me/assigned-requests/1', HTTP_AUTHORIZATION='Token ' + self.get_token())
         self.assertEquals(200, response.status_code)
         self.assertEquals(response.json()['id'], 1)
-        self.assertEquals(response.json()['description'], '300 rolls of toilet paper')
+        self.assertEquals(response.json()['status'], Request.STATUS_FINISHED)
+
+    def testAssigneeCanOnlyUpdateStatus(self):
+        # get the item
+        response = self.client.get('/api/v1/me/assigned-requests/1', HTTP_AUTHORIZATION='Token ' + self.get_token())
+        self.assertEquals(200, response.status_code)
+
+        original_data = response.json()
+        updated_data = original_data
+        updated_data['description'] = 'I really do not want anything'
+
+        response = self.client.patch(
+            '/api/v1/me/assigned-requests/1',
+            json.dumps(updated_data),
+            content_type='application/json',
+            HTTP_AUTHORIZATION='Token ' + self.get_token())
+        self.assertEquals(200, response.status_code, response.json())
+
+        # test setting an invalid status
+        response = self.client.patch(
+            '/api/v1/me/assigned-requests/1',
+            json.dumps({"status": Request.STATUS_CANCELLED}),
+            content_type='application/json',
+            HTTP_AUTHORIZATION='Token ' + self.get_token())
+        self.assertEquals(400, response.status_code, response.json())
+
+        response = self.client.get('/api/v1/me/assigned-requests/1', HTTP_AUTHORIZATION='Token ' + self.get_token())
+        self.assertEquals(200, response.status_code)
+        self.assertEquals(response.json()['id'], 1)
+        self.assertNotEqual(response.json()['description'], 'I really do not want anything')
 
     def get_token(self) -> str:
         if self.token is not None:
