@@ -25,14 +25,14 @@ class AssignedRequestsTest(TestCase):
         self.assertEquals(1, response.json()['count'])
 
     def testAssignedRequestViewEndpointExists(self):
-        response = self.client.get('/api/v1/me/assigned-requests/1')
+        response = self.client.get('/api/v1/me/assigned-requests/1/')
         self.assertEquals(401, response.status_code)
 
     def testOnlyAssigneeCanSeeAssignedRequest(self):
-        response = self.client.get('/api/v1/me/assigned-requests/2',  HTTP_AUTHORIZATION='Token ' + self.get_token())
+        response = self.client.get('/api/v1/me/assigned-requests/2/',  HTTP_AUTHORIZATION='Token ' + self.get_token())
         self.assertEquals(403, response.status_code)
 
-        response = self.client.get('/api/v1/me/assigned-requests/1', HTTP_AUTHORIZATION='Token ' + self.get_token())
+        response = self.client.get('/api/v1/me/assigned-requests/1/', HTTP_AUTHORIZATION='Token ' + self.get_token())
         self.assertEquals(200, response.status_code)
         self.assertEquals(response.json()['id'], 1)
         self.assertEquals(response.json()['description'], 'toilet paper')
@@ -43,20 +43,20 @@ class AssignedRequestsTest(TestCase):
         }
 
         response = self.client.patch(
-            '/api/v1/me/assigned-requests/1',
+            '/api/v1/me/assigned-requests/1/',
             json.dumps(updated_data),
             content_type='application/json',
             HTTP_AUTHORIZATION='Token ' + self.get_token())
         self.assertEquals(200, response.status_code, response.json())
 
-        response = self.client.get('/api/v1/me/assigned-requests/1', HTTP_AUTHORIZATION='Token ' + self.get_token())
+        response = self.client.get('/api/v1/me/assigned-requests/1/', HTTP_AUTHORIZATION='Token ' + self.get_token())
         self.assertEquals(200, response.status_code)
         self.assertEquals(response.json()['id'], 1)
         self.assertEquals(response.json()['status'], Request.STATUS_FINISHED)
 
     def testAssigneeCanOnlyUpdateStatus(self):
         # get the item
-        response = self.client.get('/api/v1/me/assigned-requests/1', HTTP_AUTHORIZATION='Token ' + self.get_token())
+        response = self.client.get('/api/v1/me/assigned-requests/1/', HTTP_AUTHORIZATION='Token ' + self.get_token())
         self.assertEquals(200, response.status_code)
 
         original_data = response.json()
@@ -64,7 +64,7 @@ class AssignedRequestsTest(TestCase):
         updated_data['description'] = 'I really do not want anything'
 
         response = self.client.patch(
-            '/api/v1/me/assigned-requests/1',
+            '/api/v1/me/assigned-requests/1/',
             json.dumps(updated_data),
             content_type='application/json',
             HTTP_AUTHORIZATION='Token ' + self.get_token())
@@ -72,13 +72,13 @@ class AssignedRequestsTest(TestCase):
 
         # test setting an invalid status
         response = self.client.patch(
-            '/api/v1/me/assigned-requests/1',
+            '/api/v1/me/assigned-requests/1/',
             json.dumps({"status": Request.STATUS_CANCELLED}),
             content_type='application/json',
             HTTP_AUTHORIZATION='Token ' + self.get_token())
         self.assertEquals(400, response.status_code, response.json())
 
-        response = self.client.get('/api/v1/me/assigned-requests/1', HTTP_AUTHORIZATION='Token ' + self.get_token())
+        response = self.client.get('/api/v1/me/assigned-requests/1/', HTTP_AUTHORIZATION='Token ' + self.get_token())
         self.assertEquals(200, response.status_code)
         self.assertEquals(response.json()['id'], 1)
         self.assertNotEqual(response.json()['description'], 'I really do not want anything')
