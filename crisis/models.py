@@ -1,7 +1,6 @@
 # Create your models here.
 from django.core.exceptions import ValidationError
 from django.db import models
-
 # Create your models here.
 from django.db.models import fields
 from safedelete.models import SOFT_DELETE_CASCADE
@@ -29,14 +28,17 @@ class Request(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
 
     TYPE_OF_REQUEST = [("G", "Grocery"), ("M", "Medicine")]
-    UNFINISHED_STATUSES = ["P", "T"]
-    FINISHED_STATUSES = ["F", "C"]
     STATUS_PENDING = "P"
+    STATUS_TRANSIT = "T"
+    STATUS_FINISHED = "F"
+    STATUS_CANCELLED = "C"
+    UNFINISHED_STATUSES = [STATUS_PENDING, STATUS_TRANSIT]
+    FINISHED_STATUSES = [STATUS_FINISHED, STATUS_CANCELLED]
     TYPE_OF_REQUEST_STATUSES = [
-        ("P", "Pending"),
-        ("T", "Transit"),
-        ("F", "Finished"),
-        ("C", "Cancelled"),
+        (STATUS_PENDING, "Pending"),
+        (STATUS_TRANSIT, "Transit"),
+        (STATUS_FINISHED, "Finished"),
+        (STATUS_CANCELLED, "Cancelled"),
     ]
     owner = models.ForeignKey(
         "management.Participant",

@@ -4,7 +4,7 @@ from django.test import TestCase
 from django.views import View
 from rest_framework import serializers
 
-from authentication.permissions import IsAffectedUser, IsHelperUser, IsOwnerOfRequest
+from authentication.permissions import IsAffectedUser, IsHelperUser, IsOwnerOfRequest, IsAssigneeOfRequest
 from authentication.serializer import EmailAuthTokenSerializer
 from crisis.models import Request
 
@@ -149,3 +149,28 @@ class IsOwnerOfRequestTest(TestCase):
         request = MockRequest()
         request.user = currentUser
         self.assertFalse(self.model.has_permission(request, self.viewMock))
+
+
+assignee_request = Mock()
+assignee_request.assignee = Mock()
+assignee_request.assignee.user = currentUser
+
+assignee_objects_mock = Mock()
+assignee_objects_mock.get.return_value = assignee_request
+
+assignee_success_request_mock = Mock(spec=Request)
+assignee_success_request_mock.objects = assignee_objects_mock
+
+
+class IsAssigneeOfRequestTest(TestCase):
+    def setUp(self) -> None:
+        self.model = IsAssigneeOfRequest()
+        self.viewMock = Mock(spec=View)
+        self.viewMock.kwargs = Mock()
+        self.viewMock.kwargs.get.return_value = None
+
+    @patch("authentication.permissions.Request", assignee_success_request_mock)
+    def test_owners_should_have_permission(self):
+        request = MockRequest()
+        request.user = currentUser
+        self.assertTrue(self.model.has_permission(request, self.viewMock))
