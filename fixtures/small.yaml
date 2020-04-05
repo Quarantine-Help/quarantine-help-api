@@ -1,0 +1,159 @@
+- model: crisis.crisis
+  pk: 1
+  fields:
+    deleted: null
+    name: COVID-19
+    active: true
+    started_at: 2020-03-03T00:00:00Z
+- model: authentication.user
+  pk: 2
+  fields:
+    password: pbkdf2_sha256$180000$hxOg7JZvMUQG$lJ2dnEhPILwtVr9EMFHl4RPPx+1FQltJ8Xp7fTsH0fk=
+    last_login:
+    is_superuser: false
+    username: helper1
+    first_name: Helper
+    last_name: Jonh
+    is_staff: false
+    is_active: true
+    date_joined: '2020-04-04T18:00:32Z'
+    email: helper1@email.se
+    groups: []
+    user_permissions: []
+- model: authentication.user
+  pk: 3
+  fields:
+    password: pbkdf2_sha256$180000$pwOJIR4J6zjE$ZkYFrFO2i4ZdOfhXm5pwBKIqyellJSWvDSxyqVgFDPQ=
+    last_login:
+    is_superuser: false
+    username: helper2
+    first_name: Helper
+    last_name: Joe
+    is_staff: false
+    is_active: true
+    date_joined: '2020-04-04T18:01:31Z'
+    email: helper2@email.se
+    groups: []
+    user_permissions: []
+- model: authentication.user
+  pk: 4
+  fields:
+    password: pbkdf2_sha256$180000$J8vKz70ElQHJ$hGUY07FWga78SeX6syZ6+LxG+hrUbleeqh408/OEHIo=
+    last_login:
+    is_superuser: false
+    username: affected1
+    first_name: Marc
+    last_name: Affected
+    is_staff: false
+    is_active: true
+    date_joined: '2020-04-04T18:06:39Z'
+    email: affected1@email.se
+    groups: []
+    user_permissions: []
+- model: authentication.user
+  pk: 5
+  fields:
+    password: pbkdf2_sha256$180000$dxZbeCG58gQf$nNehCSJIyiZjek2JFVXxAHhgidDkj2ybYvLSpqc4ZkU=
+    last_login:
+    is_superuser: false
+    username: affected2
+    first_name: Mary
+    last_name: Affected
+    is_staff: false
+    is_active: true
+    date_joined: '2020-04-04T18:10:45Z'
+    email: affected2@email.se
+    groups: []
+    user_permissions: []
+- model: management.participant
+  pk: 1
+  fields:
+    deleted:
+    user: 2
+    type: HL
+    crisis: 1
+    first_line_of_address: Vasagatan, 46
+    second_line_of_address: "-"
+    country: SE
+    place_id: "ChIJlzUZK2GdX0YROJ5P7t2dJ5I"
+    position: "SRID=4326;POINT (18.51745605468749 59.56772330621294)"
+    post_code: '11120'
+    city: Stockholm
+    phone: '12341234'
+    metadata: {}
+    created_at: '2020-04-04T18:04:33.486Z'
+- model: management.participant
+  pk: 2
+  fields:
+    deleted:
+    user: 3
+    type: HL
+    crisis: 1
+    first_line_of_address: Rådmansgatan 70A
+    second_line_of_address: s
+    country: SE
+    place_id: "ChIJR65r72WdX0YRSRA4b49XhX0"
+    position: "SRID=4326;POINT (18.054371 59.339329)"
+    post_code: '11360'
+    city: Stockholm
+    phone: '12341234'
+    metadata: {}
+    created_at: '2020-04-04T18:06:18.414Z'
+- model: management.participant
+  pk: 3
+  fields:
+    deleted:
+    user: 4
+    type: AF
+    crisis: 1
+    first_line_of_address: Karlavägen 81
+    second_line_of_address: "-"
+    country: SE
+    place_id: "ChIJX1oSgk-dX0YR_vqK63JR_5A"
+    position: "SRID=4326;POINT (18.086929 59.338531)"
+    post_code: '11459'
+    city: Stockholm
+    phone: '12341234'
+    metadata: {}
+    created_at: '2020-04-04T18:08:47.811Z'
+- model: management.participant
+  pk: 4
+  fields:
+    deleted:
+    user: 5
+    type: AF
+    crisis: 1
+    first_line_of_address: Västerlånggatan 48
+    second_line_of_address: "-"
+    country: SE
+    place_id: "ChIJ0z0X9-J3X0YRG1vtOxXOqlg"
+    position: "SRID=4326;POINT (18.07061 59.324009)"
+    post_code: 111 29
+    city: Stockholm
+    phone: '12341234'
+    metadata: {}
+    created_at: '2020-04-04T18:12:30.757Z'
+- model: crisis.request
+  pk: 1
+  fields:
+    deleted:
+    owner: 3
+    assignee: 1
+    status: P
+    created_at: '2020-04-04T18:13:52.067Z'
+    modified_at: '2020-04-04T18:13:52.067Z'
+    type: G
+    deadline: '2021-07-10T18:13:26Z'
+    description: toilet paper
+- model: crisis.request
+  pk: 2
+  fields:
+    deleted:
+    owner: 4
+    assignee: 2
+    status: T
+    created_at: '2020-04-04T18:14:31.992Z'
+    modified_at: '2020-04-04T18:14:31.992Z'
+    type: M
+    deadline: '2020-07-09T18:14:13Z'
+    description: A box of ibuprofen
