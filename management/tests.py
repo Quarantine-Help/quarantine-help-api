@@ -42,7 +42,7 @@ class AssignedRequestsTest(TestCase):
         updated_data = response.json()
         updated_data['description'] = '300 rolls of toilet paper'
 
-        response = self.client.put(
+        response = self.client.patch(
             '/api/v1/me/assigned-requests/1',
             json.dumps(updated_data),
             content_type='application/json',

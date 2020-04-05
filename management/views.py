@@ -59,6 +59,6 @@ class MeAssignedRequestsAPIV1(generics.ListAPIView):
 class MeAssignedRequestViewUpdateAPIV1(generics.RetrieveUpdateAPIView):
     permission_classes = [IsAuthenticated, IsAssigneeOfRequest]
     serializer_class = RequestSerializer
-    
+
     def get_object(self):
         return Request.objects.get(id=self.kwargs.get("pk", None))
