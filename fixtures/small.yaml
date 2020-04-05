@@ -75,8 +75,8 @@
     first_line_of_address: Vasagatan, 46
     second_line_of_address: "-"
     country: SE
-    place_id: 83M4+HJ Stockholm
-    position:
+    place_id: "ChIJlzUZK2GdX0YROJ5P7t2dJ5I"
+    position: "SRID=4326;POINT (18.51745605468749 59.56772330621294)"
     post_code: '11120'
     city: Stockholm
     phone: '12341234'
@@ -92,8 +92,8 @@
     first_line_of_address: Rådmansgatan 70A
     second_line_of_address: s
     country: SE
-    place_id: 83Q3+PJ Stockholm
-    position:
+    place_id: "ChIJR65r72WdX0YRSRA4b49XhX0"
+    position: "SRID=4326;POINT (18.054371 59.339329)"
     post_code: '11360'
     city: Stockholm
     phone: '12341234'
@@ -109,8 +109,8 @@
     first_line_of_address: Karlavägen 81
     second_line_of_address: "-"
     country: SE
-    place_id: 83QP+CR Stockholm
-    position:
+    place_id: "ChIJX1oSgk-dX0YR_vqK63JR_5A"
+    position: "SRID=4326;POINT (18.086929 59.338531)"
     post_code: '11459'
     city: Stockholm
     phone: '12341234'
@@ -126,8 +126,8 @@
     first_line_of_address: Västerlånggatan 48
     second_line_of_address: "-"
     country: SE
-    place_id: 83FC+J6 Stockholm
-    position:
+    place_id: "ChIJ0z0X9-J3X0YRG1vtOxXOqlg"
+    position: "SRID=4326;POINT (18.07061 59.324009)"
     post_code: 111 29
     city: Stockholm
     phone: '12341234'
