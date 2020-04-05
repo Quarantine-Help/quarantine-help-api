@@ -228,10 +228,110 @@ paths:
     servers:
       - url: https://api.quarantinehelp.space
 
+  /api/v1/me/:
+    get:
+      tags:
+        - My profile management
+      description: Get my profile data
+      summary: Get my profile data
+      security:
+      - bearerAuth: []
+      responses:
+        "200":
+          description: My profile data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ParticipantResponse"
+              examples:
+                "0":
+                  value: {
+                        "id": 4,
+                        "user": {
+                          "firstName": "Helper",
+                          "lastName": "Participant",
+                          "email": "helperparticipant@test.com"
+                        },
+                        "position": {
+                          "longitude": "15.466003417968743",
+                          "latitude": "60.78531111116974"
+                        },
+                        "type": "HL",
+                        "firstLineOfAddress": "asdf",
+                        "secondLineOfAddress": "asdf",
+                        "country": "SE",
+                        "placeId": "asdfa",
+                        "postCode": "12648",
+                        "city": "Berlin",
+                        "phone": "+46761189391"
+                      }
+    patch:
+      tags:
+        - My profile management
+      description: Update my profile data
+      summary: Update my profile data. See that you cannot update the Email
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ParticipantPatchBody"
+            examples:
+              "0":
+                value: {
+	"user": {
+    "firstName": "Helper A",
+    "lastName": "Participant Last HAHAH"
+  },
+  "position": {
+    "longitude": "16.466003417968743",
+    "latitude": "63.78531111116974"
+  },
+  "type": "HL",
+  "firstLineOfAddress": "Hallo Hallo",
+  "secondLineOfAddress": "Hey do",
+  "country": "DE",
+  "placeId": "asdfa",
+  "postCode": "12345",
+  "city": "Berlin",
+  "phone": "+46761189399"
+}
+      responses:
+        "200":
+          description: My profile data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RequestsPaginatedResponse"
+              examples:
+                "0":
+                  value: {
+                        "id": 4,
+                        "user": {
+                          "firstName": "Helper",
+                          "lastName": "Participant",
+                          "email": "helperparticipant@test.com"
+                        },
+                        "position": {
+                          "longitude": "15.466003417968743",
+                          "latitude": "60.78531111116974"
+                        },
+                        "type": "HL",
+                        "firstLineOfAddress": "asdf",
+                        "secondLineOfAddress": "asdf",
+                        "country": "SE",
+                        "placeId": "asdfa",
+                        "postCode": "12648",
+                        "city": "Berlin",
+                        "phone": "+46761189391"
+                      }
+
+
   /api/v1/me/requests/:
     get:
       tags:
-        - My profile management for an AF Participant
+        - My requests management for an AF Participant
       description: Get requests created by an AF participant
       summary: Get requests created by an AF participant
       security:
@@ -293,7 +393,7 @@ paths:
                     }
     post:
       tags:
-        - My profile management for an AF Participant
+        - My requests management for an AF Participant
       description: Create request as an AF participant
       summary: Create request as an AF participant
       security:
@@ -333,7 +433,7 @@ paths:
   /api/v1/me/requests/{requestId}/:
     patch:
       tags:
-        - My profile management for an AF Participant
+        - My requests management for an AF Participant
       description: Update my request. See that you might not be able to update your request after it is already in the transit/finished/cancelled state. You might want to delete it and create another.
       summary: Partial update on my request
       security:
@@ -380,7 +480,7 @@ paths:
 }
     delete:
       tags:
-        - My profile management for an AF Participant
+        - My requests management for an AF Participant
       description: Delete a request. Will set the status to "C". Also returns the modified request object.
       summary: Delete on my request
       security:
@@ -549,14 +649,14 @@ paths:
           example: 13
           required: true
       tags:
-       - Explore and assign requests as a HL participant 
+       - Explore and assign requests as a HL participant
       description: As an HL participant, assign a request created by an AF Participant.
       summary: Assign a request as an HL Participant. An empty POST would assign the task to the requesting HL participant.
       security:
       - bearerAuth: []
       responses:
         "201":
-          description: The request with status changing from `P` to `T` since it was assigned to the requesting HL participant. 
+          description: The request with status changing from `P` to `T` since it was assigned to the requesting HL participant.
           content:
             application/json:
               schema:
@@ -594,6 +694,50 @@ components:
       description: "We need in format Authorization: Token AVFSADFSDFSDFSDF"
 
   schemas:
+    ParticipantPatchBody:
+      type: object
+      properties:
+        crisis:
+          type: integer
+          example: 1
+        city:
+          type: string
+          example: Stockholm
+        phone:
+          type: string
+          example: +46777777777
+        firstLineOfAddress:
+          type: string
+          example: Cedergsvagen 38
+        secondLineOfAddress:
+          type: string
+        country:
+          type: string
+          example: DE
+        postCode:
+          type: string
+          example: 12207
+        position:
+          $ref: "#/components/schemas/Position"
+        placeId:
+          type: string
+        type:
+          type: string
+          example: AF
+          enum:
+            - HL
+            - AF
+            - AU
+            - TP
+          description: >
+            Type of participant:
+             * `HL` - Helper
+             * `AF` - Affected Participant (Quarantined)
+             * `AU` - Authorities
+             * `TP` - Third party
+        user:
+          $ref: "#/components/schemas/UserPatchBody"
+
     RequestCreateBody:
       type: object
       properties:
@@ -683,6 +827,13 @@ components:
         longitude:
           type: string
           example: 2.174307
+    UserPatchBody:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
     User:
       type: object
       properties:
