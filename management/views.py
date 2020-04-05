@@ -40,7 +40,7 @@ class MeRequestDetailAPIV1(generics.RetrieveUpdateDestroyAPIView):
 
     def destroy(self, request, *args, **kwargs):
         request_object = self.get_object()
-        request_object.status = "C"
+        request_object.status = Request.STATUS_CANCELLED
         request_object.save()
         return self.retrieve(request=request, *args, **kwargs)
 
