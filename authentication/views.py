@@ -59,10 +59,6 @@ class CreateParticipantsAPIV1(generics.CreateAPIView):
     serializer_class = ParticipantSerializer
     schema = ParticipantCreateSchema()
 
-    def get_queryset(self):
-        crisis_id = self.kwargs.get("crisis_id", None)
-        return Participant.objects.filter(crisis=crisis_id)
-
     def perform_create(self, serializer):
         validated_data = serializer.validated_data
         user_data = validated_data["user"]
@@ -71,10 +67,13 @@ class CreateParticipantsAPIV1(generics.CreateAPIView):
 
         user_data["username"] = username
         user = User.objects.create(**validated_data["user"])
-        user.set_unusable_password()
-        user.save()
+        if not user_data.get("password", None):
+            user.set_unusable_password()
+            # Also send out an email ?
+        else:
+            user.set_password(user_data["password"])
 
-        # Now create a participant.
-        validated_data["user"] = user
-        _ = Participant.objects.create(**validated_data)
+        user.save()
+        user.refresh_from_db()
+        serializer.save(user=user)
         return

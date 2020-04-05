@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate
 from django.utils.translation import gettext_lazy as _
 from drf_extra_fields import geo_fields
-from rest_framework import serializers
+from rest_framework import serializers, fields
 from rest_framework.serializers import ModelSerializer
 
 from authentication.models import User
@@ -38,9 +38,11 @@ class EmailAuthTokenSerializer(serializers.Serializer):
 
 
 class UserSerializer(ModelSerializer):
+    password = fields.CharField(write_only=True, required=False)
+
     class Meta:
         model = User
-        fields = ("first_name", "last_name", "email")
+        fields = ("first_name", "last_name", "email", "password")
 
 
 class ParticipantSerializer(ModelSerializer):
@@ -61,4 +63,5 @@ class ParticipantSerializer(ModelSerializer):
             "post_code",
             "city",
             "phone",
+            "crisis",
         )
