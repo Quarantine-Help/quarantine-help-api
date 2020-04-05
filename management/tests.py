@@ -52,7 +52,7 @@ class AssignedRequestsTest(TestCase):
         response = self.client.get('/api/v1/me/assigned-requests/1', HTTP_AUTHORIZATION='Token ' + self.get_token())
         self.assertEquals(200, response.status_code)
         self.assertEquals(response.json()['id'], 1)
-        self.assertEquals(response.json()['description'], '300 rolls of toilet paper', response.json()['type'])
+        self.assertEquals(response.json()['description'], '300 rolls of toilet paper')
 
     def get_token(self) -> str:
         if self.token is not None:
