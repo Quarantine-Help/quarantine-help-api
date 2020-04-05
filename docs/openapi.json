@@ -20,11 +20,31 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Participant"
+                "$ref": "#/components/schemas/ParticipantCreateSchema"
               },
               "examples": {
                 "0": {
-                  "value": "{\n\t\"user\": {\n\t\t\"firstName\": \"Patient First Test with 6\",\n\t\t\"lastName\": \"Patient last\",\n\t\t\"email\": \"patients@patient.com\"\n\t}, \n\t\"position\": {\n\t\t\"longitude\": \"2.7105760574340807\",\n\t\t\"latitude\": \"48.19827663849882\"\n\t},\n\t\"type\": \"AF\",\n\t\"firstLineOfAddress\": \"First Line of add\",\n\t\"secondLineOfAddress\": \"Second line\",\n\t\"placeId\": \"ChIJwyyKo7J3X0YRZ5XOMcLx3xo\", \n\t\"postCode\": \"12345\",\n\t\"city\": \"Berlin\",\n\t\"country\": \"DE\",\n\t\"crisis\": 1,\n\t\"phone\": \"+46761189391\"\n}"
+                  "value": {
+                    "user": {
+                      "firstName": "Patient First Test with 6",
+                      "lastName": "Patient last",
+                      "email": "patientssss2dsddgfg@patient.com",
+                      "password": "YEEHA"
+                    },
+                    "position": {
+                      "longitude": "2.7105760574340807",
+                      "latitude": "48.19827663849882"
+                    },
+                    "type": "AF",
+                    "firstLineOfAddress": "First Line of add",
+                    "secondLineOfAddress": "Second line",
+                    "placeId": "ChIJwyyKo7J3X0YRZ5XOMcLx3xo",
+                    "postCode": "12345",
+                    "city": "Berlin",
+                    "country": "DE",
+                    "crisis": 1,
+                    "phone": "+46761189391"
+                  }
                 }
               }
             }
@@ -1099,7 +1119,19 @@
           }
         }
       },
-      "Participant": {
+      "UserCreateSchema": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/User"
+          }
+        ],
+        "properties": {
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "ParticipantCreateSchema": {
         "type": "object",
         "properties": {
           "crisis": {
@@ -1142,7 +1174,7 @@
             "description": "Type of participant:\n * `HL` - Helper\n * `AF` - Affected Participant (Quarantined)\n * `AU` - Authorities\n * `TP` - Third party\n"
           },
           "user": {
-            "$ref": "#/components/schemas/User"
+            "$ref": "#/components/schemas/UserCreateSchema"
           }
         }
       },
