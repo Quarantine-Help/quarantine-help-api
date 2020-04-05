@@ -40,3 +40,14 @@ class IsOwnerOfRequest(BasePermission):
         except Request.DoesNotExist:
             raise Http404("Not found")
         return participant_request.owner.user == request.user
+
+
+class IsAssigneeOfRequest(BasePermission):
+    message = "You do not have the permission to manage this request"
+
+    def has_permission(self, request, view):
+        try:
+            participant_request = Request.objects.get(id=view.kwargs.get("pk", None))
+        except Request.DoesNotExist:
+            raise Http404("Not found")
+        return participant_request.assignee.user == request.user

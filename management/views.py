@@ -5,7 +5,7 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
-from authentication.permissions import IsAffectedUser, IsOwnerOfRequest
+from authentication.permissions import IsAffectedUser, IsOwnerOfRequest, IsAssigneeOfRequest
 from authentication.serializer import ParticipantSerializer
 from crisis.models import Request
 from management.models import Participant
@@ -46,3 +46,22 @@ class MeRequestDetailAPIV1(generics.RetrieveUpdateDestroyAPIView):
 
     def get_object(self):
         return Request.objects.get(id=self.kwargs.get("pk", None))
+
+
+class MeAssignedRequestsAPIV1(generics.ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = RequestSerializer
+
+    def get_queryset(self):
+        return Request.objects.filter(assignee__user=self.request.user)
+
+
+class MeAssignedRequestViewUpdateAPIV1(generics.RetrieveUpdateAPIView):
+    permission_classes = [IsAuthenticated, IsAssigneeOfRequest]
+    serializer_class = RequestSerializer
+
+    def get_queryset(self):
+        return Request.objects.filter(assignee__user=self.request.user, id=self.kwargs.get("pk", None))
+
+    def get_object(self):
+        return Request.objects.get(assignee__user=self.request.user, id=self.kwargs.get("pk", None))
