@@ -6,9 +6,18 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
 from authentication.permissions import IsAffectedUser, IsOwnerOfRequest
+from authentication.serializer import ParticipantSerializer
 from crisis.models import Request
 from management.models import Participant
 from management.serializer import RequestSerializer
+
+
+class MeRetrieveUpdateAPIViewV1(generics.RetrieveUpdateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = ParticipantSerializer
+
+    def get_object(self):
+        return self.request.user.related_participant
 
 
 class ListCreateRequestsAPIV1(generics.ListCreateAPIView):

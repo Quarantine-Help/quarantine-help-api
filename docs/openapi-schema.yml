@@ -15,10 +15,12 @@ info:
 
   ## Process
 
-  1.A `HL` participant creates a `Request R` with a description and deadline.  <br>
-  2.An `AF` participant can list `Requests` needing support in their area.
+  1.An `AF` participant creates a `Request R` with a description and
+  deadline.  <br>
+  2.A `HL` participant can list `Requests` needing support in their area.
   They can `assign` it to themselves. </br>
-  3.An `AF` participant finishes the errand, and the `HL` participant resolves `R`.
+  3.A `HL` participant finishes the errand, and the `AF/HL` participant
+  resolves `R`.
 
   ## Technologies
 

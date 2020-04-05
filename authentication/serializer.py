@@ -49,4 +49,16 @@ class ParticipantSerializer(ModelSerializer):
 
     class Meta:
         model = Participant
-        fields = "__all__"
+        fields = (
+            "id",
+            "user",
+            "position",
+            "type",
+            "first_line_of_address",
+            "second_line_of_address",
+            "country",
+            "place_id",
+            "post_code",
+            "city",
+            "phone",
+        )
