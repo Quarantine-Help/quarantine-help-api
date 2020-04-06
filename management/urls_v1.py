@@ -5,7 +5,7 @@ from management.views import (
     MeRequestDetailAPIV1,
     MeRetrieveUpdateAPIViewV1,
     MeAssignedRequestsAPIV1,
-    MeAssignedRequestViewUpdateAPIV1
+    MeAssignedRequestViewUpdateAPIV1,
 )
 
 urlpatterns = [
@@ -13,5 +13,10 @@ urlpatterns = [
     path("requests/", ListCreateRequestsAPIV1.as_view(), name="create_list_requests"),
     path("requests/<int:pk>/", MeRequestDetailAPIV1.as_view(), name="detail_request"),
     path("assigned-requests/", MeAssignedRequestsAPIV1.as_view()),
-    path("assigned-requests/<int:pk>/", MeAssignedRequestViewUpdateAPIV1.as_view({'get': 'retrieve', 'patch': 'partial_update'})),
+    path(
+        "assigned-requests/<int:pk>/",
+        MeAssignedRequestViewUpdateAPIV1.as_view(
+            {"get": "retrieve", "patch": "partial_update", "delete": "destroy"}
+        ),
+    ),
 ]

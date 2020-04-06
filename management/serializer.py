@@ -1,7 +1,7 @@
 from rest_framework import fields, serializers
 from rest_framework.serializers import ModelSerializer
 
-from authentication.serializer import UserSerializer
+from authentication.serializer import UserSerializer, ParticipantSerializer
 from crisis.models import Request, RequestAssignment
 from management.models import Ability
 
@@ -15,15 +15,13 @@ class AbilitySerializer(ModelSerializer):
 class RequestAssignmentSerializer(ModelSerializer):
     class Meta:
         model = RequestAssignment
-        fields = ("status", "id", "created_at", "did_complete")
+        fields = ("status", "id", "created_at", "did_complete", "assignee_id")
 
 
 class RequestSerializer(ModelSerializer):
-    assignee = UserSerializer(
-        source="assignee.user", allow_null=True, required=False, read_only=True
-    )
+    assignee = ParticipantSerializer(allow_null=True, required=False, read_only=True)
     assignmentHistory = RequestAssignmentSerializer(
-        source="request_assignee",
+        source="related_assignment",
         allow_null=True,
         required=False,
         read_only=True,
@@ -76,23 +74,14 @@ class RequestSerializer(ModelSerializer):
 class AssigneeRequestUpdateSerializer(ModelSerializer):
     class Meta:
         model = Request
-        fields = (
-            "id",
-            "status"
-        )
+        fields = ("id", "status")
 
     def validate(self, attrs):
         attrs = super().validate(attrs)
-        if 'status' not in attrs:
-            raise serializers.ValidationError(
-                "Status is mandatory"
-            )
+        if "status" not in attrs:
+            raise serializers.ValidationError("Status is mandatory")
 
-        allowed_status = [
-            Request.STATUS_FINISHED,
-            Request.STATUS_PENDING,
-            Request.STATUS_TRANSIT
-        ]
+        allowed_status = [Request.STATUS_FINISHED, Request.STATUS_TRANSIT]
         if attrs["status"] not in allowed_status:
             raise serializers.ValidationError(
                 "Only the following status are allowed %s" % str(allowed_status)
