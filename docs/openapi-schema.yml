@@ -58,25 +58,25 @@ paths:
               "0":
                 value:
                   {
-	"user": {
-		"firstName": "Patient First Test with 6",
-		"lastName": "Patient last",
-		"email": "patientssss2dsddgfg@patient.com",
-		"password": "YEEHA"
-	},
-	"position": {
-		"longitude": "2.7105760574340807",
-		"latitude": "48.19827663849882"
-	},
-	"type": "AF",
-	"firstLineOfAddress": "First Line of add",
-	"secondLineOfAddress": "Second line",
-	"placeId": "ChIJwyyKo7J3X0YRZ5XOMcLx3xo",
-	"postCode": "12345",
-	"city": "Berlin",
-	"country": "DE",
-	"crisis": 1,
-	"phone": "+46761189391"
+  "user": {
+    "firstName": "Patient First Test with 6",
+    "lastName": "Patient last",
+    "email": "patientssss2dsddgfg@patient.com",
+    "password": "YEEHA"
+  },
+  "position": {
+    "longitude": "2.7105760574340807",
+    "latitude": "48.19827663849882"
+  },
+  "type": "AF",
+  "firstLineOfAddress": "First Line of add",
+  "secondLineOfAddress": "Second line",
+  "placeId": "ChIJwyyKo7J3X0YRZ5XOMcLx3xo",
+  "postCode": "12345",
+  "city": "Berlin",
+  "country": "DE",
+  "crisis": 1,
+  "phone": "+46761189391"
 }
       responses:
         "201":
@@ -340,6 +340,7 @@ paths:
                       }
 
 
+
   /api/v1/me/requests/:
     get:
       tags:
@@ -358,51 +359,232 @@ paths:
                 examples:
                   "0":
                     value: {
-                      "count": 3,
-                      "next": null,
-                      "previous": null,
-                      "results": [
+  "count": 8,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 14,
+      "type": "G",
+      "deadline": "2020-05-28T22:01:01Z",
+      "description": "Want 3 Kg banana",
+      "assignee": null,
+      "status": "P",
+      "assignmentHistory": [],
+      "createdAt": "2020-03-31T16:54:16.421078Z"
+    },
+    {
+      "id": 12,
+      "type": "G",
+      "deadline": "2020-05-29T00:01:01Z",
+      "description": "Want 3 Kg banana",
+      "assignee": null,
+      "status": "C",
+      "assignmentHistory": [],
+      "createdAt": "2020-03-31T16:54:03.147357Z"
+    },
     {
       "id": 9,
       "type": "G",
       "deadline": "2020-05-29T00:01:01Z",
       "description": "Want 3 Kg bananaasdfasdf",
       "assignee": {
-        "firstName": "Helper",
-        "lastName": "Participant",
-        "email": "helperparticipant@test.com"
+        "id": 4,
+        "user": {
+          "firstName": "Helper A",
+          "lastName": "Participant Last HAHAH",
+          "email": "helperparticipant@test.com"
+        },
+        "position": {
+          "longitude": "16.466003417968743",
+          "latitude": "63.78531111116974"
+        },
+        "type": "HL",
+        "firstLineOfAddress": "Hallo Hallo",
+        "secondLineOfAddress": "Hey do",
+        "country": "DE",
+        "placeId": "asdfa",
+        "postCode": "12345",
+        "city": "Berlin",
+        "phone": "+46761189399",
+        "crisis": 1
       },
       "status": "C",
       "assignmentHistory": [
         {
           "status": "A",
           "id": 2,
-          "createdAt": "2020-04-01T18:27:43Z",
-          "didComplete": false
+          "createdAt": "2020-04-04T11:12:46.570496Z",
+          "didComplete": false,
+          "assigneeId": 4
         }
-      ]
+      ],
+      "createdAt": "2020-03-31T16:52:27.840935Z"
     },
-                        {
-                          "type": "G",
-                          "deadline": "2020-05-28T22:01:01Z",
-                          "description": "Want 3 Kg banana",
-                          "assignee": null,
-                          "status": "P",
-                                "id": 10,
-                              "assignmentHistory": []
-                        },
-                        {
-                          "type": "G",
-                          "deadline": "2020-05-29T00:01:01Z",
-                          "description": "Want 3 Kg banana",
-                          "assignee": null,
-                          "status": "P",
-                          "assignmentHistory": [],
-
-                                "id": 11,
-                        }
-                      ]
-                    }
+    {
+      "id": 16,
+      "type": "G",
+      "deadline": "2020-05-29T00:01:01Z",
+      "description": "Want 3 Kg banana",
+      "assignee": {
+        "id": 4,
+        "user": {
+          "firstName": "Helper A",
+          "lastName": "Participant Last HAHAH",
+          "email": "helperparticipant@test.com"
+        },
+        "position": {
+          "longitude": "16.466003417968743",
+          "latitude": "63.78531111116974"
+        },
+        "type": "HL",
+        "firstLineOfAddress": "Hallo Hallo",
+        "secondLineOfAddress": "Hey do",
+        "country": "DE",
+        "placeId": "asdfa",
+        "postCode": "12345",
+        "city": "Berlin",
+        "phone": "+46761189399",
+        "crisis": 1
+      },
+      "status": "T",
+      "assignmentHistory": [
+        {
+          "status": "A",
+          "id": 7,
+          "createdAt": "2020-04-04T11:17:37.784674Z",
+          "didComplete": false,
+          "assigneeId": 4
+        }
+      ],
+      "createdAt": "2020-04-04T10:43:18.521097Z"
+    },
+    {
+      "id": 15,
+      "type": "G",
+      "deadline": "2020-05-29T00:01:01Z",
+      "description": "Want 3 Kg bananaasdfasdf",
+      "assignee": null,
+      "status": "C",
+      "assignmentHistory": [],
+      "createdAt": "2020-03-31T16:54:19.367445Z"
+    },
+    {
+      "id": 13,
+      "type": "G",
+      "deadline": "2020-05-28T23:01:01Z",
+      "description": "Want 3 Kg banana",
+      "assignee": {
+        "id": 4,
+        "user": {
+          "firstName": "Helper A",
+          "lastName": "Participant Last HAHAH",
+          "email": "helperparticipant@test.com"
+        },
+        "position": {
+          "longitude": "16.466003417968743",
+          "latitude": "63.78531111116974"
+        },
+        "type": "HL",
+        "firstLineOfAddress": "Hallo Hallo",
+        "secondLineOfAddress": "Hey do",
+        "country": "DE",
+        "placeId": "asdfa",
+        "postCode": "12345",
+        "city": "Berlin",
+        "phone": "+46761189399",
+        "crisis": 1
+      },
+      "status": "F",
+      "assignmentHistory": [
+        {
+          "status": "C",
+          "id": 4,
+          "createdAt": "2020-04-04T11:12:46.570496Z",
+          "didComplete": true,
+          "assigneeId": 4
+        }
+      ],
+      "createdAt": "2020-03-31T16:54:09.631443Z"
+    },
+    {
+      "id": 17,
+      "type": "G",
+      "deadline": "2020-05-29T00:01:01Z",
+      "description": "Want 3 Kg banana",
+      "assignee": {
+        "id": 4,
+        "user": {
+          "firstName": "Helper A",
+          "lastName": "Participant Last HAHAH",
+          "email": "helperparticipant@test.com"
+        },
+        "position": {
+          "longitude": "16.466003417968743",
+          "latitude": "63.78531111116974"
+        },
+        "type": "HL",
+        "firstLineOfAddress": "Hallo Hallo",
+        "secondLineOfAddress": "Hey do",
+        "country": "DE",
+        "placeId": "asdfa",
+        "postCode": "12345",
+        "city": "Berlin",
+        "phone": "+46761189399",
+        "crisis": 1
+      },
+      "status": "F",
+      "assignmentHistory": [
+        {
+          "status": "C",
+          "id": 6,
+          "createdAt": "2020-04-04T11:16:48.922394Z",
+          "didComplete": true,
+          "assigneeId": 4
+        }
+      ],
+      "createdAt": "2020-04-04T10:43:24.914212Z"
+    },
+    {
+      "id": 18,
+      "type": "G",
+      "deadline": "2020-05-29T00:01:01Z",
+      "description": "Want 3 Kg banana",
+      "assignee": {
+        "id": 4,
+        "user": {
+          "firstName": "Helper A",
+          "lastName": "Participant Last HAHAH",
+          "email": "helperparticipant@test.com"
+        },
+        "position": {
+          "longitude": "16.466003417968743",
+          "latitude": "63.78531111116974"
+        },
+        "type": "HL",
+        "firstLineOfAddress": "Hallo Hallo",
+        "secondLineOfAddress": "Hey do",
+        "country": "DE",
+        "placeId": "asdfa",
+        "postCode": "12345",
+        "city": "Berlin",
+        "phone": "+46761189399",
+        "crisis": 1
+      },
+      "status": "P",
+      "assignmentHistory": [
+        {
+          "status": "D",
+          "id": 5,
+          "createdAt": "2020-04-04T11:16:20.093448Z",
+          "didComplete": false,
+          "assigneeId": 4
+        }
+      ],
+      "createdAt": "2020-04-04T10:43:25.697312Z"
+    }
+  ]
+}
     post:
       tags:
         - My requests management for an AF Participant
@@ -559,7 +741,7 @@ paths:
                 examples:
                   "0":
                     value: {
-  "count": 6,
+  "count": 3,
   "next": null,
   "previous": null,
   "results": [
@@ -574,65 +756,80 @@ paths:
       "createdAt": "2020-03-31T16:54:16.421078Z"
     },
     {
-      "id": 15,
-      "type": "G",
-      "deadline": "2020-05-29T00:01:01Z",
-      "description": "Want 3 Kg banana",
-      "assignee": null,
-      "status": "P",
-      "assignmentHistory": [],
-      "createdAt": "2020-03-31T16:54:19.367445Z"
-    },
-    {
       "id": 16,
       "type": "G",
       "deadline": "2020-05-29T00:01:01Z",
       "description": "Want 3 Kg banana",
-      "assignee": null,
-      "status": "P",
-      "assignmentHistory": [],
+      "assignee": {
+        "id": 4,
+        "user": {
+          "firstName": "Helper A",
+          "lastName": "Participant Last HAHAH",
+          "email": "helperparticipant@test.com"
+        },
+        "position": {
+          "longitude": "16.466003417968743",
+          "latitude": "63.78531111116974"
+        },
+        "type": "HL",
+        "firstLineOfAddress": "Hallo Hallo",
+        "secondLineOfAddress": "Hey do",
+        "country": "DE",
+        "placeId": "asdfa",
+        "postCode": "12345",
+        "city": "Berlin",
+        "phone": "+46761189399",
+        "crisis": 1
+      },
+      "status": "T",
+      "assignmentHistory": [
+        {
+          "status": "A",
+          "id": 7,
+          "createdAt": "2020-04-04T11:17:37.784674Z",
+          "didComplete": false,
+          "assigneeId": 4
+        }
+      ],
       "createdAt": "2020-04-04T10:43:18.521097Z"
-    },
-    {
-      "id": 17,
-      "type": "G",
-      "deadline": "2020-05-29T00:01:01Z",
-      "description": "Want 3 Kg banana",
-      "assignee": null,
-      "status": "P",
-      "assignmentHistory": [],
-      "createdAt": "2020-04-04T10:43:24.914212Z"
     },
     {
       "id": 18,
       "type": "G",
       "deadline": "2020-05-29T00:01:01Z",
       "description": "Want 3 Kg banana",
-      "assignee": null,
-      "status": "P",
-      "assignmentHistory": [],
-      "createdAt": "2020-04-04T10:43:25.697312Z"
-    },
-    {
-      "id": 13,
-      "type": "G",
-      "deadline": "2020-05-28T23:01:01Z",
-      "description": "Want 3 Kg banana",
       "assignee": {
-        "firstName": "Helper",
-        "lastName": "Participant",
-        "email": "helperparticipant@test.com"
+        "id": 4,
+        "user": {
+          "firstName": "Helper A",
+          "lastName": "Participant Last HAHAH",
+          "email": "helperparticipant@test.com"
+        },
+        "position": {
+          "longitude": "16.466003417968743",
+          "latitude": "63.78531111116974"
+        },
+        "type": "HL",
+        "firstLineOfAddress": "Hallo Hallo",
+        "secondLineOfAddress": "Hey do",
+        "country": "DE",
+        "placeId": "asdfa",
+        "postCode": "12345",
+        "city": "Berlin",
+        "phone": "+46761189399",
+        "crisis": 1
       },
-      "status": "T",
+      "status": "P",
       "assignmentHistory": [
         {
-          "status": "A",
-          "id": 4,
-          "createdAt": "2020-04-04T11:12:46.570496Z",
-          "didComplete": false
+          "status": "D",
+          "id": 5,
+          "createdAt": "2020-04-04T11:16:20.093448Z",
+          "didComplete": false,
+          "assigneeId": 4
         }
       ],
-      "createdAt": "2020-03-31T16:54:09.631443Z"
+      "createdAt": "2020-04-04T10:43:25.697312Z"
     }
   ]
 }
@@ -676,25 +873,423 @@ paths:
               examples:
                 "0":
                   value: {
-  "id": 16,
+  "id": 18,
   "type": "G",
   "deadline": "2020-05-29T00:01:01Z",
   "description": "Want 3 Kg banana",
   "assignee": {
-    "firstName": "Helper",
-    "lastName": "Participant",
-    "email": "helperparticipant@test.com"
+    "id": 4,
+    "user": {
+      "firstName": "Helper A",
+      "lastName": "Participant Last HAHAH",
+      "email": "helperparticipant@test.com"
+    },
+    "position": {
+      "longitude": "16.466003417968743",
+      "latitude": "63.78531111116974"
+    },
+    "type": "HL",
+    "firstLineOfAddress": "Hallo Hallo",
+    "secondLineOfAddress": "Hey do",
+    "country": "DE",
+    "placeId": "asdfa",
+    "postCode": "12345",
+    "city": "Berlin",
+    "phone": "+46761189399",
+    "crisis": 1
   },
   "status": "T",
   "assignmentHistory": [
     {
+      "status": "D",
+      "id": 5,
+      "createdAt": "2020-04-04T11:16:20.093448Z",
+      "didComplete": false,
+      "assigneeId": 5
+    },
+    {
       "status": "A",
-      "id": 7,
-      "createdAt": "2020-04-04T11:17:37.784674Z",
-      "didComplete": false
+      "id": 8,
+      "createdAt": "2020-04-06T12:07:19.872333Z",
+      "didComplete": false,
+      "assigneeId": 4
     }
   ],
-  "createdAt": "2020-04-04T10:43:18.521097Z"
+  "createdAt": "2020-04-04T10:43:25.697312Z"
+}
+
+  /api/v1/me/assigned-requests/:
+    get:
+      tags:
+        - My request-assignments for a HL Participant
+      description: Get your assigned requests as an HL participant
+      summary: Get your assigned requests as an HL participant
+      security:
+      - bearerAuth: []
+      responses:
+        "200":
+          description: A paginated list of user requests.
+          content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/RequestsPaginatedResponse"
+                examples:
+                  "0":
+                    value: {
+  "count": 4,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 13,
+      "type": "G",
+      "deadline": "2020-05-28T23:01:01Z",
+      "description": "Want 3 Kg banana",
+      "assignee": {
+        "id": 4,
+        "user": {
+          "firstName": "Helper A",
+          "lastName": "Participant Last HAHAH",
+          "email": "helperparticipant@test.com"
+        },
+        "position": {
+          "longitude": "16.466003417968743",
+          "latitude": "63.78531111116974"
+        },
+        "type": "HL",
+        "firstLineOfAddress": "Hallo Hallo",
+        "secondLineOfAddress": "Hey do",
+        "country": "DE",
+        "placeId": "asdfa",
+        "postCode": "12345",
+        "city": "Berlin",
+        "phone": "+46761189399",
+        "crisis": 1
+      },
+      "status": "F",
+      "assignmentHistory": [
+        {
+          "status": "C",
+          "id": 4,
+          "createdAt": "2020-04-04T11:12:46.570496Z",
+          "didComplete": true,
+          "assigneeId": 4
+        }
+      ],
+      "createdAt": "2020-03-31T16:54:09.631443Z"
+    },
+    {
+      "id": 17,
+      "type": "G",
+      "deadline": "2020-05-29T00:01:01Z",
+      "description": "Want 3 Kg banana",
+      "assignee": {
+        "id": 4,
+        "user": {
+          "firstName": "Helper A",
+          "lastName": "Participant Last HAHAH",
+          "email": "helperparticipant@test.com"
+        },
+        "position": {
+          "longitude": "16.466003417968743",
+          "latitude": "63.78531111116974"
+        },
+        "type": "HL",
+        "firstLineOfAddress": "Hallo Hallo",
+        "secondLineOfAddress": "Hey do",
+        "country": "DE",
+        "placeId": "asdfa",
+        "postCode": "12345",
+        "city": "Berlin",
+        "phone": "+46761189399",
+        "crisis": 1
+      },
+      "status": "F",
+      "assignmentHistory": [
+        {
+          "status": "C",
+          "id": 6,
+          "createdAt": "2020-04-04T11:16:48.922394Z",
+          "didComplete": true,
+          "assigneeId": 4
+        }
+      ],
+      "createdAt": "2020-04-04T10:43:24.914212Z"
+    },
+    {
+      "id": 18,
+      "type": "G",
+      "deadline": "2020-05-29T00:01:01Z",
+      "description": "Want 3 Kg banana",
+      "assignee": {
+        "id": 4,
+        "user": {
+          "firstName": "Helper A",
+          "lastName": "Participant Last HAHAH",
+          "email": "helperparticipant@test.com"
+        },
+        "position": {
+          "longitude": "16.466003417968743",
+          "latitude": "63.78531111116974"
+        },
+        "type": "HL",
+        "firstLineOfAddress": "Hallo Hallo",
+        "secondLineOfAddress": "Hey do",
+        "country": "DE",
+        "placeId": "asdfa",
+        "postCode": "12345",
+        "city": "Berlin",
+        "phone": "+46761189399",
+        "crisis": 1
+      },
+      "status": "P",
+      "assignmentHistory": [
+        {
+          "status": "D",
+          "id": 5,
+          "createdAt": "2020-04-04T11:16:20.093448Z",
+          "didComplete": false,
+          "assigneeId": 4
+        }
+      ],
+      "createdAt": "2020-04-04T10:43:25.697312Z"
+    },
+    {
+      "id": 16,
+      "type": "G",
+      "deadline": "2020-05-29T00:01:01Z",
+      "description": "Want 3 Kg banana",
+      "assignee": {
+        "id": 4,
+        "user": {
+          "firstName": "Helper A",
+          "lastName": "Participant Last HAHAH",
+          "email": "helperparticipant@test.com"
+        },
+        "position": {
+          "longitude": "16.466003417968743",
+          "latitude": "63.78531111116974"
+        },
+        "type": "HL",
+        "firstLineOfAddress": "Hallo Hallo",
+        "secondLineOfAddress": "Hey do",
+        "country": "DE",
+        "placeId": "asdfa",
+        "postCode": "12345",
+        "city": "Berlin",
+        "phone": "+46761189399",
+        "crisis": 1
+      },
+      "status": "T",
+      "assignmentHistory": [
+        {
+          "status": "A",
+          "id": 7,
+          "createdAt": "2020-04-04T11:17:37.784674Z",
+          "didComplete": false,
+          "assigneeId": 4
+        }
+      ],
+      "createdAt": "2020-04-04T10:43:18.521097Z"
+    }
+  ]
+}
+  /api/v1/me/assigned-requests/{requestId}/:
+    get:
+      tags:
+        - My request-assignments for a HL Participant
+      description: Your assigned request details
+      summary: Your assigned request details
+      parameters:
+        - in: path
+          name: requestId
+          schema:
+            type: integer
+          description: Request id
+          example: 7
+          required: true
+      security:
+      - bearerAuth: []
+      responses:
+        "200":
+          description: A paginated list of user requests.
+          content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/ParticipantRequestSchema"
+                examples:
+                  "0":
+                    value: {
+  "id": 17,
+  "type": "G",
+  "deadline": "2020-05-29T00:01:01Z",
+  "description": "Want 3 Kg banana",
+  "assignee": {
+    "id": 4,
+    "user": {
+      "firstName": "Helper A",
+      "lastName": "Participant Last HAHAH",
+      "email": "helperparticipant@test.com"
+    },
+    "position": {
+      "longitude": "16.466003417968743",
+      "latitude": "63.78531111116974"
+    },
+    "type": "HL",
+    "firstLineOfAddress": "Hallo Hallo",
+    "secondLineOfAddress": "Hey do",
+    "country": "DE",
+    "placeId": "asdfa",
+    "postCode": "12345",
+    "city": "Berlin",
+    "phone": "+46761189399",
+    "crisis": 1
+  },
+  "status": "F",
+  "assignmentHistory": [
+    {
+      "status": "C",
+      "id": 6,
+      "createdAt": "2020-04-04T11:16:48.922394Z",
+      "didComplete": true,
+      "assigneeId": 4
+    }
+  ],
+  "createdAt": "2020-04-04T10:43:24.914212Z"
+}
+    patch:
+      tags:
+        - My request-assignments for a HL Participant
+      description: Update status of an assigned request. You can change a request in status `T` to `F`(Finished) using this endpoint.
+      summary:  Update status of an assigned request
+      parameters:
+        - in: path
+          name: requestId
+          schema:
+            type: integer
+          description: Request id
+          example: 7
+          required: true
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HLRequestUpdateSchema"
+            examples:
+              "0":
+                value: {
+  	"status": "F"
+  }
+      responses:
+        "200":
+          description: A paginated list of user requests.
+          content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/ParticipantRequestSchema"
+                examples:
+                  "0":
+                    value: {
+  "id": 17,
+  "type": "G",
+  "deadline": "2020-05-29T00:01:01Z",
+  "description": "Want 3 Kg banana",
+  "assignee": {
+    "id": 4,
+    "user": {
+      "firstName": "Helper A",
+      "lastName": "Participant Last HAHAH",
+      "email": "helperparticipant@test.com"
+    },
+    "position": {
+      "longitude": "16.466003417968743",
+      "latitude": "63.78531111116974"
+    },
+    "type": "HL",
+    "firstLineOfAddress": "Hallo Hallo",
+    "secondLineOfAddress": "Hey do",
+    "country": "DE",
+    "placeId": "asdfa",
+    "postCode": "12345",
+    "city": "Berlin",
+    "phone": "+46761189399",
+    "crisis": 1
+  },
+  "status": "F",
+  "assignmentHistory": [
+    {
+      "status": "C",
+      "id": 6,
+      "createdAt": "2020-04-04T11:16:48.922394Z",
+      "didComplete": true,
+      "assigneeId": 4
+    }
+  ],
+  "createdAt": "2020-04-04T10:43:24.914212Z"
+}
+    delete:
+      tags:
+        - My request-assignments for a HL Participant
+      description: Unassign a request in status `T` as an HL participant
+      summary: Unassign a request in status as an HL participant
+      parameters:
+        - in: path
+          name: requestId
+          schema:
+            type: integer
+          description: Request id
+          example: 7
+          required: true
+      security:
+      - bearerAuth: []
+      responses:
+        "200":
+          description: A paginated list of user requests.
+          content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/ParticipantRequestSchema"
+                examples:
+                  "0":
+                    value: {
+  "id": 18,
+  "type": "G",
+  "deadline": "2020-05-29T00:01:01Z",
+  "description": "Want 3 Kg banana",
+  "assignee": {
+    "id": 4,
+    "user": {
+      "firstName": "Helper A",
+      "lastName": "Participant Last HAHAH",
+      "email": "helperparticipant@test.com"
+    },
+    "position": {
+      "longitude": "16.466003417968743",
+      "latitude": "63.78531111116974"
+    },
+    "type": "HL",
+    "firstLineOfAddress": "Hallo Hallo",
+    "secondLineOfAddress": "Hey do",
+    "country": "DE",
+    "placeId": "asdfa",
+    "postCode": "12345",
+    "city": "Berlin",
+    "phone": "+46761189399",
+    "crisis": 1
+  },
+  "status": "P",
+  "assignmentHistory": [
+    {
+      "status": "D",
+      "id": 5,
+      "createdAt": "2020-04-04T11:16:20.093448Z",
+      "didComplete": false,
+      "assigneeId": 4
+    }
+  ],
+  "createdAt": "2020-04-04T10:43:25.697312Z"
 }
 
 components:
@@ -818,6 +1413,23 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ParticipantRequestSchema"
+
+    HLRequestUpdateSchema:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - P
+            - T
+            - F
+            - C
+          description: >
+            Status of the errand:
+             * `P` - Pending, just created
+             * `T` - Transit, a helper is working on it
+             * `F` - Finished job (wont be returned on map view)
+             * `C` - Cancelled (wont be returned on map view)
 
     Crisis:
       type: object
@@ -944,7 +1556,7 @@ components:
         assignee:
           allOf:
             - description: Can be empty when nobody is assigned
-            - $ref: "#/components/schemas/User"
+            - $ref: "#/components/schemas/ParticipantResponse"
         assignmentHistory:
           description: Can be empty for non-assigned request
           type: array
