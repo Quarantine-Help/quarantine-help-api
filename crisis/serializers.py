@@ -14,3 +14,6 @@ class CrisisSerializer(ModelSerializer):
 
 class AffectedParticipantSerializer(ParticipantSerializer):
     requests = RequestSerializer(many=True, source="created_request")
+
+    class Meta(ParticipantSerializer.Meta):
+        fields = ParticipantSerializer.Meta.fields + ("requests",)
