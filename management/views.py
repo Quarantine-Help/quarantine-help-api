@@ -5,7 +5,11 @@
 from rest_framework import generics, viewsets
 from rest_framework.permissions import IsAuthenticated
 
-from authentication.permissions import IsAffectedUser, IsOwnerOfRequest, IsAssigneeOfRequest
+from authentication.permissions import (
+    IsAffectedUser,
+    IsOwnerOfRequest,
+    IsAssigneeOfRequest,
+)
 from authentication.serializer import ParticipantSerializer
 from crisis.models import Request
 from management.models import Participant
@@ -82,7 +86,9 @@ class MeAssignedRequestsAPIV1(generics.ListAPIView):
     serializer_class = RequestSerializer
 
     def get_queryset(self):
-        return Request.objects.filter(assignee__user=self.request.user)
+        return Request.objects.filter(assignee__user=self.request.user).exclude(
+            status=Request.STATUS_CANCELLED
+        )
 
 
 class MeAssignedRequestViewUpdateAPIV1(viewsets.ModelViewSet):
@@ -94,7 +100,7 @@ class MeAssignedRequestViewUpdateAPIV1(viewsets.ModelViewSet):
         return Request.objects.get(id=self.kwargs.get("pk", None))
 
     def get_serializer_class(self):
-        if self.action == 'partial_update':
+        if self.action == "partial_update":
             return self.assignee_serializer_class
 
         return super().get_serializer_class()

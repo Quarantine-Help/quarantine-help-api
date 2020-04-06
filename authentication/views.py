@@ -10,7 +10,6 @@ from authentication.models import User
 from authentication.schemas import ParticipantCreateSchema
 from authentication.serializer import EmailAuthTokenSerializer, ParticipantSerializer
 from crisis.helpers import generate_username_with_user_data
-from management.models import Participant
 
 
 class EmailAuthToken(ObtainAuthToken):
