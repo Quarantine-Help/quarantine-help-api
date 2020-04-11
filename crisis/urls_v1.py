@@ -1,11 +1,10 @@
 from django.urls import path
 
-from crisis.views import (
-    CrisisListAPIV1,
-    ListAffectedParticipantsAPIV1,
-    ListCreateAffectedParticipantRequestsAPIV1,
-    AssignRequestAsHLAPIView,
-)
+from crisis.views.af_crisis_participant_views import \
+    ListCreateAffectedParticipantRequestsAPIV1
+from crisis.views.common_views import CrisisListAPIV1, \
+    ListAffectedParticipantsAPIV1
+from crisis.views.hl_crisis_participant_views import AssignRequestAsHLAPIView
 
 urlpatterns = [
     path("", CrisisListAPIV1.as_view(), name="list_crisies"),
