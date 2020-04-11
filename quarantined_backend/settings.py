@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "django.contrib.sites",
     "rest_auth",
+    "anymail",
 ]
 
 MIDDLEWARE = [
@@ -111,7 +112,7 @@ REST_FRAMEWORK = {
 }
 # All auth configs to use email instead
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = "anymail.backends.sendinblue.EmailBackend"
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False

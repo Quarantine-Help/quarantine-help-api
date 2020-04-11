@@ -1,12 +1,10 @@
 from django.urls import path
 
-from management.views import (
-    ListCreateRequestsAPIV1,
-    MeRequestDetailAPIV1,
-    MeRetrieveUpdateAPIViewV1,
-    MeAssignedRequestsAPIV1,
-    MeAssignedRequestViewUpdateAPIV1,
-)
+from management.views.af_participant_views import ListCreateRequestsAPIV1, \
+    MeRequestDetailAPIV1
+from management.views.common_views import MeRetrieveUpdateAPIViewV1
+from management.views.hl_participant_views import \
+    MeAssignedRequestViewUpdateAPIV1, MeAssignedRequestsAPIV1
 
 urlpatterns = [
     path("", MeRetrieveUpdateAPIViewV1.as_view(), name="me_retrieve_update"),
