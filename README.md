@@ -48,7 +48,17 @@ your machine, or use `pyenv` as described later in this documentation.
    ```
    (env-3.7.5) quarantined_backend/$ pip install -r requirements.txt
    ```
-3. Install `postgis` using `brew install postgis`
+3. Install `postgis` using `brew install postgis`. You can create a database and set the user roles using the following commands: 
+   ```
+   CREATE DATABASE quarantined_db;
+   CREATE EXTENSION postgis;
+   ALTER EXTENSION postgis UPDATE;
+   CREATE USER quarantined_user WITH PASSWORD 'ABCD123<changeThis>';
+   GRANT ALL PRIVILEGES ON DATABASE quarantined_db TO quarantined_user;
+   ALTER ROLE quarantined_user SET timezone TO 'UTC';
+   ALTER ROLE quarantined_user SET default_transaction_isolation TO 'read committed';
+   ALTER ROLE quarantined_user SET client_encoding TO 'utf8';
+   ```
 4. We use `pre-commit` hooks to format code. See that you install it using
    https://pre-commit.com/. Later, install our pre-commit hooks using
    `(env-3.7.5) quarantined_backend/$ pre-commit install`
