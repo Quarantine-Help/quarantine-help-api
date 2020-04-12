@@ -2,7 +2,7 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
 from authentication.permissions import IsAffectedUser, IsOwnerOfRequest
-from crisis.models import Request
+from crisis.models.crisis_request import Request
 from management.models import Participant
 from management.serializer import RequestSerializer
 

@@ -1,8 +1,11 @@
+from datetime import datetime
+
 from django.contrib.gis.geos import GEOSGeometry
 from django.contrib.gis.measure import D
 from rest_framework import generics
 
-from crisis.models import Request, Crisis
+from crisis.models.crisis import Crisis
+from crisis.models.crisis_request import Request
 from crisis.serializers import AffectedParticipantSerializer, CrisisSerializer
 from management.models import Participant
 
@@ -18,7 +21,10 @@ class ListAffectedParticipantsAPIV1(generics.ListAPIView):
         client_longitude = self.request.query_params.get("longitude", None)
         radius = self.request.query_params.get("radius", 7)
 
-        affected_participants = Participant.affected.filter(crisis=crisis_id)
+        affected_participants = Participant.affected.filter(
+            crisis=crisis_id,
+            created_request__deadline__gte=datetime.utcnow()
+        )
 
         if request_type:
             affected_participants = affected_participants.filter(

@@ -2,7 +2,7 @@ from rest_framework import viewsets, generics
 from rest_framework.permissions import IsAuthenticated
 
 from authentication.permissions import IsAssigneeOfRequest
-from crisis.models import Request
+from crisis.models.crisis_request import Request
 from management.serializer import RequestSerializer, \
     AssigneeRequestUpdateSerializer
 

@@ -2,7 +2,6 @@ from django.conf import settings
 from django.contrib.gis.db.models import PointField
 from django.contrib.postgres.fields import JSONField
 from django.db import models
-
 # Create your models here.
 from django.db.models import fields, manager
 from django.db.models.signals import post_save
@@ -14,7 +13,7 @@ from safedelete import HARD_DELETE_NOCASCADE
 from safedelete.models import SafeDeleteModel
 
 from authentication.models import User
-from crisis.models import Crisis
+from crisis.models.crisis import Crisis
 
 
 class Ability(models.Model):
@@ -73,7 +72,8 @@ class Participant(SafeDeleteModel):
     first_line_of_address = fields.CharField(max_length=255)
     second_line_of_address = fields.CharField(max_length=255)
     country = CountryField(blank_label="(select country)")
-    place_id = fields.CharField(verbose_name="Place id from Google", max_length=150)
+    place_id = fields.CharField(verbose_name="Place id from Google",
+                                max_length=150)
 
     position = PointField(null=True, blank=True, geography=True)
     post_code = fields.CharField(verbose_name="Postal code", max_length=10)
@@ -89,6 +89,17 @@ class Participant(SafeDeleteModel):
 
     def __str__(self):
         return f"{self.id}-{self.user.first_name}-({self.get_type_display()})"
+
+    @property
+    def location(self):
+        address = f"{self.first_line_of_address}"
+        if self.second_line_of_address:
+            address = f"{address}, {self.second_line_of_address}"
+        return f"{address}, {self.city}, {self.country}, {self.post_code}"
+
+    @property
+    def contact_details(self):
+        return f"Phone: {self.phone}, Email: {self.user.email}"
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)

@@ -1,6 +1,8 @@
 from django.contrib import admin
 
-from crisis.models import Crisis, Request, RequestAssignment
+from crisis.models.crisis import Crisis
+from crisis.models.crisis_request import Request
+from crisis.models.request_assignment import RequestAssignment
 
 # Register your models here.
 from management.models import Participant

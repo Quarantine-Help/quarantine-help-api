@@ -2,7 +2,7 @@ from django.http import Http404
 from rest_framework.permissions import BasePermission
 
 import authentication
-from crisis.models import Request
+from crisis.models.crisis_request import Request
 
 
 class IsAffectedUser(BasePermission):

@@ -1,31 +1,20 @@
-# Create your models here.
 from django.core.exceptions import ValidationError
 from django.db import models
-
-# Create your models here.
 from django.db.models import fields
-from safedelete.models import SOFT_DELETE_CASCADE
+from safedelete import SOFT_DELETE_CASCADE
 from safedelete.models import SafeDeleteModel
 
-from authentication.models import User
+from crisis.models.request_assignment import RequestAssignment
+from management.email_pusher import EmailPusher
 
 
-class Crisis(SafeDeleteModel):
-    _safedelete_policy = SOFT_DELETE_CASCADE
-
-    id = fields.AutoField(primary_key=True)
-    name = fields.CharField(max_length=100)
-    active = fields.BooleanField(default=True)
-    started_at = fields.DateTimeField()
-
-    def __repr__(self):
-        return f"{self.id}-{self.name}"
-
-    def __str__(self):
-        return f"{self.id}-{self.name}"
-
+from django.apps import apps
 
 class Request(SafeDeleteModel):
+    class Meta:
+        app_label = 'crisis'
+        db_table = 'crisis_request'
+
     _safedelete_policy = SOFT_DELETE_CASCADE
 
     TYPE_OF_REQUEST = [("G", "Grocery"), ("M", "Medicine")]
@@ -63,11 +52,13 @@ class Request(SafeDeleteModel):
 
     @property
     def related_request_assignment(self):
-        return RequestAssignment.objects.get(assignee=self.assignee, request=self)
+        return RequestAssignment.objects.get(assignee=self.assignee,
+                                             request=self)
 
     def clean(self):
         if self.status in ["T"] and not self.assignee:
-            raise ValidationError("Assignee missing while changing status to assigned.")
+            raise ValidationError(
+                "Assignee missing while changing status to assigned.")
 
     def __str__(self):
         return (
@@ -78,17 +69,27 @@ class Request(SafeDeleteModel):
     def assign_user(self, assignee_participant):
         self.status = self.STATUS_TRANSIT
         self.assignee = assignee_participant
-        RequestAssignment.objects.create(
+        request_assignment = RequestAssignment.objects.create(
             status=RequestAssignment.STATUS_ASSIGNED,
             request=self,
             assignee=assignee_participant,
         )
         # Notify the original dude here ?
         self.save()
+        self.refresh_from_db()
+        self.notify_request_owner_about_assignment(
+            request_assignment=request_assignment
+        )
 
-    def notify_request_owner_about_assignment(self):
-        # @TODO
-        pass
+    def notify_request_owner_about_assignment(self,
+                                              request_assignment):
+        """
+        I can send the whole request object to the template and fill up
+        things there. Easy.
+        :return:
+        """
+        return EmailPusher.send_email_to_af_user_on_assignment_by_hl(
+            request=self, request_assignment=request_assignment)
 
     def notify_request_owner_about_assignment_drop(self):
         # @TODO
@@ -125,40 +126,3 @@ class Request(SafeDeleteModel):
         self.save()
         self.notify_request_owner_about_assignment_drop()
         return
-
-
-class RequestAssignment(SafeDeleteModel):
-    """
-    We will use this to constantly track the progress of an assignment.
-    Mostly used for logging, and karma points ?
-    """
-
-    _safedelete_policy = SOFT_DELETE_CASCADE
-
-    STATUS_ASSIGNED = "A"
-    STATUS_DROPPED = "D"
-    STATUS_COMPLETED = "C"
-
-    TYPE_OF_ASSIGNMENT_STATUSES = [
-        (STATUS_ASSIGNED, "Assigned"),
-        (STATUS_DROPPED, "Dropped"),
-        (STATUS_COMPLETED, "Completed"),
-    ]
-    status = fields.CharField(choices=TYPE_OF_ASSIGNMENT_STATUSES, max_length=2)
-    request = models.ForeignKey(
-        Request, on_delete=models.CASCADE, related_name="related_assignment"
-    )
-    assignee = models.ForeignKey(
-        "management.Participant",
-        on_delete=models.CASCADE,
-        related_name="created_assignment",
-    )
-    created_at = fields.DateTimeField(auto_now_add=True)
-    modified_at = fields.DateTimeField(auto_now=True)
-    did_complete = fields.BooleanField(default=False)
-
-    def __str__(self):
-        return (
-            f"{self.id}-{self.assignee.user.first_name}-request-"
-            f"{self.request.id}-status-{self.get_status_display()}"
-        )

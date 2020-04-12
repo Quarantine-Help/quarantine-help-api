@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from authentication.permissions import IsHelperUser
-from crisis.models import Request
+from crisis.models.crisis_request import Request
 from management.serializer import RequestSerializer
 
 

@@ -1,7 +1,7 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
-from crisis.models import Request
+from crisis.models.crisis_request import Request
 from management.serializer import RequestSerializer
 
 

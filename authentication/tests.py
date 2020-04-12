@@ -6,7 +6,7 @@ from rest_framework import serializers
 
 from authentication.permissions import IsAffectedUser, IsHelperUser, IsOwnerOfRequest, IsAssigneeOfRequest
 from authentication.serializer import EmailAuthTokenSerializer
-from crisis.models import Request
+from crisis.models.crisis_request import Request
 
 
 class MockUser:

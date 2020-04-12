@@ -2,7 +2,7 @@ import json
 
 from django.test import TestCase, Client
 
-from crisis.models import Request
+from crisis.models.crisis_request import Request
 
 
 class AssignedRequestsTest(TestCase):
