@@ -1,251 +1,162 @@
-{% extends "email_templates/base.html" %}
-{% load static %}
-{% block custom_css %}
-    #requestTable tr:nth-child(even) {
-    background-color: #f2f2f2;
-    }
+{% extends "email_templates/base.html" %} {% load static %} {% block custom_css
+%} #requestTable tr:nth-child(even) { background-color: #f2f2f2; }
+#assignmentTable tr:nth-child(even) { background-color: #f2f2f2; } #requestTable
+td:nth-child(odd) { text-align: left; width: 70%; } #assignmentTable
+td:nth-child(odd) { text-align: left; width: 70%; } #requestTable tr td {
+padding: 10px 10px 10px 10px; } #requestTable tr td { Margin: 0;
+-webkit-text-size-adjust: none; -ms-text-size-adjust: none;
+mso-line-height-rule: exactly; font-size: 14px; font-family: arial, 'helvetica
+neue', helvetica, sans-serif; line-height: 21px; color: #333333; }
+#assignmentTable tr td { Margin: 0; -webkit-text-size-adjust: none;
+-ms-text-size-adjust: none; mso-line-height-rule: exactly; font-size: 14px;
+font-family: arial, 'helvetica neue', helvetica, sans-serif; line-height: 21px;
+color: #333333; } #assignmentTable tr td { padding: 10px 10px 10px 10px; }
+.headingH3 { Margin: 10px; -webkit-text-size-adjust: none; -ms-text-size-adjust:
+none; mso-line-height-rule: exactly; font-size: 20px; font-family: arial,
+'helvetica neue', helvetica, sans-serif; line-height: 21px; color: #333333; } {%
+endblock custom_css %} {% block preview_text %} A volunteer has started working
+on your request. {% endblock preview_text %} {% block main_heading_h2 %} Your
+request on Quarantine-Help is under-way. {% endblock main_heading_h2 %} {% block
+content %}
+<tr style="border-collapse:collapse;">
+  <td align="left" style="padding:0;Margin:0;padding-top:20px;">
+    <p
+      style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;"
+    >
+      Good news. A volunteer has started working on your request. Here are the
+      details.
+    </p>
+  </td>
+</tr>
+<tr style="border-collapse:collapse;">
+  <td align="left" style="padding:0;Margin:0;padding-top:5px;">
+    <table
+      width="100%"
+      height="100%"
+      cellspacing="0"
+      cellpadding="0"
+      border="0"
+      role="presentation"
+      style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;"
+    >
+      <tr style="border-collapse:collapse;">
+        <td
+          style="padding:0;Margin:0px 0px 0px 0px;border-bottom:1px solid #CCCCCC;background:none;height:1px;width:100%;margin:0px;"
+        ></td>
+      </tr>
+    </table>
 
-    #assignmentTable tr:nth-child(even) {
-    background-color: #f2f2f2;
-    }
+    <p style="text-align: center" class="headingH3">Your Request</p>
+    <table
+      width="100%"
+      height="100%"
+      cellspacing="0"
+      cellpadding="0"
+      border="0"
+      role="presentation"
+      style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;"
+    >
+      <tr style="border-collapse:collapse;">
+        <td
+          style="padding:0;Margin:0px 0px 0px 0px;border-bottom:1px solid #CCCCCC;background:none;height:1px;width:100%;margin:0px;"
+        ></td>
+      </tr>
+    </table>
 
-    #requestTable td:nth-child(odd) {
-    text-align: left;
-    width: 70%;
-    }
+    <table
+      width="100%"
+      cellspacing="0"
+      cellpadding="0"
+      style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;"
+      id="requestTable"
+    >
+      <tbody style="text-align: center;">
+        <tr>
+          <td style="width: 30%;">Description</td>
+          <td>{{ request.description }}</td>
+        </tr>
+        <tr>
+          <td style="width: 30%;">Created at</td>
+          <td>{{ request.created_at|date:'Y-m-d H:i' }}</td>
+        </tr>
+        <tr>
+          <td style="width: 30%;">Your Location</td>
+          <td>{{ request.owner.location }}</td>
+        </tr>
+        <tr>
+          <td style="width: 30%;">Your contact details</td>
+          <td>{{ request.owner.contact_details }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
 
-    #assignmentTable td:nth-child(odd) {
-    text-align: left;
-    width: 70%;
-    }
+    <table
+      width="100%"
+      height="100%"
+      cellspacing="0"
+      cellpadding="0"
+      border="0"
+      role="presentation"
+      style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;"
+    >
+      <tr style="border-collapse:collapse;">
+        <td
+          style="padding:0;Margin:0px 0px 0px 0px;border-bottom:1px solid #CCCCCC;background:none;height:1px;width:100%;margin:0px;"
+        ></td>
+      </tr>
+    </table>
 
-    #requestTable tr td {
-    padding: 10px 10px 10px 10px;
-    }
+    <p style="text-align: center" class="headingH3">Volunteer Details</p>
 
-    #requestTable tr td {
-    Margin: 0;
-    -webkit-text-size-adjust: none;
-    -ms-text-size-adjust: none;
-    mso-line-height-rule: exactly;
-    font-size: 14px;
-    font-family: arial, 'helvetica neue', helvetica, sans-serif;
-    line-height: 21px;
-    color: #333333;
-    }
+    <table
+      width="100%"
+      height="100%"
+      cellspacing="0"
+      cellpadding="0"
+      border="0"
+      role="presentation"
+      style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;"
+    >
+      <tr style="border-collapse:collapse;">
+        <td
+          style="padding:0;Margin:0px 0px 0px 0px;border-bottom:1px solid #CCCCCC;background:none;height:1px;width:100%;margin:0px;"
+        ></td>
+      </tr>
+    </table>
 
-    #assignmentTable tr td {
-    Margin: 0;
-    -webkit-text-size-adjust: none;
-    -ms-text-size-adjust: none;
-    mso-line-height-rule: exactly;
-    font-size: 14px;
-    font-family: arial, 'helvetica neue', helvetica, sans-serif;
-    line-height: 21px;
-    color: #333333;
-    }
-
-    #assignmentTable tr td {
-    padding: 10px 10px 10px 10px;
-    }
-
-    .headingH3 {
-    Margin: 10px;
-    -webkit-text-size-adjust: none;
-    -ms-text-size-adjust: none;
-    mso-line-height-rule: exactly;
-    font-size: 20px;
-    font-family: arial, 'helvetica neue', helvetica, sans-serif;
-    line-height: 21px;
-    color: #333333;
-    }
-{% endblock custom_css %}
-
-{% block  preview_text %}
-    A volunteer has started working on your request.
-{% endblock preview_text %}
-
-{% block main_heading_h2 %}
-    Your request on Quarantine-Help is under-way.
-{% endblock main_heading_h2 %}
-
-{% block content %}
-    <tr style="border-collapse:collapse;">
-        <td align="left"
-            style="padding:0;Margin:0;padding-top:20px;">
-            <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;">
-                Good news. A volunteer has started working on your request.
-                Here are the details.
-            </p>
-        </td>
-    </tr>
-    <tr style="border-collapse:collapse;">
-        <td align="left"
-            style="padding:0;Margin:0;padding-top:5px;">
-            <table
-                    width="100%"
-                    height="100%"
-                    cellspacing="0"
-                    cellpadding="0"
-                    border="0"
-                    role="presentation"
-                    style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;"
-            >
-                <tr style="border-collapse:collapse;">
-                    <td
-                            style="padding:0;Margin:0px 0px 0px 0px;border-bottom:1px solid #CCCCCC;background:none;height:1px;width:100%;margin:0px;"
-                    ></td>
-                </tr>
-            </table>
-
-            <p
-                    style="text-align: center"
-                    class="headingH3">
-                Your
-                Request</p>
-            <table
-                    width="100%"
-                    height="100%"
-                    cellspacing="0"
-                    cellpadding="0"
-                    border="0"
-                    role="presentation"
-                    style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;"
-            >
-                <tr style="border-collapse:collapse;">
-                    <td
-                            style="padding:0;Margin:0px 0px 0px 0px;border-bottom:1px solid #CCCCCC;background:none;height:1px;width:100%;margin:0px;"
-                    ></td>
-                </tr>
-            </table>
-
-            <table width="100%"
-                   cellspacing="0"
-                   cellpadding="0"
-                   style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;"
-                   id="requestTable">
-                <tbody style="text-align: center;">
-                <tr>
-                    <td style="width: 30%;">
-                        Description
-                    </td>
-                    <td>
-                        {{ request.description }}
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 30%;">
-                        Created
-                        at
-                    </td>
-                    <td>
-                        {{ request.created_at|date:'Y-m-d H:i' }}
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 30%;">
-                        Your
-                        Location
-                    </td>
-                    <td>
-                        {{ request.owner.location }}
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 30%;">
-                        Your
-                        contact
-                        details
-                    </td>
-                    <td>
-                        {{ request.owner.contact_details }}
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <br>
-
-            <table
-                    width="100%"
-                    height="100%"
-                    cellspacing="0"
-                    cellpadding="0"
-                    border="0"
-                    role="presentation"
-                    style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;"
-            >
-                <tr style="border-collapse:collapse;">
-                    <td
-                            style="padding:0;Margin:0px 0px 0px 0px;border-bottom:1px solid #CCCCCC;background:none;height:1px;width:100%;margin:0px;"
-                    ></td>
-                </tr>
-            </table>
-
-            <p
-                    style="text-align: center" class="headingH3">
-                Volunteer
-                Details</p>
-
-            <table
-                    width="100%"
-                    height="100%"
-                    cellspacing="0"
-                    cellpadding="0"
-                    border="0"
-                    role="presentation"
-                    style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;"
-            >
-                <tr style="border-collapse:collapse;">
-                    <td
-                            style="padding:0;Margin:0px 0px 0px 0px;border-bottom:1px solid #CCCCCC;background:none;height:1px;width:100%;margin:0px;"
-                    ></td>
-                </tr>
-            </table>
-            <table width="100%"
-                   cellspacing="0"
-                   cellpadding="0"
-                   style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;"
-                   id="assignmentTable">
-                <tbody style="text-align: center;">
-                <tr>
-                    <td style="width: 30%;">
-                        Name
-                    </td>
-                    <td>
-                        {{ request_assignment.assignee.user.full_name }}
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 30%;">
-                        Assigned
-                        at
-                    </td>
-                    <td>
-                        {{ request_assignment.created_at|date:'Y-m-d H:i' }}
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 30%;">
-                        Contact
-                        Information
-                    </td>
-                    <td>
-                        {{ request_assignment.assignee.contact_details }}
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-        </td>
-    </tr>
-    <tr style="border-collapse:collapse;">
-        <td align="left"
-            style="padding:0;Margin:0;padding-top:20px;">
-            <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;">
-                We are trying our best to service our quarantined population
-                at this point. We will let you know if there are any updates
-                on your request.
-            </p>
-        </td>
-    </tr>
+    <table
+      width="100%"
+      cellspacing="0"
+      cellpadding="0"
+      style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;"
+      id="assignmentTable"
+    >
+      <tbody style="text-align: center;">
+        <tr>
+          <td style="width: 30%;">Name</td>
+          <td>{{ request_assignment.assignee.user.full_name }}</td>
+        </tr>
+        <tr>
+          <td style="width: 30%;">Assigned at</td>
+          <td>{{ request_assignment.created_at|date:'Y-m-d H:i' }}</td>
+        </tr>
+        <tr>
+          <td style="width: 30%;">Contact Information</td>
+          <td>{{ request_assignment.assignee.contact_details }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+</tr>
+<tr style="border-collapse:collapse;">
+  <td align="left" style="padding:0;Margin:0;padding-top:20px;">
+    <p
+      style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;"
+    >
+      We are trying our best to service our quarantined population at this
+      point. We will let you know if there are any updates on your request.
+    </p>
+  </td>
+</tr>
 {% endblock content %}

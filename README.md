@@ -48,7 +48,7 @@ your machine, or use `pyenv` as described later in this documentation.
    ```
    (env-3.7.5) quarantined_backend/$ pip install -r requirements.txt
    ```
-3. Install `postgis` using `brew install postgis`. You can create a database and set the user roles using the following commands: 
+3. Install `postgis` using `brew install postgis`. You can create a database and set the user roles using the following commands:
    ```
    CREATE DATABASE quarantined_db;
    CREATE EXTENSION postgis;
@@ -73,12 +73,13 @@ your machine, or use `pyenv` as described later in this documentation.
    (env-3.7.5) quarantined_backend/$ python manage.py runserver
    ```
    or even better, run it from pyCharm using your debugger.
- 7. Create a superuser and add some initial data to the database. 
-   ```
-   (env-3.7.5) quarantined_backend/$ python manage.py createsuperuser
-   ```
-   See that we would need a crises object to start with. 
- 
+7. Create a superuser and add some initial data to the database.
+
+```
+(env-3.7.5) quarantined_backend/$ python manage.py createsuperuser
+```
+
+See that we would need a crises object to start with.
 
 <h4 id="windows-installation">Instructions for Windows</h4>
 
@@ -158,21 +159,23 @@ your machine, or use `pyenv` as described later in this documentation.
    You need to modify the values there to use the application in full
 
 7. Run the Django standard runserver steps:
+
    ```
    (env-3.7.5) quarantined_backend/$ python manage.py migrate
    (env-3.7.5) quarantined_backend/$ python manage.py collectstatic
    (env-3.7.5) quarantined_backend/$ python manage.py runserver
    ```
+
    or even better, run it from pyCharm using your debugger
-   
+
 ## Development initial data
 
 You can load fixtures from the folder "fixtures", e.g. `quarantined_backend/$ python manage.py loaddata fixtures/small`
-   
+
 ## Automated tests
 
 You can run the test suite by executing `(env-3.7.5) quarantined_backend/$ python manage.py test` or setting up the
-django test configuration to PyCharm. 
+django test configuration to PyCharm.
 
 ## FAQ
 
