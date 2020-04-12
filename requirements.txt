@@ -9,6 +9,7 @@ defusedxml==0.6.0
 distlib==0.3.0
 Django==3.0.4
 django-allauth==0.41.0
+django-anymail==7.0.0
 django-cors-headers==3.2.1
 django-countries==6.0
 django-extra-fields==2.0.3
