@@ -2,10 +2,12 @@ language: python
 dist: bionic
 python:
   - 3.7.5
+services:
+  - postgresql
 install:
   - pip install -q -r requirements.txt
 addons:
-  postgresql: 10.12
+  postgresql: "10.12"
   apt:
     packages:
       - postgresql-10-postgis-2.4
