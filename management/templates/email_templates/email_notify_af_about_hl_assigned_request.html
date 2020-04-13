@@ -1,31 +1,29 @@
 {% extends "email_templates/base.html" %}
 {% block custom_headers %}
     <style type="text/css">
-        #requestTable tr:nth-child(even) {
+        #requestTableBody tr:nth-child(even) {
             background-color: #f2f2f2;
         }
 
-        #assignmentTable tr:nth-child(even) {
+        #assignmentTableBody tr:nth-child(even) {
             background-color: #f2f2f2;
         }
 
-        #requestTable
-        td:nth-child(odd) {
+        #assignmentTableBody tr td:nth-child(odd) {
             text-align: left;
             width: 70%;
         }
 
-        #assignmentTable
-        td:nth-child(odd) {
+        #requestTableBody tr td:nth-child(odd) {
             text-align: left;
             width: 70%;
         }
 
-        #requestTable tr td {
+        #requestTableBody tr td {
             padding: 10px 10px 10px 10px;
         }
 
-        #requestTable tr td {
+        #requestTableBody tr td {
             Margin: 0;
             -webkit-text-size-adjust: none;
             -ms-text-size-adjust: none;
@@ -36,7 +34,7 @@
             color: #333333;
         }
 
-        #assignmentTable tr td {
+        #assignmentTableBody tr td {
             Margin: 0;
             -webkit-text-size-adjust: none;
             -ms-text-size-adjust: none;
@@ -47,7 +45,7 @@
             color: #333333;
         }
 
-        #assignmentTable tr td {
+        #assignmentTableBody tr td {
             padding: 10px 10px 10px 10px;
         }
 
@@ -124,7 +122,7 @@
                     style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;"
                     id="requestTable"
             >
-                <tbody style="text-align: center;">
+                <tbody style="text-align: center;" id="requestTableBody">
                 <tr>
                     <td style="width: 30%;">Description</td>
                     <td>{{ request.description }}</td>
@@ -187,7 +185,7 @@
                     style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;"
                     id="assignmentTable"
             >
-                <tbody style="text-align: center;">
+                <tbody style="text-align: center;" id="assignmentTableBody">
                 <tr>
                     <td style="width: 30%;">Name</td>
                     <td>{{ request_assignment.assignee.user.full_name }}</td>
