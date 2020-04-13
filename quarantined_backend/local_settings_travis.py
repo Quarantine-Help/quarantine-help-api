@@ -15,7 +15,7 @@ DATABASES = {
         "USER": "postgres",
         "PASSWORD": "",
         "HOST": "127.0.0.1",
-        "PORT": "",
+        "PORT": "5433",
     }
 }
 # SECURITY WARNING: don't run with debug turned on in production!

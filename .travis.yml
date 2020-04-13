@@ -7,12 +7,15 @@ services:
 install:
   - pip install -q -r requirements.txt
 addons:
-  postgresql: "10.12"
+  postgresql: "10"
   apt:
     packages:
       - postgresql-10
       - postgresql-client-10
       - postgresql-10-postgis-2.4
+env:
+  global:
+    - PGPORT=5433
 before_script:
   - psql -U postgres -c "create extension postgis"
   - psql -c 'create database travis_ci_test;' -U postgres
