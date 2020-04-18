@@ -2,6 +2,7 @@ from datetime import datetime
 
 from django.contrib.gis.geos import GEOSGeometry
 from django.contrib.gis.measure import D
+from django.db.models import Q
 from rest_framework import generics
 
 from crisis.models.crisis import Crisis
@@ -16,21 +17,27 @@ class ListAffectedParticipantsAPIV1(generics.ListAPIView):
     def get_queryset(self):
         crisis_id = self.kwargs.get("crisis_id", None)
 
-        request_type = self.request.query_params.getlist("requestType", [])
+        request_type = self.request.query_params.getlist("requestType", None)
         client_latitude = self.request.query_params.get("latitude", None)
         client_longitude = self.request.query_params.get("longitude", None)
         radius = self.request.query_params.get("radius", 7)
 
-        affected_participants = Participant.affected.filter(
-            crisis=crisis_id,
-            created_request__deadline__gte=datetime.utcnow()
+        pending_requests_query = Q(
+            deadline__gte=datetime.utcnow(), status__in=Request.UNFINISHED_STATUSES
         )
 
         if request_type:
-            affected_participants = affected_participants.filter(
-                created_request__type__in=request_type,
-                created_request__status__in=Request.UNFINISHED_STATUSES,
-            )
+            pending_requests_query = pending_requests_query & Q(type__in=request_type)
+
+        pending_requests_owner_ids = (
+            Request.objects.filter(pending_requests_query)
+            .values_list("owner_id", flat=True)
+            .distinct()
+        )
+
+        affected_participants = Participant.objects.filter(
+            crisis=crisis_id, id__in=pending_requests_owner_ids
+        )
 
         if client_latitude and client_longitude:
             client_longitude = float(client_longitude)

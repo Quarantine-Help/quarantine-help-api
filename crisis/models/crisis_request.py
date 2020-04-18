@@ -8,12 +8,10 @@ from crisis.models.request_assignment import RequestAssignment
 from management.email_pusher import EmailPusher
 
 
-from django.apps import apps
-
 class Request(SafeDeleteModel):
     class Meta:
-        app_label = 'crisis'
-        db_table = 'crisis_request'
+        app_label = "crisis"
+        db_table = "crisis_request"
 
     _safedelete_policy = SOFT_DELETE_CASCADE
 
@@ -52,13 +50,11 @@ class Request(SafeDeleteModel):
 
     @property
     def related_request_assignment(self):
-        return RequestAssignment.objects.get(assignee=self.assignee,
-                                             request=self)
+        return RequestAssignment.objects.get(assignee=self.assignee, request=self)
 
     def clean(self):
         if self.status in ["T"] and not self.assignee:
-            raise ValidationError(
-                "Assignee missing while changing status to assigned.")
+            raise ValidationError("Assignee missing while changing status to assigned.")
 
     def __str__(self):
         return (
@@ -81,15 +77,15 @@ class Request(SafeDeleteModel):
             request_assignment=request_assignment
         )
 
-    def notify_request_owner_about_assignment(self,
-                                              request_assignment):
+    def notify_request_owner_about_assignment(self, request_assignment):
         """
         I can send the whole request object to the template and fill up
         things there. Easy.
         :return:
         """
         return EmailPusher.send_email_to_af_user_on_assignment_by_hl(
-            request=self, request_assignment=request_assignment)
+            request=self, request_assignment=request_assignment
+        )
 
     def notify_request_owner_about_assignment_drop(self):
         # @TODO
