@@ -143,7 +143,7 @@ See that we would need a crises object to start with.
    ```
    or even better, run it from pyCharm using your debugger
    
-<h4 id="ubuntu-installation">Instructions for Ubuntu/Linux</h4>
+<h4 id="linux-installation">Instructions for Ubuntu/Linux</h4>
 
 1. Install pyenv and its virtualenv manager using
    ```
@@ -178,7 +178,7 @@ See that we would need a crises object to start with.
    ```
    (env-3.7.5) quarantine-help-api/$ pip install -r requirements.txt
    ```
-3. Install `postgis` using `brew install postgis`. You can create a database and set the user roles using the following commands:
+3. Install `postgis` using `sudo apt-get install postgis`. You can create a database and set the user roles using the following commands:
    ```
    CREATE DATABASE quarantined_db;
    CREATE EXTENSION postgis;
