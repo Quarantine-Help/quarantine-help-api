@@ -42,6 +42,9 @@ info:
   version: "1"
 servers:
   - url: https://api.quarantinehelp.space
+    description: Production server (uses live data)
+  - url: https://stage-api.quarantinehelp.space
+    description: Stage server (for dev)
 paths:
   /api/v1/auth/register/:
     post:
