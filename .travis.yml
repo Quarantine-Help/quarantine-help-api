@@ -1,21 +1,20 @@
 language: python
-dist: bionic
 python:
   - 3.7.5
-services:
-  - postgresql
 install:
   - pip install -q -r requirements.txt
 addons:
-  postgresql: "10"
   apt:
     packages:
-      - postgresql-client-10
       - postgresql-10-postgis-2.4
+  postgresql: "10"
+services:
+  - postgresql
 env:
   global:
     - PGPORT=5433
 before_script:
+  - sudo ser
   - psql -U postgres -c "create extension postgis"
   - psql -c 'create database travis_ci_test;' -U postgres
   - mv quarantined_backend/local_settings_travis.py quarantined_backend/local_settings.py

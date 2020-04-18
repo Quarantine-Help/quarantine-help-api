@@ -27,6 +27,7 @@ your machine, or use `pyenv` as described later in this documentation.
 <h4 id="mac-installation">Instructions for Mac</h4>
 
 1. Install pyenv and its virtualenv manager using
+
    ```
    $ brew install pyenv
    $ brew install pyenv-virtualenv
@@ -34,17 +35,22 @@ your machine, or use `pyenv` as described later in this documentation.
    $ eval "$(pyenv init -)"
    quarantine-help-api/$ pyenv virtualenv 3.7.5 env-3.7.5
    ```
+
    This will create a pyenv-virtualenv for you and probably place it on your
    `~/home/<username>/.pyenv/versions/`. You can activate that manually using
+
    ```
    quarantine-help-api/$ source ~/.pyenv/versions/env-3.7.5/bin/activate
    ```
+
    or even better:
+
    ```
    quarantine-help-api/$ pyenv activate env-3.7.5
    ```
+
    or, there are better ways to do this if you follow [Pyenv:Docs](https://github.com/pyenv/pyenv-virtualenv)
-   
+
 2. Now you are in the right environment, install dependencies using:
    ```
    (env-3.7.5) quarantine-help-api/$ pip install -r requirements.txt
@@ -92,10 +98,12 @@ See that we would need a crises object to start with.
    quarantine-help-api/$
    ```
 2. Create a new environment using **venv** and activate it:
+
    ```
    quarantine-help-api/$ python -m venv env-3.7.5 python=3.7.5
    (env-3.7.5) quarantine-help-api/$ env-3.7.5/Scripts/activate
    ```
+
    - You will see a folder named **env-3.7.5** created
    - Here, _env-3.7.5_ is the environment name and we need the environment to run Python 3.7.5
 
@@ -104,6 +112,7 @@ See that we would need a crises object to start with.
    (env-3.7.5) quarantine-help-api/$ pip install -r requirements.txt
    ```
 4. Install PostGIS - [Reference](https://www.gpsfiledepot.com/tutorials/installing-and-setting-up-postgresql-with-postgis/)
+
    1. Go to [PostgreSQL windows downloads](https://www.postgresql.org/download/windows)
    2. Download the installer from Enterprise DB
    3. Click windows on the EnterpriseDB page and download the appropriate version for your computer (64bit or 32bit)
@@ -111,11 +120,12 @@ See that we would need a crises object to start with.
    5. The default settings should be good. When prompted enter a password that you can remember
    6. PostgreSQL's Application Stack Builder will open after finishing the installation
    7. Select **PostgreSQL** from the dropdown and click next
-   
+
       <!-- ![PostgreSQL Applciation Stack Builder start window](docs/images/postgresql-application-stack-builder-first-window.png) -->
       <p>
       <img src="docs/images/postgresql-application-stack-builder-first-window.png" alt="PostgreSQL Applciation Stack Builder start window" width="360">
       </p>
+
    8. Under "Spatial Extensions" check the most recent version of PostGIS
       <!-- ![PostgreSQL Applciation Stack Builder second window](images/postgresql-application-stack-builder-second-window.png) -->
       <p>
@@ -130,48 +140,62 @@ See that we would need a crises object to start with.
    ```
 6. There are some **localsettings** you need to have as part of running the server.
    You can copy a template using:
+
    ```
    (env-3.7.5) quarantine-help-api/$ cp quarantined_backend/local_settings_sample.py quarantined_backend/local_settings.py
    ```
+
    You need to modify the values there to use the application in full
 
 7. Run the Django standard runserver steps:
+
    ```
    (env-3.7.5) quarantine-help-api/$ python manage.py migrate
    (env-3.7.5) quarantine-help-api/$ python manage.py collectstatic
    (env-3.7.5) quarantine-help-api/$ python manage.py runserver
    ```
+
    or even better, run it from pyCharm using your debugger
-   
+
 <h4 id="linux-installation">Instructions for Ubuntu/Linux</h4>
 
 1. Install pyenv and its virtualenv manager using
+
    ```
    $ sudo apt-get update
    $ sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
    $ curl https://pyenv.run | bash
-   ``` 
-   add the following lines to your `~/.bashrc`: 
+   ```
+
+   add the following lines to your `~/.bashrc`:
+
    ```
    export PATH="$HOME/.pyenv/bin:$PATH"
    eval "$(pyenv init -)"
    eval "$(pyenv virtualenv-init -)"
    ```
-   continue installing `python-3.7.5` 
+
+   continue installing `python-3.7.5`
+
    ```
    $ pyenv install 3.7.5
    $ eval "$(pyenv init -)"
    quarantine-help-api/$ pyenv virtualenv 3.7.5 env-3.7.5
    ```
+
    This will create a pyenv-virtualenv for you and probably place it on your
    `~/home/<username>/.pyenv/versions/`. You can activate that manually using
+
    ```
    quarantine-help-api/$ source ~/.pyenv/versions/env-3.7.5/bin/activate
    ```
+
    or even better:
+
    ```
    quarantine-help-api/$ pyenv activate env-3.7.5
    ```
+
    or, there are better ways to do this if you follow [Pyenv:Docs](https://github.com/pyenv/pyenv-virtualenv)
 
 2. Now you are in the right environment, install dependencies using:
@@ -210,7 +234,6 @@ See that we would need a crises object to start with.
 ```
 
 See that we would need a crises object to start with.
-
 
 ## Development initial data
 

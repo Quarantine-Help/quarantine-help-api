@@ -21,19 +21,19 @@ class MeRetrieveUpdateAPIViewV1(generics.RetrieveUpdateAPIView):
         user_instance = participant_instance.user
 
         user_data = validated_data.pop("user", None)
-
-        email_data = user_data.get("email", None)
-        if email_data and not email_data == user_instance.email:
-            user_instance.email = email_data
-            user_data_changed = True
-        first_name_data = user_data.get("first_name", None)
-        if first_name_data and not first_name_data == user_instance.first_name:
-            user_instance.first_name = first_name_data
-            user_data_changed = True
-        last_name_data = user_data.get("last_name", None)
-        if last_name_data and not last_name_data == user_instance.last_name:
-            user_instance.last_name = last_name_data
-            user_data_changed = True
+        if user_data:
+            email_data = user_data.get("email", None)
+            if email_data and not email_data == user_instance.email:
+                user_instance.email = email_data
+                user_data_changed = True
+            first_name_data = user_data.get("first_name", None)
+            if first_name_data and not first_name_data == user_instance.first_name:
+                user_instance.first_name = first_name_data
+                user_data_changed = True
+            last_name_data = user_data.get("last_name", None)
+            if last_name_data and not last_name_data == user_instance.last_name:
+                user_instance.last_name = last_name_data
+                user_data_changed = True
 
         if user_data_changed:
             user_instance.save()
@@ -43,5 +43,3 @@ class MeRetrieveUpdateAPIViewV1(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
         return self.request.user.related_participant
-
-
