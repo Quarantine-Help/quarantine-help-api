@@ -90,18 +90,8 @@
               }
             }
           }
-        },
-        "servers": [
-          {
-            "url": "https://api.quarantinehelp.space"
-          }
-        ]
-      },
-      "servers": [
-        {
-          "url": "https://api.quarantinehelp.space"
         }
-      ]
+      }
     },
     "/api/v1/auth/login/": {
       "post": {
@@ -157,18 +147,8 @@
               }
             }
           }
-        },
-        "servers": [
-          {
-            "url": "https://api.quarantinehelp.space"
-          }
-        ]
-      },
-      "servers": [
-        {
-          "url": "https://api.quarantinehelp.space"
         }
-      ]
+      }
     },
     "/api/v1/crises/{crisisId}/affected-participants/": {
       "get": {
@@ -309,18 +289,8 @@
               }
             }
           }
-        },
-        "servers": [
-          {
-            "url": "https://api.quarantinehelp.space"
-          }
-        ]
-      },
-      "servers": [
-        {
-          "url": "https://api.quarantinehelp.space"
         }
-      ]
+      }
     },
     "/api/v1/crises/": {
       "get": {
@@ -356,18 +326,8 @@
               }
             }
           }
-        },
-        "servers": [
-          {
-            "url": "https://api.quarantinehelp.space"
-          }
-        ]
-      },
-      "servers": [
-        {
-          "url": "https://api.quarantinehelp.space"
         }
-      ]
+      }
     },
     "/api/v1/me/": {
       "get": {

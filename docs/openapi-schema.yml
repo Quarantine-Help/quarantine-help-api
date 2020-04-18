@@ -94,10 +94,6 @@ paths:
                     {"user":{"firstName":"Patient First Test with 6","lastName":"Patient
                     last","email":"patients@patient.com"},"position":{"longitude":"2.7105760574340807","latitude":"48.19827663849882"},"type":"AF","firstLineOfAddress":"First
                     Line of add","secondLineOfAddress":"Second line","country":"DE","placeId":"ChIJwyyKo7J3X0YRZ5XOMcLx3xo","postCode":"12345","city":"Berlin","phone":"+46761189391","crisis":1}
-      servers:
-        - url: https://api.quarantinehelp.space
-    servers:
-      - url: https://api.quarantinehelp.space
   /api/v1/auth/login/:
     post:
       tags:
@@ -138,10 +134,6 @@ paths:
               examples:
                 "0":
                   value: {"non_field_errors":["Unable to log in with provided credentials."]}
-      servers:
-        - url: https://api.quarantinehelp.space
-    servers:
-      - url: https://api.quarantinehelp.space
   /api/v1/crises/{crisisId}/affected-participants/:
     get:
       tags:
@@ -205,10 +197,6 @@ paths:
                     Line of add","secondLineOfAddress":"Second line","country":"DE","placeId":"ChIJwyyKo7J3X0YRZ5XOMcLx3xo","postCode":"12345","city":"Berlin","phone":"+46761189391","metadata":{},"createdAt":"2020-03-29T15:35:53.248762Z","crisis":1},{"id":1,"user":{"firstName":"Tony","lastName":"Thomas","email":"01tonythomas@gmail.com"},"position":{"longitude":"19.057331085205075","latitude":"59.69310986700436"},"requests":[{"type":"G","deadline":"2020-03-29T11:25:31Z","description":"I
                     need the following: \r\n1. Smor","assignee":null, "status":"P", "id": 1, "assignmentHistory": []}],"deleted":null,"type":"AF","firstLineOfAddress":"Cedergrensvägen
                     1","secondLineOfAddress":"SE-126 36 Hägersten","country":"SE","placeId":"Yz1idWlsZGluZztsYXQ9NTkuMzAzNDY7bG9uPTE4LjAwMzI0O249Q2VkZXJncmVuc3YlQzMlQTRnZW4rMTtoPTcyNDMzYQ","postCode":"12636","city":"Stockholm","phone":"+46761189391","metadata":{},"createdAt":"2020-03-29T11:23:36.862282Z","crisis":1}]}
-      servers:
-        - url: https://api.quarantinehelp.space
-    servers:
-      - url: https://api.quarantinehelp.space
   /api/v1/crises/:
     get:
       tags:
@@ -238,11 +226,6 @@ paths:
     }
   ]
 }
-      servers:
-        - url: https://api.quarantinehelp.space
-    servers:
-      - url: https://api.quarantinehelp.space
-
   /api/v1/me/:
     get:
       tags:
