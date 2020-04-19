@@ -5,6 +5,7 @@ from rest_framework import serializers, fields
 from rest_framework.serializers import ModelSerializer
 
 from authentication.models import User
+from management import custom_fields
 from management.models import Participant
 
 
@@ -45,6 +46,16 @@ class UserSerializer(ModelSerializer):
         fields = ("first_name", "last_name", "email", "password")
 
 
+class UserSerializerAnonymized(ModelSerializer):
+    first_name = custom_fields.AnonymizedStringField()
+    last_name = custom_fields.AnonymizedStringField()
+    email = custom_fields.AnonymizedEmailField()
+
+    class Meta:
+        model = User
+        fields = ("first_name", "last_name", "email")
+
+
 class ParticipantSerializer(ModelSerializer):
     user = UserSerializer()
     position = geo_fields.PointField(str_points=True)
@@ -65,3 +76,11 @@ class ParticipantSerializer(ModelSerializer):
             "phone",
             "crisis",
         )
+
+
+class ParticipantAnonymizedSerializer(ParticipantSerializer):
+    user = UserSerializerAnonymized()
+    phone = custom_fields.AnonymizedPhoneField()
+
+    class Meta(ParticipantSerializer.Meta):
+        pass

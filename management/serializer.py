@@ -1,7 +1,11 @@
 from rest_framework import fields, serializers
 from rest_framework.serializers import ModelSerializer
 
-from authentication.serializer import UserSerializer, ParticipantSerializer
+from authentication.serializer import (
+    UserSerializer,
+    ParticipantSerializer,
+    ParticipantAnonymizedSerializer,
+)
 from crisis.models.crisis_request import Request
 from crisis.models.request_assignment import RequestAssignment
 from management.models import Ability
@@ -54,7 +58,8 @@ class RequestSerializer(ModelSerializer):
                     "You cannot shorten the deadline now. Please cancel"
                 )
 
-        if attrs["status"] == "T":
+        if attrs.get("status", None) == "T":
+            # This should happen through assignment logic
             raise serializers.ValidationError("Cannot update the status to T")
         return attrs
 
@@ -70,6 +75,12 @@ class RequestSerializer(ModelSerializer):
             "assignmentHistory",
             "created_at",
         )
+
+
+class RequestAnonymizedSerializer(RequestSerializer):
+    assignee = ParticipantAnonymizedSerializer(
+        allow_null=True, required=False, read_only=True
+    )
 
 
 class AssigneeRequestUpdateSerializer(ModelSerializer):

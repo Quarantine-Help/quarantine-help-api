@@ -7,12 +7,22 @@ from rest_framework import generics
 
 from crisis.models.crisis import Crisis
 from crisis.models.crisis_request import Request
-from crisis.serializers import AffectedParticipantSerializer, CrisisSerializer
+from crisis.serializers import (
+    AffectedParticipantSerializer,
+    CrisisSerializer,
+    AffectedParticipantAnonymizedSerializer,
+)
 from management.models import Participant
 
 
 class ListAffectedParticipantsAPIV1(generics.ListAPIView):
     serializer_class = AffectedParticipantSerializer
+    anonymized_serializer_class = AffectedParticipantAnonymizedSerializer
+
+    def get_serializer_class(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return self.serializer_class
+        return self.anonymized_serializer_class
 
     def get_queryset(self):
         crisis_id = self.kwargs.get("crisis_id", None)
@@ -49,7 +59,6 @@ class ListAffectedParticipantsAPIV1(generics.ListAPIView):
             affected_participants = affected_participants.filter(
                 position__distance_lte=(geo_point, D(km=radius))
             )
-
         return affected_participants
 
 
