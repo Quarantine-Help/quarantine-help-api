@@ -3,7 +3,7 @@ info:
   title: QuarantineHelp API Documentation
   description: '
   ## Project Goal
-  
+
   To allow healthy volunteers to help out the quarantined population nearby to get their errands done.
 
   ## Keywords
@@ -38,7 +38,6 @@ info:
 
   Remember to wash your hands x=).
   '
-
   version: "1"
 servers:
   - url: https://api.quarantinehelp.space
@@ -1277,7 +1276,39 @@ paths:
   ],
   "createdAt": "2020-04-04T10:43:25.697312Z"
 }
+  /api/v1/supported-countries/:
+    get:
+      tags:
+        - Supported Countries
+      description: Get a list of supported countries, mostly for signup
+      summary: Get a list of supported countries, mostly for signup
+      responses:
+        "200":
+          description: List of countries. Currently around 249 entries
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SupportedCountriesSchema"
+              examples:
+                "0":
+                  value:
+                    {
+                        "countries": [
+                          {
+                            "name": "Afghanistan",
+                            "isoAlphaTwoCode": "AF"
+                          },
+                          {
+                            "name": "Åland Islands",
+                            "isoAlphaTwoCode": "AX"
+                          },
+                          {
+                            "name": "Albania",
+                            "isoAlphaTwoCode": "AL"
+                          }
+                        ]
 
+                    }
 components:
   securitySchemes:
     bearerAuth:
@@ -1287,6 +1318,22 @@ components:
       description: "We need in format Authorization: Token AVFSADFSDFSDFSDF"
 
   schemas:
+    CountrySchema:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Germany"
+        isoAlphaTwoCode:
+          type: string
+          example: "DE"
+    SupportedCountriesSchema:
+      type: object
+      properties:
+        countries:
+          type: array
+          items:
+            $ref: "#/components/schemas/CountrySchema"
     ParticipantPatchBody:
       type: object
       properties:

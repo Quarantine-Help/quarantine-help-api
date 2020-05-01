@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from quarantined_backend import views
+
 admin.autodiscover()
 urlpatterns = [
     path("accounts/", include("allauth.urls")),
@@ -23,4 +25,5 @@ urlpatterns = [
     path("api/v1/crises/", include("crisis.urls_v1")),
     path("api/v1/me/", include("management.urls_v1")),
     path("api/v1/auth/", include("authentication.urls_v1")),
+    path("api/v1/supported-countries/", views.SupportedCountriesListView.as_view()),
 ]

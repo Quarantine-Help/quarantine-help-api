@@ -1,3 +1,4 @@
 management/templates/email_templates/
 management/templates/email_templates/*.html
 *.html
+*.yaml
