@@ -11,7 +11,7 @@ Fighting #COVID-19 one step at a time. My wish for this project:
 
 API documentation: http://docs.quarantinehelp.space/#/
 
-Collaborate at: [Slack:Quarantine Help](https://join.slack.com/t/quarantinedhelp/shared_invite/zt-d0259x7q-BiC_viQhLRoQqqc5j~P0uw)
+Collaborate at: [Slack:Quarantine Help](https://join.slack.com/t/quarantinehelp/shared_invite/zt-dyk4k8bq-AuymMUti4vs7dm0Glxn5KQ)
 
 ## Dependencies
 
