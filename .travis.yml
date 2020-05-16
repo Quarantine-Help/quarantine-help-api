@@ -1,24 +1,30 @@
+dist: bionic
+sudo: required
 language: python
 python:
   - 3.7.5
 install:
   - pip install -q -r requirements.txt
-addons:
-  apt:
-    packages:
-      - postgresql-10-postgis-2.4
-  postgresql: "10"
 services:
   - postgresql
-env:
-  global:
-    - PGPORT=5433
 before_script:
-  - sudo ser
+  - sudo cp /etc/postgresql/{9.6,10}/main/pg_hba.conf
+  - sudo /etc/init.d/postgresql restart
   - psql -U postgres -c "create extension postgis"
   - psql -c 'create database travis_ci_test;' -U postgres
   - mv quarantined_backend/local_settings_travis.py quarantined_backend/local_settings.py
   - python manage.py migrate --noinput
   - python manage.py collectstatic  --noinput
+
+addons:
+  postgresql: "10"
+  apt:
+    packages:
+      - postgresql-client-10
+      - postgresql-10-postgis-2.4
+env:
+  global:
+    - PGVER=10
+    - PGPORT=5433
 script:
   - python manage.py test
