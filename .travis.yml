@@ -17,7 +17,7 @@ before_script:
   - python manage.py collectstatic  --noinput
 
 addons:
-  postgresql: "10"
+  postgresql: "10.0"
   apt:
     packages:
       - postgresql-client-10
