@@ -14,7 +14,6 @@ env:
   global:
     - PGPORT=5433
 before_script:
-  - sudo ser
   - psql -U postgres -c "create extension postgis"
   - psql -c 'create database travis_ci_test;' -U postgres
   - mv quarantined_backend/local_settings_travis.py quarantined_backend/local_settings.py
