@@ -8,6 +8,7 @@ install:
 services:
   - postgresql
 before_script:
+  - sudo apt-get install -y postgresql-10-postgis-2.4
   - sudo apt-get install -y binutils libproj-dev gdal-bin
   - psql -c 'create database travis_ci_test;' -U postgres
   - mv quarantined_backend/local_settings_travis.py quarantined_backend/local_settings.py
