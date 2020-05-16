@@ -8,7 +8,6 @@ install:
 services:
   - postgresql
 before_script:
-  - psql -U postgres -c "create extension postgis"
   - psql -c 'create database travis_ci_test;' -U postgres
   - mv quarantined_backend/local_settings_travis.py quarantined_backend/local_settings.py
   - python manage.py migrate --noinput
