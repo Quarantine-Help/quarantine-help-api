@@ -6,7 +6,7 @@ python:
 install:
   - pip install -q -r requirements.txt
   - nvm install 0.10
-  - npm install @apidevtools/swagger-cli
+  - npm install swagger-cli swagger-codegen
 services:
   - postgresql
 before_script:
@@ -18,3 +18,4 @@ before_script:
   - python manage.py collectstatic  --noinput
 script:
   - python manage.py test
+  - swagger-cli generate -i docs/openapi-schema.yml -l openapi
