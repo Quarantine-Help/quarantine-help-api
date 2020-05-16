@@ -5,6 +5,8 @@ python:
   - 3.7.5
 install:
   - pip install -q -r requirements.txt
+  - nvm install 0.10
+  - npm install @apidevtools/swagger-cli
 services:
   - postgresql
 before_script:
