@@ -18,4 +18,4 @@ before_script:
   - python manage.py collectstatic  --noinput
 script:
   - python manage.py test
-  - swagger-cli generate -i docs/openapi-schema.yml -l openapi
+  - swagger-codegen generate -i docs/openapi-schema.yml -l openapi
