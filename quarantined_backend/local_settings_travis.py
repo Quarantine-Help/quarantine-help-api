@@ -14,7 +14,7 @@ DATABASES = {
         "NAME": "travis_ci_test",
         "USER": "postgres",
         "PASSWORD": "",
-        "HOST": "127.0.0.1",
+        "HOST": "localhost",
         "PORT": "5433",
     }
 }
