@@ -1,5 +1,7 @@
 # Quarantined help [Backend]
 
+\[![Build Status](https://travis-ci.com/github/Quarantine-Help/quarantine-help-api.svg?branch=master)](https://travis-ci.com/github/Quarantine-Help/quarantine-help-api)
+
 Backend for a wishful quarantine people helper application that would be out soon.
 Fighting #COVID-19 one step at a time. My wish for this project:
 
