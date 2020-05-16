@@ -17,10 +17,9 @@ before_script:
 addons:
   apt:
     packages:
-      - postgresql-11-postgis-3
+      - postgis
 env:
   global:
-    - PGVER=10
     - PGPORT=5433
 script:
   - python manage.py test
