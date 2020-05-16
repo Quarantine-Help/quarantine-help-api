@@ -49,6 +49,7 @@ class EmailAuthToken(ObtainAuthToken):
             {
                 "token": token.key,
                 "participantId": user.related_participant.id,
+                "participantType": user.related_participant.type,
                 "email": user.email,
             }
         )

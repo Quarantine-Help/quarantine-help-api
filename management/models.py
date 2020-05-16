@@ -2,6 +2,7 @@ from django.conf import settings
 from django.contrib.gis.db.models import PointField
 from django.contrib.postgres.fields import JSONField
 from django.db import models
+
 # Create your models here.
 from django.db.models import fields, manager
 from django.db.models.signals import post_save
@@ -70,10 +71,9 @@ class Participant(SafeDeleteModel):
     type = fields.CharField(max_length=2, choices=TYPE_OF_PARTICIPANT)
     crisis = models.ForeignKey(Crisis, on_delete=models.DO_NOTHING)
     first_line_of_address = fields.CharField(max_length=255)
-    second_line_of_address = fields.CharField(max_length=255)
+    second_line_of_address = fields.CharField(max_length=255, default="")
     country = CountryField(blank_label="(select country)")
-    place_id = fields.CharField(verbose_name="Place id from Google",
-                                max_length=150)
+    place_id = fields.CharField(verbose_name="Place id from Google", max_length=150)
 
     position = PointField(null=True, blank=True, geography=True)
     post_code = fields.CharField(verbose_name="Postal code", max_length=10)

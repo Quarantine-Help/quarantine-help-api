@@ -122,7 +122,8 @@ paths:
                     {
                       "token": "asdfasdfasdfasfd1231231231313",
                       "participantId": 1,
-                      "email": "user@gmail.com"
+                      "email": "user@gmail.com",
+                      "participantType": "AF",
                     }
         "400":
           description: Auto generated using Swagger Inspector
