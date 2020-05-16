@@ -5,7 +5,7 @@ python:
   - 3.7.5
 install:
   - pip install -q -r requirements.txt
-  - nvm install 0.10
+  - nvm install 10.16.0
   - npm install swagger-cli swagger-codegen
 services:
   - postgresql
