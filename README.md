@@ -11,7 +11,7 @@ Fighting #COVID-19 one step at a time. My wish for this project:
 
 API documentation: http://docs.quarantinehelp.space/#/
 
-Collaborate at: [Slack:Quarantine Help](https://join.slack.com/t/quarantinedhelp/shared_invite/zt-d0259x7q-BiC_viQhLRoQqqc5j~P0uw)
+Collaborate at: [Slack:Quarantine Help](https://join.slack.com/t/quarantinehelp/shared_invite/zt-dyk4k8bq-AuymMUti4vs7dm0Glxn5KQ)
 
 ## Dependencies
 
@@ -246,22 +246,16 @@ django test configuration to PyCharm.
 
 ## FAQ
 
-1. Getting this error when running `python manage.py migrate` on Windows
-
+1. Getting this error when running `python manage.py migrate` on Windows:
+  ```
    django.core.exceptions.ImproperlyConfigured: Could not find the GDAL library (tried "gdal204", "gdal203", "gdal202", "gdal201", "gdal20"). Is GDAL installed? If it is, try setting GDAL_LIBRARY_PATH in your settings.
-
+   ``` 
+   
    1. Install GDAL via OSGeo4W - https://stackoverflow.com/a/49159195/9734484
-
    2. If you are still getting the same error after executing `python manage.py migrate` add gdal version present in `C:/OSGeo4W/bin` to libgdal.py file shown in the error stack, for instance, if gdal300.dll is present add "gdal300" to the list, `lib_names` under os=="nt" for Windows
 
-2. Getting this error when running `python manage.py migrate` on Windows
-
+2. Getting this error when running `python manage.py migrate` on Windows:
+   ```
    psycopg2.OperationalError: could not translate host name "DATABASE_HOST" to address: Unknown host
-
-   Update **quarantined_backend/local_settings.py** file. Default configuration is:
-
-   - NAME - postgis
-   - USER - postgres
-   - PASSWORD - PostgreSQL password set during installation
-   - HOST - localhost
-   - PORT - 5432
+   ```
+   Update `quarantined_backend/local_settings.py` file with the right `Database` configurations.
