@@ -8,8 +8,6 @@ install:
 services:
   - postgresql
 before_script:
-  - sudo cp /etc/postgresql/{9.6,10}/main/pg_hba.conf
-  - sudo /etc/init.d/postgresql restart
   - psql -U postgres -c "create extension postgis"
   - psql -c 'create database travis_ci_test;' -U postgres
   - mv quarantined_backend/local_settings_travis.py quarantined_backend/local_settings.py
@@ -17,11 +15,9 @@ before_script:
   - python manage.py collectstatic  --noinput
 
 addons:
-  postgresql: "10.0"
   apt:
     packages:
-      - postgresql-client-10
-      - postgresql-10-postgis-2.4
+      - postgresql-11-postgis-3
 env:
   global:
     - PGVER=10
