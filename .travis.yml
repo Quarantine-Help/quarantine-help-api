@@ -12,13 +12,5 @@ before_script:
   - mv quarantined_backend/local_settings_travis.py quarantined_backend/local_settings.py
   - python manage.py migrate --noinput
   - python manage.py collectstatic  --noinput
-
-addons:
-  apt:
-    packages:
-      - postgis
-env:
-  global:
-    - PGPORT=5433
 script:
   - python manage.py test
