@@ -84,3 +84,10 @@ class ParticipantAnonymizedSerializer(ParticipantSerializer):
 
     class Meta(ParticipantSerializer.Meta):
         pass
+
+
+class ParticipantsBulkSerializer(serializers.Serializer):
+    participants = ParticipantSerializer(many=True)
+
+    class Meta:
+        fields = ("participants",)

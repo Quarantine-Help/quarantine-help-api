@@ -1,14 +1,20 @@
 # Create your views here.
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.compat import coreapi, coreschema
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from rest_framework.schemas import ManualSchema
+from rest_framework.views import APIView
 
 from authentication.models import User
 from authentication.schemas import ParticipantCreateSchema
-from authentication.serializer import EmailAuthTokenSerializer, ParticipantSerializer
+from authentication.serializer import (
+    EmailAuthTokenSerializer,
+    ParticipantSerializer,
+    ParticipantsBulkSerializer,
+)
 from crisis.helpers import generate_username_with_user_data
 
 
@@ -77,3 +83,28 @@ class CreateParticipantsAPIV1(generics.CreateAPIView):
         user.refresh_from_db()
         serializer.save(user=user)
         return
+
+
+class CreateParticipantsBulkAPIV1(APIView):
+    serializer_class = ParticipantsBulkSerializer
+    permission_classes = [IsAuthenticated, IsAdminUser]
+
+    def post(self, request, *args, **kwargs):
+        response_data = []
+        participants_data = request.data["participants"]
+        for participant in participants_data:
+            participant_instance = ParticipantSerializer(data=participant)
+            participant_instance.is_valid(raise_exception=True)
+            participants_validated_data = participant_instance.validated_data
+
+            user_data = participants_validated_data["user"]
+            username = generate_username_with_user_data(user_data=user_data)
+            user_data["username"] = username
+            user = User.objects.create(**participants_validated_data["user"])
+            user.set_unusable_password()
+            user.save()
+            user.refresh_from_db()
+            participant_instance.save(user=user)
+            response_data.append(participant_instance.data)
+
+        return Response(response_data, status=status.HTTP_201_CREATED, headers={})
