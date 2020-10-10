@@ -16,6 +16,7 @@ from authentication.serializer import (
     ParticipantsBulkSerializer,
 )
 from crisis.helpers import generate_username_with_user_data
+from management.models import Participant
 
 
 class EmailAuthToken(ObtainAuthToken):
@@ -104,7 +105,8 @@ class CreateParticipantsBulkAPIV1(APIView):
             user.set_unusable_password()
             user.save()
             user.refresh_from_db()
-            participant_instance.save(user=user)
+            af_participant: Participant = participant_instance.save(user=user)
+            af_participant.create_sample_request()
             response_data.append(participant_instance.data)
 
         return Response(response_data, status=status.HTTP_201_CREATED, headers={})

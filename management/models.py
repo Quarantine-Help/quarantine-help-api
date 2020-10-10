@@ -1,3 +1,6 @@
+import random
+from datetime import datetime, timedelta
+
 from django.conf import settings
 from django.contrib.gis.db.models import PointField
 from django.contrib.postgres.fields import JSONField
@@ -100,6 +103,20 @@ class Participant(SafeDeleteModel):
     @property
     def contact_details(self):
         return f"Phone: {self.phone}, Email: {self.user.email}"
+
+    def create_sample_request(self):
+        from crisis.models import Request
+
+        random_request_type = random.choice(["G", "M"])
+        deadline = datetime.utcnow() + timedelta(days=10)
+        request = Request(
+            owner=self,
+            status=Request.STATUS_PENDING,
+            type=random_request_type,
+            deadline=deadline,
+            description="Dummy request created through bulk script",
+        )
+        request.save()
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
