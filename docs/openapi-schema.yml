@@ -1576,10 +1576,12 @@ components:
           enum:
             - G
             - M
+            - O
           description: >
             Type of errand:
              * `G` - Grocery request
              * `M` - Medicine request
+             * `O` - Other request
         deadline:
           type: string
           description: Deadline to finish this in UTC

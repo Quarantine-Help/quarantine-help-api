@@ -15,7 +15,7 @@ class Request(SafeDeleteModel):
 
     _safedelete_policy = SOFT_DELETE_CASCADE
 
-    TYPE_OF_REQUEST = [("G", "Grocery"), ("M", "Medicine")]
+    TYPE_OF_REQUEST = [("G", "Grocery"), ("M", "Medicine"), ("O", "Other")]
     STATUS_PENDING = "P"
     STATUS_TRANSIT = "T"
     STATUS_FINISHED = "F"
@@ -44,7 +44,7 @@ class Request(SafeDeleteModel):
     status = fields.CharField(choices=TYPE_OF_REQUEST_STATUSES, max_length=2)
     created_at = fields.DateTimeField(auto_now_add=True)
     modified_at = fields.DateTimeField(auto_now=True)
-    type = models.CharField(choices=TYPE_OF_REQUEST, max_length=2)
+    type = models.CharField(choices=TYPE_OF_REQUEST, max_length=2, default="O")
     deadline = models.DateTimeField(null=True)
     description = models.TextField()
 
