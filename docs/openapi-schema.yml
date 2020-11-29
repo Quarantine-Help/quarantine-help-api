@@ -179,6 +179,7 @@ paths:
               Type of errand:
                * `G` - Grocery request
                * `M` - Medicine request
+               * `O` - Other request
 
           description: Filter by request type. G - Groceries, M - Medicines. You can send multiple of this with an &.
           example: G
@@ -1391,6 +1392,7 @@ components:
             Type of errand:
              * `G` - Grocery request
              * `M` - Medicine request
+             * `O` - Other request
         deadline:
           type: string
           description: Deadline to finish this with timezone
