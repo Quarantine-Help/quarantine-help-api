@@ -25,7 +25,7 @@ info:
   ## Technologies
 
   We need help, and our technologies right now are:  </br>
-  - **Frontend**: Angular, HERE maps. A mobile version is getting ready at [https://mobile.quarantinehelp.space/](https://mobile.quarantinehelp.space/). </br>
+  - **Frontend**: Angular, HERE maps. A mobile version is getting ready at [https://mobile.quarantine-help.space/](https://mobile.quarantine-help.space/). </br>
   - **Mobile** - Ionic + Capacitor, HERE maps. Code @ [https://github.com/Quarantine-Help/quarantine-hybrid-app](https://github.com/Quarantine-Help/quarantine-hybrid-app) </br>
   - **Backend**: Python-django. You can find the repo here: [https://github.com/Quarantined-Help/quarantined_backend](https://github.com/Quarantined-Help/quarantined_backend). </br>
   - **Design**: We have some initial designs here, thank to our <3 people on our channel [here](https://xd.adobe.com/view/b3bd4031-5959-47e0-4b38-da9e6454d57e-c58c/).
@@ -40,9 +40,9 @@ info:
   '
   version: "1"
 servers:
-  - url: https://api.quarantinehelp.space
+  - url: https://api.quarantine-help.space
     description: Production server (uses live data)
-  - url: https://stage-api.quarantinehelp.space
+  - url: https://stage-api.quarantine-help.space
     description: Stage server (for dev)
 paths:
   /api/v1/auth/register/:
@@ -1438,10 +1438,10 @@ components:
       properties:
         next:
           type: string
-          example: "https://api.quarantinehelp.space/api/v1/me/requests/?page=5"
+          example: "https://api.quarantine-help.space/api/v1/me/requests/?page=5"
         previous:
           type: string
-          example: "https://api.quarantinehelp.space/api/v1/me/requests/?page=4"
+          example: "https://api.quarantine-help.space/api/v1/me/requests/?page=4"
         count:
           type: integer
           example: 100
@@ -1672,10 +1672,10 @@ components:
       properties:
         next:
           type: string
-          example: "https://api.quarantinehelp.space/api/v1/crises/1/affected-participants/?page=5"
+          example: "https://api.quarantine-help.space/api/v1/crises/1/affected-participants/?page=5"
         previous:
           type: string
-          example: "https://api.quarantinehelp.space/api/v1/crises/1/affected-participants/?page=4"
+          example: "https://api.quarantine-help.space/api/v1/crises/1/affected-participants/?page=4"
         count:
           type: integer
           example: 100

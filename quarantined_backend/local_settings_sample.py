@@ -37,8 +37,6 @@ if not DEBUG:
         send_default_pii=True,
     )
 
-    ANYMAIL = {
-        "SENDINBLUE_API_KEY": "<API-KEY>"
-    }
-    DEFAULT_FROM_EMAIL = "no-reply@quarantinehelp.space"
-    SERVER_EMAIL = "no-reply@quarantinehelp.com"
+    ANYMAIL = {"SENDINBLUE_API_KEY": "<API-KEY>"}
+    DEFAULT_FROM_EMAIL = "no-reply@quarantine-help.space"
+    SERVER_EMAIL = "no-reply@quarantine-help.space"
