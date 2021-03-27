@@ -76,6 +76,9 @@ class Participant(SafeDeleteModel):
     first_line_of_address = fields.CharField(max_length=255)
     second_line_of_address = fields.CharField(max_length=255, default="")
     country = CountryField(blank_label="(select country)")
+    currency = fields.CharField(
+        verbose_name="Default Currency", default="SEK", blank=True, max_length=3
+    )
     place_id = fields.CharField(verbose_name="Place id from Google", max_length=150)
 
     position = PointField(null=True, blank=True, geography=True)

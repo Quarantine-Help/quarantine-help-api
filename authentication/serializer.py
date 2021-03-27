@@ -70,6 +70,7 @@ class ParticipantSerializer(ModelSerializer):
             "first_line_of_address",
             "second_line_of_address",
             "country",
+            "currency",
             "place_id",
             "post_code",
             "city",

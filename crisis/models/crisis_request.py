@@ -47,6 +47,9 @@ class Request(SafeDeleteModel):
     type = models.CharField(choices=TYPE_OF_REQUEST, max_length=2, default="O")
     deadline = models.DateTimeField(null=True)
     description = models.TextField()
+    bounty_amount_offered_to_volunteer = fields.DecimalField(
+        max_digits=6, decimal_places=2, default=0.0
+    )
 
     @property
     def related_request_assignment(self):

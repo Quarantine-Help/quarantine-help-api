@@ -32,6 +32,7 @@ class RequestSerializer(ModelSerializer):
         read_only=True,
         many=True,
     )
+    bountyCurrency = fields.CharField(source="owner.currency", read_only=True)
     status = fields.CharField(required=False, allow_null=True)
 
     def validate(self, attrs):
@@ -73,6 +74,8 @@ class RequestSerializer(ModelSerializer):
             "assignee",
             "status",
             "assignmentHistory",
+            "bountyCurrency",
+            "bounty_amount_offered_to_volunteer",
             "created_at",
         )
 
