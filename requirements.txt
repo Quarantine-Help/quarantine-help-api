@@ -11,7 +11,7 @@ cssselect==1.1.0
 cssutils==1.0.2
 defusedxml==0.6.0
 distlib==0.3.0
-Django==3.0.4
+Django==3.0.12
 django-allauth==0.41.0
 django-anymail==7.0.0
 django-cors-headers==3.2.1
