@@ -54,6 +54,6 @@ soupsieve==2.0
 sqlparse==0.3.1
 toml==0.10.0
 uritemplate==3.0.1
-urllib3==1.25.8
+urllib3==1.26.5
 virtualenv==20.0.10
 zipp==3.1.0
